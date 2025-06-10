@@ -168,9 +168,8 @@ class PetersenGraph {
   void display() {
     pushMatrix();
     
-    // Center and scale to 90% of screen
     translate(width/2, height/2);
-    scale(min(width, height) * 0.45);
+    scale(min(width, height) * 0.9);
     
     // Draw edges first (behind nodes)
     for (Edge edge : edges) {
