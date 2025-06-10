@@ -59,7 +59,7 @@ class DebugModule {
     
     private void displayIntersectionIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
-        textSize(12);
+        textSize(10);
         
         ArrayList<Intersection> intersections = graph.getIntersections();
         for (Intersection intersection : intersections) {
@@ -67,14 +67,13 @@ class DebugModule {
             float scale = min(width, height) * 0.9;
             float screenX = width/2 + intersection.x * scale;
             float screenY = height/2 + intersection.y * scale;
+
+            float invertedR = 1.0 - intersection.r;
+            float invertedG = 1.0 - intersection.g;
+            float invertedB = 1.0 - intersection.b;
             
-            // Draw background
-            fill(0, 0, 0, 160);
-            ellipse(screenX, screenY - 20, 20, 14);
-            
-            // Draw intersection index
-            fill(0, 255, 255, 255); // Cyan text to match intersection color
-            text("I" + str(intersection.intersectionId), screenX, screenY - 20);
+            fill(invertedR * 255, invertedG * 255, invertedB * 255, 255);
+            text("i." + str(intersection.intersectionId), screenX, screenY);
         }
     }
     

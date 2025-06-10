@@ -196,6 +196,11 @@ class PetersenGraph {
       edge.display();
     }
     
+    // Draw intersections if enabled (on top of edges, below nodes)
+    if (showIntersections) {
+      intersectionCalculator.displayIntersections();
+    }
+    
     // Draw nodes on top
     for (Node node : nodes) {
       node.display();
