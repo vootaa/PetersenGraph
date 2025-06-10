@@ -29,7 +29,7 @@ class DebugModule {
         }
         if (key == 'e' || key == 'E') {
             dataExporter.exportToJSON(graph, "petersen_graph_data.json");
-            dataExporter.exportToCSV(graph, "petersen_nodes.csv", "petersen_edges.csv");
+            dataExporter.exportToCSV(graph, "petersen_nodes.csv", "petersen_edges.csv", "petersen_intersections.csv");
         }
         if (key == 'o' || key == 'O') {
             String currentDir = dataExporter.getOutputDirectory();

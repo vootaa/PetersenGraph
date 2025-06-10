@@ -64,15 +64,37 @@ class DataExporter {
       edgesArray.setJSONObject(i, edgeObj);
     }
     json.setJSONArray("edges", edgesArray);
+
+    // Export intersection data
+    JSONArray intersectionsArray = new JSONArray();
+    ArrayList<Intersection> intersections = graph.getIntersections();
+    for (int i = 0; i < intersections.size(); i++) {
+      Intersection intersection = intersections.get(i);
+      JSONObject intersectionObj = new JSONObject();
+      intersectionObj.setInt("intersectionId", intersection.intersectionId);
+      intersectionObj.setFloat("x", intersection.x);
+      intersectionObj.setFloat("y", intersection.y);
+      intersectionObj.setInt("edge1Id", intersection.edge1Id);
+      intersectionObj.setInt("edge2Id", intersection.edge2Id);
+      intersectionObj.setFloat("r", intersection.r);
+      intersectionObj.setFloat("g", intersection.g);
+      intersectionObj.setFloat("b", intersection.b);
+      intersectionObj.setFloat("radius", intersection.radius);
+      intersectionsArray.setJSONObject(i, intersectionObj);
+    }
+    json.setJSONArray("intersections", intersectionsArray);
     
     // Save file with configured directory
     String fullPath = outputDirectory + filename;
     saveJSONObject(json, fullPath);
     println("Graph data exported to: " + fullPath);
+    println("  Nodes: " + graph.nodes.size());
+    println("  Edges: " + graph.edges.size());
+    println("  Intersections: " + intersections.size());
   }
   
   // Export to CSV format
-  void exportToCSV(PetersenGraph graph, String nodesFile, String edgesFile) {
+  void exportToCSV(PetersenGraph graph, String nodesFile, String edgesFile, String intersectionsFile) {
     // Check if CSV export is enabled
     JSONObject exportConfig = config.getJSONObject("export");
     JSONObject fileFormats = exportConfig.getJSONObject("fileFormats");
@@ -135,13 +157,44 @@ class DataExporter {
       row.setFloat("b", edge.b);
       row.setFloat("thickness", edge.thickness);
     }
-    
+
     String edgesPath = outputDirectory + edgesFile;
     saveTable(edgesTable, edgesPath);
+
+    // Export intersections CSV
+    Table intersectionsTable = new Table();
+    intersectionsTable.addColumn("intersectionId");
+    intersectionsTable.addColumn("x");
+    intersectionsTable.addColumn("y");
+    intersectionsTable.addColumn("edge1Id");
+    intersectionsTable.addColumn("edge2Id");
+    intersectionsTable.addColumn("r");
+    intersectionsTable.addColumn("g");
+    intersectionsTable.addColumn("b");
+    intersectionsTable.addColumn("radius");
+    
+    ArrayList<Intersection> intersections = graph.getIntersections();
+    for (int i = 0; i < intersections.size(); i++) {
+      Intersection intersection = intersections.get(i);
+      TableRow row = intersectionsTable.addRow();
+      row.setInt("intersectionId", intersection.intersectionId);
+      row.setFloat("x", intersection.x);
+      row.setFloat("y", intersection.y);
+      row.setInt("edge1Id", intersection.edge1Id);
+      row.setInt("edge2Id", intersection.edge2Id);
+      row.setFloat("r", intersection.r);
+      row.setFloat("g", intersection.g);
+      row.setFloat("b", intersection.b);
+      row.setFloat("radius", intersection.radius);
+    }
+
+    String intersectionsPath = outputDirectory + intersectionsFile;
+    saveTable(intersectionsTable, intersectionsPath);
     
     println("Graph data exported to CSV files:");
     println("  Nodes: " + nodesPath);
     println("  Edges: " + edgesPath);
+    println("  Intersections: " + intersectionsPath);
   }
   
   // Get export directory for external use
