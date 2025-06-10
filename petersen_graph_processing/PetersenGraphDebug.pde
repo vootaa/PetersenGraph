@@ -69,6 +69,126 @@ class DebugModule {
         debugDataPrinted = true;
     }
     
+    // Display node indices - Fixed to show ChainID in center and prevent overlap
+    private void displayNodeIndices(PetersenGraph graph) {
+        textAlign(CENTER, CENTER);
+        
+        for (int i = 0; i < graph.nodes.size(); i++) {
+            Node node = graph.nodes.get(i);
+            
+            // Apply same transformation as PetersenGraph.display()
+            float scale = min(width, height) * 0.9;
+            float screenX = width/2 + node.x * scale;
+            float screenY = height/2 + node.y * scale;
+            
+            // 1. Draw ChainID in the center of node (larger, more visible)
+            fill(0, 0, 0, 200);
+            ellipse(screenX, screenY, 35, 22);
+            
+            fill(255, 255, 255, 255);
+            textSize(14);
+            text("C" + str(node.chainId), screenX, screenY);
+            
+            // 2. Draw node index slightly offset to avoid overlap
+            float offsetDistance = 45; // Distance from node center
+            float angle = -PI/2; // Position above the node
+            
+            // For outer circle nodes, adjust angle to avoid crowding
+            if (node.chainId >= 10) {
+                // Calculate angle based on node position to spread labels outward
+                angle = atan2(node.y, node.x) - PI/2;
+                offsetDistance = 55; // Slightly farther for outer nodes
+            }
+            
+            float labelX = screenX + cos(angle) * offsetDistance;
+            float labelY = screenY + sin(angle) * offsetDistance;
+            
+            // Draw background for index
+            fill(0, 0, 0, 180);
+            ellipse(labelX, labelY, 28, 18);
+            
+            // Draw index text
+            fill(255, 255, 0, 255); // Yellow for better contrast
+            textSize(12);
+            text(str(i), labelX, labelY);
+        }
+    }
+    
+    // Display edge indices - Improved positioning to reduce overlap
+    private void displayEdgeIndices(PetersenGraph graph) {
+        textAlign(CENTER, CENTER);
+        textSize(10);
+        
+        for (int i = 0; i < graph.edges.size(); i++) {
+            Edge edge = graph.edges.get(i);
+            
+            // Calculate edge midpoint
+            float midX = (edge.from.x + edge.to.x) / 2;
+            float midY = (edge.from.y + edge.to.y) / 2;
+            
+            // Apply same transformation as PetersenGraph.display()
+            float scale = min(width, height) * 0.9;
+            float screenX = width/2 + midX * scale;
+            float screenY = height/2 + midY * scale;
+            
+            // Offset edge labels slightly to reduce overlap
+            float edgeAngle = atan2(edge.to.y - edge.from.y, edge.to.x - edge.from.x);
+            float perpAngle = edgeAngle + PI/2;
+            
+            // Small offset perpendicular to edge
+            float offsetX = cos(perpAngle) * 15;
+            float offsetY = sin(perpAngle) * 15;
+            
+            screenX += offsetX;
+            screenY += offsetY;
+            
+            // Draw smaller background for edge index
+            fill(0, 0, 0, 120);
+            ellipse(screenX, screenY, 18, 14);
+            
+            // Draw edge index
+            fill(255, 255, 0, 200);
+            text(str(i), screenX, screenY);
+        }
+    }
+    
+    // Render instruction text - Reorganized to prevent overlap
+    private void renderInstructions() {
+        fill(255, 255, 255, 120);
+        textAlign(LEFT, TOP);
+        textSize(14);
+        
+        // Position instructions in top-right corner to avoid graph overlap
+        float startX = width - 250;
+        float startY = 15;
+        float lineHeight = 18;
+        
+        if (showDebugInfo) {
+            text("Debug Mode: ON", startX, startY);
+            text("D: Toggle debug display", startX, startY + lineHeight * 1);
+            text("P: Print graph data", startX, startY + lineHeight * 2);
+            text("E: Export data files", startX, startY + lineHeight * 3);
+            text("O: Toggle output directory", startX, startY + lineHeight * 4);
+            
+            textSize(12);
+            text("Yellow numbers: Node indices", startX, startY + lineHeight * 5.5);
+            text("White C#: Chain IDs (in nodes)", startX, startY + lineHeight * 6.5);
+            text("Small yellow: Edge indices", startX, startY + lineHeight * 7.5);
+            
+            textSize(11);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 9);
+        } else {
+            text("Debug Mode: OFF", startX, startY);
+            text("D: Enable debug display", startX, startY + lineHeight * 1);
+            text("P: Print graph data", startX, startY + lineHeight * 2);
+            text("E: Export data files", startX, startY + lineHeight * 3);
+            text("O: Toggle output directory", startX, startY + lineHeight * 4);
+            
+            textSize(11);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 6);
+        }
+    }
+    
     // Print node data
     private void printNodesData(PetersenGraph graph) {
         println("\n--- NODES DATA ---");
@@ -124,88 +244,6 @@ class DebugModule {
         
         for (int i = 0; i < nodeDegrees.length; i++) {
             println("Node " + i + " (ChainID:" + graph.nodes.get(i).chainId + "): degree " + nodeDegrees[i]);
-        }
-    }
-    
-    // Display node indices - Fixed coordinate transformation and larger fonts
-    private void displayNodeIndices(PetersenGraph graph) {
-        textAlign(CENTER, CENTER);
-        textSize(16); // Increased from 12 to 16
-        
-        for (int i = 0; i < graph.nodes.size(); i++) {
-            Node node = graph.nodes.get(i);
-            
-            // Apply same transformation as PetersenGraph.display()
-            float scale = min(width, height) * 0.9; // Match PetersenGraph scale
-            float screenX = width/2 + node.x * scale;
-            float screenY = height/2 + node.y * scale;
-            
-            // Draw background circle for index
-            fill(0, 0, 0, 180);
-            ellipse(screenX, screenY - 35, 28, 20); // Larger background
-            
-            // Draw index text
-            fill(255, 255, 255, 255);
-            text(str(i), screenX, screenY - 35);
-            
-            // Draw ChainID
-            fill(200, 200, 200, 220);
-            textSize(14); // Slightly smaller for ChainID
-            text("C" + str(node.chainId), screenX, screenY + 35);
-            textSize(16); // Reset to main size
-        }
-    }
-    
-    // Display edge indices - Fixed coordinate transformation and larger fonts
-    private void displayEdgeIndices(PetersenGraph graph) {
-        textAlign(CENTER, CENTER);
-        textSize(14); // Increased from 10 to 14
-        
-        for (int i = 0; i < graph.edges.size(); i++) {
-            Edge edge = graph.edges.get(i);
-            
-            // Calculate edge midpoint
-            float midX = (edge.from.x + edge.to.x) / 2;
-            float midY = (edge.from.y + edge.to.y) / 2;
-            
-            // Apply same transformation as PetersenGraph.display()
-            float scale = min(width, height) * 0.9; // Match PetersenGraph scale
-            float screenX = width/2 + midX * scale;
-            float screenY = height/2 + midY * scale;
-            
-            // Draw background
-            fill(0, 0, 0, 150);
-            ellipse(screenX, screenY, 24, 18); // Larger background
-            
-            // Draw edge index
-            fill(255, 255, 0, 255);
-            text(str(i), screenX, screenY);
-        }
-    }
-    
-    // Render instruction text with larger fonts
-    private void renderInstructions() {
-        fill(255, 255, 255, 120);
-        textAlign(LEFT, TOP);
-        textSize(16); // Increased from 12 to 16
-        
-        if (showDebugInfo) {
-            text("Debug Mode: ON", 15, 15);
-            text("D: Toggle debug display", 15, 35);
-            text("P: Print graph data", 15, 55);
-            text("E: Export data files", 15, 75);
-            text("O: Toggle output directory", 15, 95);
-            text("White numbers: Node indices", 15, 115);
-            text("Yellow numbers: Edge indices", 15, 135);
-            text("Gray 'C' numbers: Chain IDs", 15, 155);
-            text("Export dir: " + dataExporter.getOutputDirectory(), 15, 180);
-        } else {
-            text("Debug Mode: OFF", 15, 15);
-            text("D: Enable debug display", 15, 35);
-            text("P: Print graph data", 15, 55);
-            text("E: Export data files", 15, 75);
-            text("O: Toggle output directory", 15, 95);
-            text("Export dir: " + dataExporter.getOutputDirectory(), 15, 120);
         }
     }
     
