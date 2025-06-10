@@ -1,0 +1,23 @@
+{
+  "nodeColors": {
+    "middleCircle": {"rgb": [255, 51, 51]},
+    "innerCircle": {"rgb": [51, 102, 255]},
+    "outerCircle": {"rgb": [255, 204, 51]}
+  },
+  "edgeColors": {
+    "middleToInner": {"rgb": [230, 51, 51]},
+    "middleToOuterA": {"rgb": [51, 204, 51]},
+    "middleToOuterB": {"rgb": [51, 102, 255]},
+    "innerCircle": {"rgb": [255, 204, 0]},
+    "outerCircle": {"rgb": [230, 102, 230]}
+  },
+  "radii": {
+    "innerRadius": 0.15,
+    "middleRadius": 0.3,
+    "outerRadius": 0.48
+  },
+  "nodeSize": 0.02,
+  "lineWidth": 0.002,
+  "backgroundColor": {"rgb": [13, 13, 20]},
+  "canvasScale": 400
+}
