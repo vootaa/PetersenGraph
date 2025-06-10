@@ -92,7 +92,7 @@ class DebugModule {
     // Display edge indices - Improved positioning to reduce overlap
     private void displayEdgeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
-        textSize(10);
+        textSize(12);
         
         for (int i = 0; i < graph.edges.size(); i++) {
             Edge edge = graph.edges.get(i);
@@ -111,24 +111,24 @@ class DebugModule {
             float perpAngle = edgeAngle + PI/2;
             
             // Small offset perpendicular to edge
-            float offsetX = cos(perpAngle) * 15;
-            float offsetY = sin(perpAngle) * 15;
+            float offsetX = cos(perpAngle) * 18;
+            float offsetY = sin(perpAngle) * 18;
             
             screenX += offsetX;
             screenY += offsetY;
             
             // Draw smaller background for edge index
-            fill(0, 0, 0, 120);
-            ellipse(screenX, screenY, 18, 14);
+            fill(0, 0, 0, 140);
+            ellipse(screenX, screenY, 22, 16);
             
             // Draw edge index
             fill(255, 255, 0, 200);
-            text(str(i), screenX, screenY);
+            text("E" + str(edge.edgeId), screenX, screenY);
         }
     }
     
     // Render instruction text - Reorganized to prevent overlap
-    private void renderInstructions() {
+        private void renderInstructions() {
         fill(255, 255, 255, 120);
         textAlign(LEFT, TOP);
         textSize(14);
@@ -147,7 +147,7 @@ class DebugModule {
             
             textSize(12);
             text("White C#: Chain IDs", startX, startY + lineHeight * 5.5);
-            text("Yellow numbers: Edge indices", startX, startY + lineHeight * 6.5);
+            text("Yellow E#: Edge IDs (E0-E29)", startX, startY + lineHeight * 6.5);
             
             textSize(11);
             text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 8);

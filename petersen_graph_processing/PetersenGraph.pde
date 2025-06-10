@@ -148,7 +148,7 @@ class PetersenGraph {
       Node to = nodes.get(toId);
       JSONArray colors = typeColors[connType];
       
-      edges.add(new Edge(from, to, connType, 
+      edges.add(new Edge(i, from, to, connType, 
                         colors.getFloat(0), 
                         colors.getFloat(1), 
                         colors.getFloat(2), 
