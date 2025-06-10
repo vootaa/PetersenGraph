@@ -5,6 +5,9 @@ class PetersenGraph {
   ArrayList<Node> nodes;
   ArrayList<Edge> edges;
   JSONObject config;
+
+  IntersectionCalculator intersectionCalculator;
+  boolean showIntersections = false;
   
   float[] ANGLES = {
     // Middle circle (chainId 0-4)
@@ -44,6 +47,7 @@ class PetersenGraph {
     this.config = config;
     this.nodes = new ArrayList<Node>();
     this.edges = new ArrayList<Edge>();
+    this.intersectionCalculator = new IntersectionCalculator(config); 
     
     initializeGraph();
   }
@@ -51,7 +55,23 @@ class PetersenGraph {
   void initializeGraph() {
     createNodes();
     createEdges();
+
+    intersectionCalculator.calculateIntersections(this); 
+    
     printNodePositions();
+  }
+
+  void toggleIntersections() {
+    showIntersections = !showIntersections;
+    println("Intersection display: " + (showIntersections ? "ON" : "OFF"));
+  }
+
+  ArrayList<Intersection> getIntersections() {
+    return intersectionCalculator.getIntersections();
+  }
+  
+  void printIntersectionData() {
+    intersectionCalculator.printIntersectionData();
   }
   
   void createNodes() {

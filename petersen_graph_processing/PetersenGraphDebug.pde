@@ -14,7 +14,7 @@ class DebugModule {
     
     // Initialize debug functionality
     void initialize(PetersenGraph graph) {
-        println("Petersen Graph loaded. Press 'D' for debug info, 'P' to print data, 'E' to export files.");
+        println("Petersen Graph loaded. Press 'D' for debug info, 'P' to print data, 'E' to export files, 'I' to toggle intersections.");
         println("Export directory: " + dataExporter.getOutputDirectory());
     }
     
@@ -39,6 +39,9 @@ class DebugModule {
                 dataExporter.setOutputDirectory("data/");
             }
         }
+        if (key == 'i' || key == 'I') {
+            graph.toggleIntersections();
+        }
     }
     
     // Render debug information
@@ -46,8 +49,33 @@ class DebugModule {
         if (showDebugInfo) {
             displayNodeIndices(graph);
             displayEdgeIndices(graph);
+
+            if (graph.showIntersections) {
+                displayIntersectionIndices(graph);
+            }
         }
-        renderInstructions();
+        renderInstructions(graph);
+    }
+    
+    private void displayIntersectionIndices(PetersenGraph graph) {
+        textAlign(CENTER, CENTER);
+        textSize(12);
+        
+        ArrayList<Intersection> intersections = graph.getIntersections();
+        for (Intersection intersection : intersections) {
+            // Apply same transformation as PetersenGraph.display()
+            float scale = min(width, height) * 0.9;
+            float screenX = width/2 + intersection.x * scale;
+            float screenY = height/2 + intersection.y * scale;
+            
+            // Draw background
+            fill(0, 0, 0, 160);
+            ellipse(screenX, screenY - 20, 20, 14);
+            
+            // Draw intersection index
+            fill(0, 255, 255, 255); // Cyan text to match intersection color
+            text("I" + str(intersection.intersectionId), screenX, screenY - 20);
+        }
     }
     
     // Print complete graph data
@@ -58,12 +86,13 @@ class DebugModule {
         
         printNodesData(graph);
         printEdgesData(graph);
+        graph.printIntersectionData();
         printConnectionStatistics(graph);
         printNodeDegrees(graph);
         
         println("\n=====================================");
         println("DATA OUTPUT COMPLETE");
-        println("Press 'D' to toggle debug display, 'P' to reprint data, 'E' to export data, 'O' to toggle output dir");
+        println("Press 'D' to toggle debug display, 'P' to reprint data, 'E' to export data, 'O' to toggle output dir, 'I' to toggle intersections");
         println("=====================================");
         
         debugDataPrinted = true;
@@ -127,14 +156,14 @@ class DebugModule {
         }
     }
     
-    // Render instruction text - Reorganized to prevent overlap
-        private void renderInstructions() {
+    // Render instruction text - Updated with intersection controls
+    private void renderInstructions(PetersenGraph graph) {
         fill(255, 255, 255, 120);
         textAlign(LEFT, TOP);
         textSize(14);
         
         // Position instructions in top-right corner to avoid graph overlap
-        float startX = width - 250;
+        float startX = width - 270;
         float startY = 15;
         float lineHeight = 18;
         
@@ -144,22 +173,27 @@ class DebugModule {
             text("P: Print graph data", startX, startY + lineHeight * 2);
             text("E: Export data files", startX, startY + lineHeight * 3);
             text("O: Toggle output directory", startX, startY + lineHeight * 4);
+            text("I: Toggle intersections", startX, startY + lineHeight * 5);
             
             textSize(12);
-            text("White C#: Chain IDs", startX, startY + lineHeight * 5.5);
-            text("Yellow E#: Edge IDs (E0-E29)", startX, startY + lineHeight * 6.5);
+            text("White C#: Chain IDs", startX, startY + lineHeight * 6.5);
+            text("Yellow E#: Edge IDs (E0-E29)", startX, startY + lineHeight * 7.5);
+            text("Cyan I#: Intersection IDs", startX, startY + lineHeight * 8.5);
+            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 9.5);
             
             textSize(11);
-            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 8);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 11);
         } else {
             text("Debug Mode: OFF", startX, startY);
             text("D: Enable debug display", startX, startY + lineHeight * 1);
             text("P: Print graph data", startX, startY + lineHeight * 2);
             text("E: Export data files", startX, startY + lineHeight * 3);
             text("O: Toggle output directory", startX, startY + lineHeight * 4);
+            text("I: Toggle intersections", startX, startY + lineHeight * 5);
+            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 6);
             
             textSize(11);
-            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 6);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 8);
         }
     }
     
@@ -205,6 +239,9 @@ class DebugModule {
         for (int i = 0; i < typeCount.length; i++) {
             println("Type " + i + " (" + getEdgeTypeDescription(i) + "): " + typeCount[i] + " edges");
         }
+        
+        ArrayList<Intersection> intersections = graph.getIntersections();
+        println("\nIntersections: " + intersections.size() + " edge crossings");
     }
     
     // Print degree of each node
