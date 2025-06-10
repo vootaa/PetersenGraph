@@ -81,38 +81,13 @@ class DebugModule {
             float screenX = width/2 + node.x * scale;
             float screenY = height/2 + node.y * scale;
             
-            // 1. Draw ChainID in the center of node (larger, more visible)
-            fill(0, 0, 0, 200);
-            ellipse(screenX, screenY, 35, 22);
-            
-            fill(255, 255, 255, 255);
-            textSize(14);
+            // Simply draw ChainID directly on the node (no background)
+            fill(255, 255, 255, 255); // White text
+            textSize(16); // Slightly larger for better visibility
             text("C" + str(node.chainId), screenX, screenY);
-            
-            // 2. Draw node index slightly offset to avoid overlap
-            float offsetDistance = 45; // Distance from node center
-            float angle = -PI/2; // Position above the node
-            
-            // For outer circle nodes, adjust angle to avoid crowding
-            if (node.chainId >= 10) {
-                // Calculate angle based on node position to spread labels outward
-                angle = atan2(node.y, node.x) - PI/2;
-                offsetDistance = 55; // Slightly farther for outer nodes
-            }
-            
-            float labelX = screenX + cos(angle) * offsetDistance;
-            float labelY = screenY + sin(angle) * offsetDistance;
-            
-            // Draw background for index
-            fill(0, 0, 0, 180);
-            ellipse(labelX, labelY, 28, 18);
-            
-            // Draw index text
-            fill(255, 255, 0, 255); // Yellow for better contrast
-            textSize(12);
-            text(str(i), labelX, labelY);
         }
     }
+    
     
     // Display edge indices - Improved positioning to reduce overlap
     private void displayEdgeIndices(PetersenGraph graph) {
@@ -171,12 +146,11 @@ class DebugModule {
             text("O: Toggle output directory", startX, startY + lineHeight * 4);
             
             textSize(12);
-            text("Yellow numbers: Node indices", startX, startY + lineHeight * 5.5);
-            text("White C#: Chain IDs (in nodes)", startX, startY + lineHeight * 6.5);
-            text("Small yellow: Edge indices", startX, startY + lineHeight * 7.5);
+            text("White C#: Chain IDs", startX, startY + lineHeight * 5.5);
+            text("Yellow numbers: Edge indices", startX, startY + lineHeight * 6.5);
             
             textSize(11);
-            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 9);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 8);
         } else {
             text("Debug Mode: OFF", startX, startY);
             text("D: Enable debug display", startX, startY + lineHeight * 1);
