@@ -9,7 +9,7 @@ class DebugModule {
     
     DebugModule(JSONObject config) {
         this.config = config;
-        dataExporter = new DataExporter(config); // Pass config to DataExporter
+        dataExporter = new DataExporter(config);
     }
     
     // Initialize debug functionality
@@ -32,7 +32,6 @@ class DebugModule {
             dataExporter.exportToCSV(graph, "petersen_nodes.csv", "petersen_edges.csv");
         }
         if (key == 'o' || key == 'O') {
-            // Toggle output directory between data/ and exports/
             String currentDir = dataExporter.getOutputDirectory();
             if (currentDir.equals("data/")) {
                 dataExporter.setOutputDirectory("exports/");
@@ -128,37 +127,39 @@ class DebugModule {
         }
     }
     
-    // Display node indices - Fixed coordinate transformation
+    // Display node indices - Fixed coordinate transformation and larger fonts
     private void displayNodeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
-        textSize(12);
+        textSize(16); // Increased from 12 to 16
         
         for (int i = 0; i < graph.nodes.size(); i++) {
             Node node = graph.nodes.get(i);
             
             // Apply same transformation as PetersenGraph.display()
-            float scale = min(width, height) * 0.4;
+            float scale = min(width, height) * 0.9; // Match PetersenGraph scale
             float screenX = width/2 + node.x * scale;
             float screenY = height/2 + node.y * scale;
             
             // Draw background circle for index
-            fill(0, 0, 0, 150);
-            ellipse(screenX, screenY - 25, 22, 16);
+            fill(0, 0, 0, 180);
+            ellipse(screenX, screenY - 35, 28, 20); // Larger background
             
             // Draw index text
-            fill(255, 255, 255, 220);
-            text(str(i), screenX, screenY - 25);
+            fill(255, 255, 255, 255);
+            text(str(i), screenX, screenY - 35);
             
             // Draw ChainID
-            fill(200, 200, 200, 180);
-            text("C" + str(node.chainId), screenX, screenY + 25);
+            fill(200, 200, 200, 220);
+            textSize(14); // Slightly smaller for ChainID
+            text("C" + str(node.chainId), screenX, screenY + 35);
+            textSize(16); // Reset to main size
         }
     }
     
-    // Display edge indices - Fixed coordinate transformation
+    // Display edge indices - Fixed coordinate transformation and larger fonts
     private void displayEdgeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
-        textSize(10);
+        textSize(14); // Increased from 10 to 14
         
         for (int i = 0; i < graph.edges.size(); i++) {
             Edge edge = graph.edges.get(i);
@@ -168,43 +169,43 @@ class DebugModule {
             float midY = (edge.from.y + edge.to.y) / 2;
             
             // Apply same transformation as PetersenGraph.display()
-            float scale = min(width, height) * 0.4;
+            float scale = min(width, height) * 0.9; // Match PetersenGraph scale
             float screenX = width/2 + midX * scale;
             float screenY = height/2 + midY * scale;
             
             // Draw background
-            fill(0, 0, 0, 120);
-            ellipse(screenX, screenY, 18, 14);
+            fill(0, 0, 0, 150);
+            ellipse(screenX, screenY, 24, 18); // Larger background
             
             // Draw edge index
-            fill(255, 255, 0, 200);
+            fill(255, 255, 0, 255);
             text(str(i), screenX, screenY);
         }
     }
     
-    // Render instruction text
+    // Render instruction text with larger fonts
     private void renderInstructions() {
-        fill(255, 255, 255, 100);
+        fill(255, 255, 255, 120);
         textAlign(LEFT, TOP);
-        textSize(12);
+        textSize(16); // Increased from 12 to 16
         
         if (showDebugInfo) {
-            text("Debug Mode: ON", 10, 10);
-            text("D: Toggle debug display", 10, 25);
-            text("P: Print graph data", 10, 40);
-            text("E: Export data files", 10, 55);
-            text("O: Toggle output directory", 10, 70);
-            text("White numbers: Node indices", 10, 85);
-            text("Yellow numbers: Edge indices", 10, 100);
-            text("Gray 'C' numbers: Chain IDs", 10, 115);
-            text("Export dir: " + dataExporter.getOutputDirectory(), 10, 135);
+            text("Debug Mode: ON", 15, 15);
+            text("D: Toggle debug display", 15, 35);
+            text("P: Print graph data", 15, 55);
+            text("E: Export data files", 15, 75);
+            text("O: Toggle output directory", 15, 95);
+            text("White numbers: Node indices", 15, 115);
+            text("Yellow numbers: Edge indices", 15, 135);
+            text("Gray 'C' numbers: Chain IDs", 15, 155);
+            text("Export dir: " + dataExporter.getOutputDirectory(), 15, 180);
         } else {
-            text("Debug Mode: OFF", 10, 10);
-            text("D: Enable debug display", 10, 25);
-            text("P: Print graph data", 10, 40);
-            text("E: Export data files", 10, 55);
-            text("O: Toggle output directory", 10, 70);
-            text("Export dir: " + dataExporter.getOutputDirectory(), 10, 90);
+            text("Debug Mode: OFF", 15, 15);
+            text("D: Enable debug display", 15, 35);
+            text("P: Print graph data", 15, 55);
+            text("E: Export data files", 15, 75);
+            text("O: Toggle output directory", 15, 95);
+            text("Export dir: " + dataExporter.getOutputDirectory(), 15, 120);
         }
     }
     
@@ -221,8 +222,8 @@ class DebugModule {
             case 0: return "Middle to Inner";
             case 1: return "Middle to Outer A";
             case 2: return "Middle to Outer B";
-            case 3: return "Inner Circle";
-            case 4: return "Outer Circle";
+            case 3: return "Inner Circle (Pentagram)";
+            case 4: return "Outer Circle (Loop)";
             default: return "Unknown";
         }
     }
