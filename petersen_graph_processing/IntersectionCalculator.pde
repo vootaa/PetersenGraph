@@ -118,18 +118,73 @@ class IntersectionCalculator {
   void printIntersectionData() {
     println("\n--- INTERSECTION DATA ---");
     println("Total Intersections: " + intersections.size());
-    println("Format: [ID] Position(x, y) | Edges(E1->E2) | Color(r, g, b)");
+    println("Format: [ID] Cartesian(x, y) | Polar(r, θ) | Edges(E1↔E2) | Color(r, g, b)");
+    
+    PolarCoordinateConverter converter = new PolarCoordinateConverter();
     
     for (Intersection intersection : intersections) {
-      println(String.format("[%2d] Position(%.4f, %.4f) | Edges(E%d->E%d) | Color(%.1f, %.1f, %.1f)", 
+      // Convert to polar coordinates
+      PolarCoordinate polar = converter.cartesianToPolar(intersection.x, intersection.y);
+      
+      println(String.format("[%2d] Cart(%.4f, %.4f) | Polar(%s) | Edges(E%d↔E%d) | Color(%.1f, %.1f, %.1f)", 
                            intersection.intersectionId, 
                            intersection.x, 
                            intersection.y,
+                           polar.toCompactString(),
                            intersection.edge1Id,
                            intersection.edge2Id,
                            intersection.r, 
                            intersection.g, 
                            intersection.b));
+    }
+    
+    // Additional intersection analysis
+    println("\n--- INTERSECTION RADIAL DISTRIBUTION ---");
+    float[] radii = new float[intersections.size()];
+    for (int i = 0; i < intersections.size(); i++) {
+      Intersection intersection = intersections.get(i);
+      PolarCoordinate polar = converter.cartesianToPolar(intersection.x, intersection.y);
+      radii[i] = polar.radius;
+    }
+    
+    if (radii.length > 0) {
+      // Find min, max, and average radius
+      float minRadius = Float.MAX_VALUE;
+      float maxRadius = Float.MIN_VALUE;
+      float sumRadius = 0;
+      
+      for (float r : radii) {
+        if (r < minRadius) minRadius = r;
+        if (r > maxRadius) maxRadius = r;
+        sumRadius += r;
+      }
+      
+      float avgRadius = sumRadius / radii.length;
+      
+      println(String.format("Intersection radii: min=%.4f, max=%.4f, avg=%.4f", 
+                           minRadius, maxRadius, avgRadius));
+      
+      // Count intersections in different radial zones
+      JSONObject nodeConfig = config.getJSONObject("nodes");
+      JSONObject radiusConfig = nodeConfig.getJSONObject("radius");
+      float innerRadius = radiusConfig.getFloat("inner");
+      float middleRadius = radiusConfig.getFloat("middle");
+      float outerRadius = radiusConfig.getFloat("outer");
+      
+      int innerZone = 0, innerToMiddle = 0, middleToOuter = 0, outerZone = 0;
+      
+      for (float r : radii) {
+        if (r < innerRadius) innerZone++;
+        else if (r < middleRadius) innerToMiddle++;
+        else if (r < outerRadius) middleToOuter++;
+        else outerZone++;
+      }
+      
+      println("Intersection distribution by radial zones:");
+      println(String.format("  Inner zone (r < %.3f): %d intersections", innerRadius, innerZone));
+      println(String.format("  Inner-Middle zone (%.3f ≤ r < %.3f): %d intersections", innerRadius, middleRadius, innerToMiddle));
+      println(String.format("  Middle-Outer zone (%.3f ≤ r < %.3f): %d intersections", middleRadius, outerRadius, middleToOuter));
+      println(String.format("  Outer zone (r ≥ %.3f): %d intersections", outerRadius, outerZone));
     }
   }
 }

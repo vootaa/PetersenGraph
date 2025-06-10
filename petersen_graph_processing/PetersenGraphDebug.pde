@@ -6,12 +6,14 @@ class DebugModule {
     boolean debugDataPrinted = false;
     DataExporter dataExporter;
     JSONObject config;
+    PolarCoordinateConverter polarConverter;
     
     DebugModule(JSONObject config) {
         this.config = config;
         dataExporter = new DataExporter(config);
+        polarConverter = new PolarCoordinateConverter();
     }
-    
+
     // Initialize debug functionality
     void initialize(PetersenGraph graph) {
         println("Petersen Graph loaded. Press 'D' for debug info, 'P' to print data, 'E' to export files, 'I' to toggle intersections.");
@@ -44,12 +46,15 @@ class DebugModule {
         }
     }
     
+    private PolarCoordinate convertToPolar(float x, float y) {
+        return polarConverter.cartesianToPolar(x, y);
+    }
+    
     // Render debug information
     void renderDebugInfo(PetersenGraph graph) {
         if (showDebugInfo) {
             displayNodeIndices(graph);
             displayEdgeIndices(graph);
-
             if (graph.showIntersections) {
                 displayIntersectionIndices(graph);
             }
@@ -88,6 +93,7 @@ class DebugModule {
         graph.printIntersectionData();
         printConnectionStatistics(graph);
         printNodeDegrees(graph);
+        printPolarCoordinateAnalysis(graph);
         
         println("\n=====================================");
         println("DATA OUTPUT COMPLETE");
@@ -97,27 +103,122 @@ class DebugModule {
         debugDataPrinted = true;
     }
     
-    // Display node indices - Fixed to show ChainID in center and prevent overlap
+    private void printPolarCoordinateAnalysis(PetersenGraph graph) {
+        println("\n--- POLAR COORDINATE ANALYSIS ---");
+        println("Node positions in both Cartesian and Polar coordinates:");
+        println("Format: [Index] ChainID | Cartesian(x, y) | Polar(r, θ) | Layer | Radius Accuracy");
+        
+        for (int i = 0; i < graph.nodes.size(); i++) {
+            Node node = graph.nodes.get(i);
+            PolarCoordinate polar = convertToPolar(node.x, node.y);
+            String layer = polarConverter.getLayerFromChainId(node.chainId);
+            
+            // Get theoretical radius for comparison
+            float theoreticalRadius = polarConverter.getTheoreticalRadius(layer.toLowerCase(), config);
+            float radiusError = abs(polar.radius - theoreticalRadius);
+            String accuracy = radiusError < 0.001 ? "EXACT" : String.format("±%.4f", radiusError);
+            
+            println(String.format("[%2d] C%2d | Cart(%.4f, %.4f) | Polar(%s) | %s | %s", 
+                            i, node.chainId, node.x, node.y, 
+                            polar.toCompactString(), layer, accuracy));
+        }
+        
+        // Intersection polar coordinates
+        ArrayList<Intersection> intersections = graph.getIntersections();
+        if (intersections.size() > 0) {
+            println("\nIntersection positions in polar coordinates:");
+            println("Format: [ID] Cartesian(x, y) | Polar(r, θ) | Edge Intersection");
+            
+            for (Intersection intersection : intersections) {
+                PolarCoordinate polar = polarConverter.cartesianToPolar(intersection.x, intersection.y);
+                println(String.format("[%2d] Cart(%.4f, %.4f) | Polar(%s) | E%d↔E%d", 
+                                intersection.intersectionId, intersection.x, intersection.y,
+                                polar.toCompactString(), intersection.edge1Id, intersection.edge2Id));
+            }
+        }
+        
+        // Layer radius verification
+        println("\nLayer Radius Verification:");
+        println("Expected vs Actual radii for each layer:");
+        
+        String[] layers = {"inner", "middle", "outer"};
+        for (String layer : layers) {
+            float expectedRadius = polarConverter.getTheoreticalRadius(layer, config);
+            println(String.format("%s Layer: Expected r=%.3f", 
+                            layer.substring(0, 1).toUpperCase() + layer.substring(1), expectedRadius));
+            
+            // Find nodes in this layer and check their actual radii
+            for (Node node : graph.nodes) {
+                String nodeLayer = polarConverter.getLayerFromChainId(node.chainId).toLowerCase();
+                if (nodeLayer.equals(layer)) {
+                    PolarCoordinate polar = polarConverter.cartesianToPolar(node.x, node.y);
+                    float error = abs(polar.radius - expectedRadius);
+                    println(String.format("  Node C%d: Actual r=%.4f (error: %.6f)", 
+                                    node.chainId, polar.radius, error));
+                }
+            }
+        }
+        
+        // Angular distribution analysis
+        println("\nAngular Distribution Analysis:");
+        println("Expected 5-fold symmetry for inner and middle circles (72° intervals):");
+        
+        for (String layer : new String[]{"middle", "inner"}) {
+            println(layer.substring(0, 1).toUpperCase() + layer.substring(1) + " Circle Angular Positions:");
+            ArrayList<Float> angles = new ArrayList<Float>();
+            
+            for (Node node : graph.nodes) {
+                String nodeLayer = polarConverter.getLayerFromChainId(node.chainId).toLowerCase();
+                if (nodeLayer.equals(layer)) {
+                    PolarCoordinate polar = polarConverter.cartesianToPolar(node.x, node.y);
+                    angles.add(polar.getAngleDegrees());
+                }
+            }
+            
+            // Sort angles
+            angles.sort(null);
+            
+            for (int i = 0; i < angles.size(); i++) {
+                float expectedAngle = i * 72.0;
+                float actualAngle = angles.get(i);
+                
+                // Normalize to find closest expected angle
+                float minDiff = Float.MAX_VALUE;
+                float bestExpected = expectedAngle;
+                for (int j = 0; j < 5; j++) {
+                    float testExpected = j * 72.0;
+                    float diff = abs(actualAngle - testExpected);
+                    if (diff > 180) diff = 360 - diff;
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        bestExpected = testExpected;
+                    }
+                }
+                
+                println(String.format("  Position %d: %.1f° (expected ~%.1f°, diff: %.1f°)", 
+                                i, actualAngle, bestExpected, minDiff));
+            }
+        }
+    }
+    
+    // Display node indices
     private void displayNodeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
         
         for (int i = 0; i < graph.nodes.size(); i++) {
             Node node = graph.nodes.get(i);
             
-            // Apply same transformation as PetersenGraph.display()
             float scale = min(width, height) * 0.9;
             float screenX = width/2 + node.x * scale;
             float screenY = height/2 + node.y * scale;
             
-            // Simply draw ChainID directly on the node (no background)
-            fill(255, 255, 255, 255); // White text
-            textSize(16); // Slightly larger for better visibility
+            fill(255, 255, 255, 255);
+            textSize(16);
             text("C" + str(node.chainId), screenX, screenY);
         }
     }
     
-    
-    // Display edge indices - Improved positioning to reduce overlap
+    // Display edge indices
     private void displayEdgeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
         textSize(12);
@@ -125,43 +226,36 @@ class DebugModule {
         for (int i = 0; i < graph.edges.size(); i++) {
             Edge edge = graph.edges.get(i);
             
-            // Calculate edge midpoint
             float midX = (edge.from.x + edge.to.x) / 2;
             float midY = (edge.from.y + edge.to.y) / 2;
             
-            // Apply same transformation as PetersenGraph.display()
             float scale = min(width, height) * 0.9;
             float screenX = width/2 + midX * scale;
             float screenY = height/2 + midY * scale;
             
-            // Offset edge labels slightly to reduce overlap
             float edgeAngle = atan2(edge.to.y - edge.from.y, edge.to.x - edge.from.x);
             float perpAngle = edgeAngle + PI/2;
             
-            // Small offset perpendicular to edge
             float offsetX = cos(perpAngle) * 18;
             float offsetY = sin(perpAngle) * 18;
             
             screenX += offsetX;
             screenY += offsetY;
             
-            // Draw smaller background for edge index
             fill(0, 0, 0, 140);
             ellipse(screenX, screenY, 22, 16);
             
-            // Draw edge index
             fill(255, 255, 0, 200);
             text("E" + str(edge.edgeId), screenX, screenY);
         }
     }
     
-    // Render instruction text - Updated with intersection controls
+    // Render instruction text
     private void renderInstructions(PetersenGraph graph) {
         fill(255, 255, 255, 120);
         textAlign(LEFT, TOP);
         textSize(14);
         
-        // Position instructions in top-right corner to avoid graph overlap
         float startX = width - 270;
         float startY = 15;
         float lineHeight = 18;
@@ -200,14 +294,17 @@ class DebugModule {
     private void printNodesData(PetersenGraph graph) {
         println("\n--- NODES DATA ---");
         println("Total Nodes: " + graph.nodes.size());
-        println("Format: [Index] ChainID | Position(x, y) | Color(r, g, b) | Layer");
+        println("Format: [Index] ChainID | Cartesian(x, y) | Polar(r, θ) | Color(r, g, b) | Layer");
         
         for (int i = 0; i < graph.nodes.size(); i++) {
             Node node = graph.nodes.get(i);
             String layer = getNodeLayer(node.chainId);
             
-            println(String.format("[%2d] ChainID:%2d | Position(%.4f, %.4f) | Color(%.1f, %.1f, %.1f) | %s", 
-                            i, node.chainId, node.x, node.y, node.r, node.g, node.b, layer));
+            PolarCoordinate polar = polarConverter.cartesianToPolar(node.x, node.y);
+            
+            println(String.format("[%2d] ChainID:%2d | Cart(%.4f, %.4f) | Polar(%s) | Color(%.1f, %.1f, %.1f) | %s", 
+                            i, node.chainId, node.x, node.y, polar.toCompactString(),
+                            node.r, node.g, node.b, layer));
         }
     }
     
