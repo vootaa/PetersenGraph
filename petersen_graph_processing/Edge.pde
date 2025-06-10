@@ -1,20 +1,27 @@
+/**
+ * Edge class for Petersen Graph
+ */
 class Edge {
-  Node nodeA;
-  Node nodeB;
-  color edgeColor;
-  float lineWidth;
-
-  Edge(Node a, Node b, color c, float w) {
-    nodeA = a;
-    nodeB = b;
-    edgeColor = c;
-    lineWidth = w;
+  Node from, to;
+  int type;
+  float r, g, b;
+  float thickness;
+  
+  Edge(Node from, Node to, int type, float r, float g, float b, float thickness) {
+    this.from = from;
+    this.to = to;
+    this.type = type;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.thickness = thickness;
   }
-
-  void display(float scale) {
-    stroke(edgeColor);
-    strokeWeight(lineWidth * scale);
-    line(nodeA.x * scale + width/2, nodeA.y * scale + height/2, 
-         nodeB.x * scale + width/2, nodeB.y * scale + height/2);
+  
+  void display() {
+    pushStyle();
+    stroke(r * 255, g * 255, b * 255);
+    strokeWeight(thickness);
+    line(from.x, from.y, to.x, to.y);
+    popStyle();
   }
 }

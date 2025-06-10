@@ -1,20 +1,27 @@
+/**
+ * Node class for Petersen Graph
+ */
 class Node {
-  float x, y;
-  color nodeColor;
-  float radius;
   int chainId;
-
-  Node(float x, float y, color nodeColor, float radius, int chainId) {
+  float x, y;
+  float r, g, b;
+  float radius;
+  
+  Node(int chainId, float x, float y, float r, float g, float b, float radius) {
+    this.chainId = chainId;
     this.x = x;
     this.y = y;
-    this.nodeColor = nodeColor;
+    this.r = r;
+    this.g = g;
+    this.b = b;
     this.radius = radius;
-    this.chainId = chainId;
   }
-
-  void display(float scale) {
-    fill(nodeColor);
+  
+  void display() {
+    pushStyle();
+    fill(r * 255, g * 255, b * 255);
     noStroke();
-    ellipse(x * scale + width/2, y * scale + height/2, radius * scale * 2, radius * scale * 2);
+    ellipse(x, y, radius * 2, radius * 2);
+    popStyle();
   }
 }

@@ -1,23 +1,29 @@
 {
-  "nodeColors": {
-    "middleCircle": {"rgb": [255, 51, 51]},
-    "innerCircle": {"rgb": [51, 102, 255]},
-    "outerCircle": {"rgb": [255, 204, 51]}
+  "backgroundColor": {
+    "rgb": [13, 13, 20]
   },
-  "edgeColors": {
-    "middleToInner": {"rgb": [230, 51, 51]},
-    "middleToOuterA": {"rgb": [51, 204, 51]},
-    "middleToOuterB": {"rgb": [51, 102, 255]},
-    "innerCircle": {"rgb": [255, 204, 0]},
-    "outerCircle": {"rgb": [230, 102, 230]}
+  "nodes": {
+    "radius": {
+      "inner": 0.15,
+      "middle": 0.3,
+      "outer": 0.48
+    },
+    "size": 0.02,
+    "colors": {
+      "middle": [1.0, 0.2, 0.2],
+      "inner": [0.2, 0.4, 1.0],
+      "outer": [1.0, 0.8, 0.2]
+    },
+    "outerAngles": [4.8521, 0.1745, 1.0821, 2.6878, 3.5954, 5.2009, 6.1087, 1.4312, 2.3387, 3.9444]
   },
-  "radii": {
-    "innerRadius": 0.15,
-    "middleRadius": 0.3,
-    "outerRadius": 0.48
-  },
-  "nodeSize": 0.02,
-  "lineWidth": 0.002,
-  "backgroundColor": {"rgb": [13, 13, 20]},
-  "canvasScale": 400
+  "edges": {
+    "thickness": 0.002,
+    "colors": {
+      "type0": [0.9, 0.2, 0.2],
+      "type1": [0.2, 0.8, 0.2],
+      "type2": [0.2, 0.4, 1.0],
+      "type3": [1.0, 0.8, 0.0],
+      "type4": [0.9, 0.4, 0.9]
+    }
+  }
 }

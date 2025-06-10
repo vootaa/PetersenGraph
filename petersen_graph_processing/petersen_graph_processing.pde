@@ -1,7 +1,9 @@
 // petersen_graph_processing.pde
 
 PetersenGraph petersenGraph;
+DataExporter dataExporter;
 GraphRenderer renderer;
+DebugModule debugModule;
 JSONObject config;
 
 void setup() {
@@ -12,6 +14,11 @@ void setup() {
   
   petersenGraph = new PetersenGraph(config);
   renderer = new GraphRenderer(petersenGraph);
+  dataExporter = new DataExporter();
+  debugModule = new DebugModule();
+
+  // Initialize debug functionality
+  debugModule.initialize(petersenGraph);
 }
 
 void draw() {
@@ -20,4 +27,12 @@ void draw() {
   background(bgColor.getInt(0), bgColor.getInt(1), bgColor.getInt(2));
   
   renderer.render();
+
+  // Render debug information
+  debugModule.renderDebugInfo(petersenGraph);
+}
+
+void keyPressed() {
+  // Delegate keyboard handling to debug module
+  debugModule.handleKeyPressed(petersenGraph);
 }

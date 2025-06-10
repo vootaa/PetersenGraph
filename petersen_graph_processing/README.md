@@ -39,6 +39,7 @@ To run the Processing sketch:
 ## Mathematical Significance
 
 The Petersen Graph is notable for being:
+
 - The smallest bridgeless cubic graph with no Hamiltonian path.
 - A counterexample to several graph theory conjectures.
 - A fundamental example in algebraic graph theory.

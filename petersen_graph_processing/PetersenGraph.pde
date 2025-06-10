@@ -1,129 +1,160 @@
+/**
+ * Petersen Graph implementation
+ */
 class PetersenGraph {
-  Node[] nodes;
-  Edge[] edges;
+  ArrayList<Node> nodes;
+  ArrayList<Edge> edges;
   JSONObject config;
   
-  float innerRadius;
-  float middleRadius;
-  float outerRadius;
-  float nodeSize;
-  float lineWidth;
-
   PetersenGraph(JSONObject config) {
     this.config = config;
+    this.nodes = new ArrayList<Node>();
+    this.edges = new ArrayList<Edge>();
     
-    // Load configuration values
-    JSONObject radii = config.getJSONObject("radii");
-    innerRadius = radii.getFloat("innerRadius");
-    middleRadius = radii.getFloat("middleRadius");
-    outerRadius = radii.getFloat("outerRadius");
-    nodeSize = config.getFloat("nodeSize");
-    lineWidth = config.getFloat("lineWidth");
-    
-    nodes = new Node[20];
-    edges = new Edge[30];
-    
+    initializeGraph();
+  }
+  
+  void initializeGraph() {
     createNodes();
     createEdges();
   }
-
+  
   void createNodes() {
-    JSONObject nodeColors = config.getJSONObject("nodeColors");
+    JSONObject nodeConfig = config.getJSONObject("nodes");
+    JSONObject radiusConfig = nodeConfig.getJSONObject("radius");
+    JSONObject colorConfig = nodeConfig.getJSONObject("colors");
+    
+    float innerRadius = radiusConfig.getFloat("inner");
+    float middleRadius = radiusConfig.getFloat("middle");
+    float outerRadius = radiusConfig.getFloat("outer");
+    float nodeSize = nodeConfig.getFloat("size");
     
     // Create middle circle nodes (Chain IDs 0-4)
-    JSONArray middleColor = nodeColors.getJSONObject("middleCircle").getJSONArray("rgb");
-    color middleNodeColor = color(middleColor.getInt(0), middleColor.getInt(1), middleColor.getInt(2));
-    
-    // Specific angles from specification (in radians)
-    float[] middleAngles = {5.0265, 0.0, 1.2566, 2.5133, 3.7699};
+    JSONArray middleColors = colorConfig.getJSONArray("middle");
     for (int i = 0; i < 5; i++) {
-      float x = cos(middleAngles[i]) * middleRadius;
-      float y = sin(middleAngles[i]) * middleRadius;
-      nodes[i] = new Node(x, y, middleNodeColor, nodeSize, i);
+      float angle = i * TWO_PI / 5.0;
+      float x = cos(angle) * middleRadius;
+      float y = sin(angle) * middleRadius;
+      nodes.add(new Node(i, x, y, 
+                        middleColors.getFloat(0), 
+                        middleColors.getFloat(1), 
+                        middleColors.getFloat(2), 
+                        nodeSize));
     }
-
+    
     // Create inner circle nodes (Chain IDs 5-9)
-    JSONArray innerColor = nodeColors.getJSONObject("innerCircle").getJSONArray("rgb");
-    color innerNodeColor = color(innerColor.getInt(0), innerColor.getInt(1), innerColor.getInt(2));
-    
+    JSONArray innerColors = colorConfig.getJSONArray("inner");
     for (int i = 0; i < 5; i++) {
-      float x = cos(middleAngles[i]) * innerRadius;
-      float y = sin(middleAngles[i]) * innerRadius;
-      nodes[i + 5] = new Node(x, y, innerNodeColor, nodeSize, i + 5);
+      float angle = i * TWO_PI / 5.0;
+      float x = cos(angle) * innerRadius;
+      float y = sin(angle) * innerRadius;
+      nodes.add(new Node(i + 5, x, y, 
+                        innerColors.getFloat(0), 
+                        innerColors.getFloat(1), 
+                        innerColors.getFloat(2), 
+                        nodeSize));
     }
-
+    
     // Create outer circle nodes (Chain IDs 10-19)
-    JSONArray outerColor = nodeColors.getJSONObject("outerCircle").getJSONArray("rgb");
-    color outerNodeColor = color(outerColor.getInt(0), outerColor.getInt(1), outerColor.getInt(2));
-    
-    // Specific outer angles from specification
-    float[] outerAngles = {4.8521, 0.1745, 1.0821, 2.6878, 3.5954, 5.2009, 6.1087, 1.4312, 2.3387, 3.9444};
+    JSONArray outerColors = colorConfig.getJSONArray("outer");
+    JSONArray outerAngles = nodeConfig.getJSONArray("outerAngles");
     for (int i = 0; i < 10; i++) {
-      float x = cos(outerAngles[i]) * outerRadius;
-      float y = sin(outerAngles[i]) * outerRadius;
-      nodes[i + 10] = new Node(x, y, outerNodeColor, nodeSize, i + 10);
+      float angle = outerAngles.getFloat(i);
+      float x = cos(angle) * outerRadius;
+      float y = sin(angle) * outerRadius;
+      nodes.add(new Node(i + 10, x, y, 
+                        outerColors.getFloat(0), 
+                        outerColors.getFloat(1), 
+                        outerColors.getFloat(2), 
+                        nodeSize));
     }
   }
-
+  
   void createEdges() {
-    int index = 0;
-    JSONObject edgeColors = config.getJSONObject("edgeColors");
-
-    // Type 0: Middle to Inner connections (5 connections)
-    JSONArray middleToInnerColor = edgeColors.getJSONObject("middleToInner").getJSONArray("rgb");
-    color type0Color = color(middleToInnerColor.getInt(0), middleToInnerColor.getInt(1), middleToInnerColor.getInt(2));
+    JSONObject edgeConfig = config.getJSONObject("edges");
+    JSONObject colorConfig = edgeConfig.getJSONObject("colors");
+    float thickness = edgeConfig.getFloat("thickness");
     
+    // Type 0: Middle to Inner (5 connections)
+    JSONArray type0Colors = colorConfig.getJSONArray("type0");
     for (int i = 0; i < 5; i++) {
-      edges[index++] = new Edge(nodes[i], nodes[i + 5], type0Color, lineWidth);
+      Node from = nodes.get(i);      // Middle circle
+      Node to = nodes.get(i + 5);    // Inner circle
+      edges.add(new Edge(from, to, 0, 
+                        type0Colors.getFloat(0), 
+                        type0Colors.getFloat(1), 
+                        type0Colors.getFloat(2), 
+                        thickness));
     }
-
+    
     // Type 1: Middle to Outer Pattern A (5 connections)
-    JSONArray middleToOuterAColor = edgeColors.getJSONObject("middleToOuterA").getJSONArray("rgb");
-    color type1Color = color(middleToOuterAColor.getInt(0), middleToOuterAColor.getInt(1), middleToOuterAColor.getInt(2));
-    
+    JSONArray type1Colors = colorConfig.getJSONArray("type1");
     for (int i = 0; i < 5; i++) {
-      edges[index++] = new Edge(nodes[i], nodes[i + 10], type1Color, lineWidth);
+      Node from = nodes.get(i);       // Middle circle
+      Node to = nodes.get(i + 10);    // Outer circle (+10)
+      edges.add(new Edge(from, to, 1, 
+                        type1Colors.getFloat(0), 
+                        type1Colors.getFloat(1), 
+                        type1Colors.getFloat(2), 
+                        thickness));
     }
-
+    
     // Type 2: Middle to Outer Pattern B (5 connections)
-    JSONArray middleToOuterBColor = edgeColors.getJSONObject("middleToOuterB").getJSONArray("rgb");
-    color type2Color = color(middleToOuterBColor.getInt(0), middleToOuterBColor.getInt(1), middleToOuterBColor.getInt(2));
-    
+    JSONArray type2Colors = colorConfig.getJSONArray("type2");
     for (int i = 0; i < 5; i++) {
-      edges[index++] = new Edge(nodes[i], nodes[i + 15], type2Color, lineWidth);
+      Node from = nodes.get(i);       // Middle circle
+      Node to = nodes.get(i + 15);    // Outer circle (+15)
+      edges.add(new Edge(from, to, 2, 
+                        type2Colors.getFloat(0), 
+                        type2Colors.getFloat(1), 
+                        type2Colors.getFloat(2), 
+                        thickness));
     }
-
-    // Type 3: Inner Circle Connections (5 connections) - Pentagram pattern
-    JSONArray innerCircleColor = edgeColors.getJSONObject("innerCircle").getJSONArray("rgb");
-    color type3Color = color(innerCircleColor.getInt(0), innerCircleColor.getInt(1), innerCircleColor.getInt(2));
     
-    // Connections: (5→7), (6→8), (7→9), (8→5), (9→6)
-    edges[index++] = new Edge(nodes[5], nodes[7], type3Color, lineWidth);
-    edges[index++] = new Edge(nodes[6], nodes[8], type3Color, lineWidth);
-    edges[index++] = new Edge(nodes[7], nodes[9], type3Color, lineWidth);
-    edges[index++] = new Edge(nodes[8], nodes[5], type3Color, lineWidth);
-    edges[index++] = new Edge(nodes[9], nodes[6], type3Color, lineWidth);
-
+    // Type 3: Inner Circle Connections (5 connections)
+    // Creates pentagram pattern: each node connects to node+2
+    JSONArray type3Colors = colorConfig.getJSONArray("type3");
+    for (int i = 0; i < 5; i++) {
+      Node from = nodes.get(i + 5);           // Inner circle
+      Node to = nodes.get(((i + 2) % 5) + 5); // Inner circle +2 with wrap
+      edges.add(new Edge(from, to, 3, 
+                        type3Colors.getFloat(0), 
+                        type3Colors.getFloat(1), 
+                        type3Colors.getFloat(2), 
+                        thickness));
+    }
+    
     // Type 4: Outer Circle Connections (10 connections)
-    JSONArray outerCircleColor = edgeColors.getJSONObject("outerCircle").getJSONArray("rgb");
-    color type4Color = color(outerCircleColor.getInt(0), outerCircleColor.getInt(1), outerCircleColor.getInt(2));
-    
+    // Creates sequential loop
+    JSONArray type4Colors = colorConfig.getJSONArray("type4");
     for (int i = 0; i < 10; i++) {
-      edges[index++] = new Edge(nodes[i + 10], nodes[((i + 1) % 10) + 10], type4Color, lineWidth);
+      Node from = nodes.get(i + 10);              // Outer circle
+      Node to = nodes.get(((i + 1) % 10) + 10);   // Next outer node with wrap
+      edges.add(new Edge(from, to, 4, 
+                        type4Colors.getFloat(0), 
+                        type4Colors.getFloat(1), 
+                        type4Colors.getFloat(2), 
+                        thickness));
     }
   }
-
+  
   void display() {
-    float scale = config.getFloat("canvasScale");
+    pushMatrix();
     
-    // Draw edges first (so they appear behind nodes)
+    // Center and scale to fit screen (static positioning)
+    translate(width/2, height/2);
+    scale(min(width, height) * 0.4);
+    
+    // Draw edges first (behind nodes)
     for (Edge edge : edges) {
-      edge.display(scale);
+      edge.display();
     }
     
     // Draw nodes on top
     for (Node node : nodes) {
-      node.display(scale);
+      node.display();
     }
+    
+    popMatrix();
   }
 }
