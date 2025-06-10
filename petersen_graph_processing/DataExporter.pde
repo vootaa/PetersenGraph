@@ -1,8 +1,32 @@
 // Data exporter class
 class DataExporter {
+  JSONObject config;
+  String outputDirectory;
+  
+  DataExporter(JSONObject config) {
+    this.config = config;
+    // Read output directory from config, with fallback
+    JSONObject exportConfig = config.getJSONObject("export");
+    this.outputDirectory = exportConfig.getString("outputDirectory");
+    
+    // Ensure directory ends with slash
+    if (!this.outputDirectory.endsWith("/")) {
+      this.outputDirectory += "/";
+    }
+    
+    println("Export directory set to: " + this.outputDirectory);
+  }
   
   // Export to JSON format
   void exportToJSON(PetersenGraph graph, String filename) {
+    // Check if JSON export is enabled
+    JSONObject exportConfig = config.getJSONObject("export");
+    JSONObject fileFormats = exportConfig.getJSONObject("fileFormats");
+    if (!fileFormats.getBoolean("json")) {
+      println("JSON export is disabled in configuration");
+      return;
+    }
+    
     JSONObject json = new JSONObject();
     
     // Export node data
@@ -41,13 +65,22 @@ class DataExporter {
     }
     json.setJSONArray("edges", edgesArray);
     
-    // Save file
-    saveJSONObject(json, "data/" + filename);
-    println("Graph data exported to: data/" + filename);
+    // Save file with configured directory
+    String fullPath = outputDirectory + filename;
+    saveJSONObject(json, fullPath);
+    println("Graph data exported to: " + fullPath);
   }
   
   // Export to CSV format
   void exportToCSV(PetersenGraph graph, String nodesFile, String edgesFile) {
+    // Check if CSV export is enabled
+    JSONObject exportConfig = config.getJSONObject("export");
+    JSONObject fileFormats = exportConfig.getJSONObject("fileFormats");
+    if (!fileFormats.getBoolean("csv")) {
+      println("CSV export is disabled in configuration");
+      return;
+    }
+    
     // Export nodes CSV
     Table nodesTable = new Table();
     nodesTable.addColumn("index");
@@ -72,7 +105,8 @@ class DataExporter {
       row.setFloat("radius", node.radius);
     }
     
-    saveTable(nodesTable, "data/" + nodesFile);
+    String nodesPath = outputDirectory + nodesFile;
+    saveTable(nodesTable, nodesPath);
     
     // Export edges CSV
     Table edgesTable = new Table();
@@ -102,11 +136,26 @@ class DataExporter {
       row.setFloat("thickness", edge.thickness);
     }
     
-    saveTable(edgesTable, "data/" + edgesFile);
+    String edgesPath = outputDirectory + edgesFile;
+    saveTable(edgesTable, edgesPath);
     
     println("Graph data exported to CSV files:");
-    println("  Nodes: data/" + nodesFile);
-    println("  Edges: data/" + edgesFile);
+    println("  Nodes: " + nodesPath);
+    println("  Edges: " + edgesPath);
+  }
+  
+  // Get export directory for external use
+  String getOutputDirectory() {
+    return outputDirectory;
+  }
+  
+  // Set custom output directory (overrides config)
+  void setOutputDirectory(String directory) {
+    this.outputDirectory = directory;
+    if (!this.outputDirectory.endsWith("/")) {
+      this.outputDirectory += "/";
+    }
+    println("Export directory changed to: " + this.outputDirectory);
   }
   
   private int getNodeIndex(Node node, PetersenGraph graph) {

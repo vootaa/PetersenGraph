@@ -2,17 +2,20 @@
  * Petersen Graph Debug Module
  */
 class DebugModule {
-    boolean showDebugInfo = false; // Toggle debug info display
+    boolean showDebugInfo = false;
     boolean debugDataPrinted = false;
     DataExporter dataExporter;
+    JSONObject config;
     
-    DebugModule() {
-        dataExporter = new DataExporter();
+    DebugModule(JSONObject config) {
+        this.config = config;
+        dataExporter = new DataExporter(config); // Pass config to DataExporter
     }
     
     // Initialize debug functionality
     void initialize(PetersenGraph graph) {
         println("Petersen Graph loaded. Press 'D' for debug info, 'P' to print data, 'E' to export files.");
+        println("Export directory: " + dataExporter.getOutputDirectory());
     }
     
     // Process keyboard input
@@ -28,6 +31,15 @@ class DebugModule {
             dataExporter.exportToJSON(graph, "petersen_graph_data.json");
             dataExporter.exportToCSV(graph, "petersen_nodes.csv", "petersen_edges.csv");
         }
+        if (key == 'o' || key == 'O') {
+            // Toggle output directory between data/ and exports/
+            String currentDir = dataExporter.getOutputDirectory();
+            if (currentDir.equals("data/")) {
+                dataExporter.setOutputDirectory("exports/");
+            } else {
+                dataExporter.setOutputDirectory("data/");
+            }
+        }
     }
     
     // Render debug information
@@ -36,7 +48,7 @@ class DebugModule {
             displayNodeIndices(graph);
             displayEdgeIndices(graph);
         }
-        renderInstructions(); // Always show instructions
+        renderInstructions();
     }
     
     // Print complete graph data
@@ -52,8 +64,10 @@ class DebugModule {
         
         println("\n=====================================");
         println("DATA OUTPUT COMPLETE");
-        println("Press 'D' to toggle debug display, 'P' to reprint data, 'E' to export data");
+        println("Press 'D' to toggle debug display, 'P' to reprint data, 'E' to export data, 'O' to toggle output dir");
         println("=====================================");
+        
+        debugDataPrinted = true;
     }
     
     // Print node data
@@ -114,31 +128,34 @@ class DebugModule {
         }
     }
     
-    // Display node indices
+    // Display node indices - Fixed coordinate transformation
     private void displayNodeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
         textSize(12);
         
         for (int i = 0; i < graph.nodes.size(); i++) {
             Node node = graph.nodes.get(i);
-            float screenX = (node.x + 1) * width / 2;
-            float screenY = (node.y + 1) * height / 2;
             
-            // Draw background circle
+            // Apply same transformation as PetersenGraph.display()
+            float scale = min(width, height) * 0.4;
+            float screenX = width/2 + node.x * scale;
+            float screenY = height/2 + node.y * scale;
+            
+            // Draw background circle for index
             fill(0, 0, 0, 150);
-            ellipse(screenX, screenY - 25, 20, 15);
+            ellipse(screenX, screenY - 25, 22, 16);
             
             // Draw index text
-            fill(255, 255, 255, 200);
+            fill(255, 255, 255, 220);
             text(str(i), screenX, screenY - 25);
             
             // Draw ChainID
-            fill(200, 200, 200, 150);
+            fill(200, 200, 200, 180);
             text("C" + str(node.chainId), screenX, screenY + 25);
         }
     }
     
-    // Display edge indices
+    // Display edge indices - Fixed coordinate transformation
     private void displayEdgeIndices(PetersenGraph graph) {
         textAlign(CENTER, CENTER);
         textSize(10);
@@ -150,37 +167,44 @@ class DebugModule {
             float midX = (edge.from.x + edge.to.x) / 2;
             float midY = (edge.from.y + edge.to.y) / 2;
             
-            float screenX = (midX + 1) * width / 2;
-            float screenY = (midY + 1) * height / 2;
+            // Apply same transformation as PetersenGraph.display()
+            float scale = min(width, height) * 0.4;
+            float screenX = width/2 + midX * scale;
+            float screenY = height/2 + midY * scale;
             
             // Draw background
-            fill(0, 0, 0, 100);
-            ellipse(screenX, screenY, 16, 12);
+            fill(0, 0, 0, 120);
+            ellipse(screenX, screenY, 18, 14);
             
             // Draw edge index
-            fill(255, 255, 0, 180);
+            fill(255, 255, 0, 200);
             text(str(i), screenX, screenY);
         }
     }
     
     // Render instruction text
     private void renderInstructions() {
+        fill(255, 255, 255, 100);
+        textAlign(LEFT, TOP);
+        textSize(12);
+        
         if (showDebugInfo) {
-            fill(255, 255, 255, 150);
-            textAlign(LEFT, TOP);
-            textSize(14);
-            text("Debug Mode ON", 10, 10);
-            text("D: Toggle debug display", 10, 30);
-            text("P: Print graph data", 10, 50);
-            text("E: Export data files", 10, 70);
-            text("White numbers: Node indices", 10, 90);
-            text("Yellow numbers: Edge indices", 10, 110);
-            text("Gray 'C' numbers: Chain IDs", 10, 130);
+            text("Debug Mode: ON", 10, 10);
+            text("D: Toggle debug display", 10, 25);
+            text("P: Print graph data", 10, 40);
+            text("E: Export data files", 10, 55);
+            text("O: Toggle output directory", 10, 70);
+            text("White numbers: Node indices", 10, 85);
+            text("Yellow numbers: Edge indices", 10, 100);
+            text("Gray 'C' numbers: Chain IDs", 10, 115);
+            text("Export dir: " + dataExporter.getOutputDirectory(), 10, 135);
         } else {
-            fill(255, 255, 255, 100);
-            textAlign(LEFT, TOP);
-            textSize(14);
-            text("Press 'D' for debug info", 10, 10);
+            text("Debug Mode: OFF", 10, 10);
+            text("D: Enable debug display", 10, 25);
+            text("P: Print graph data", 10, 40);
+            text("E: Export data files", 10, 55);
+            text("O: Toggle output directory", 10, 70);
+            text("Export dir: " + dataExporter.getOutputDirectory(), 10, 90);
         }
     }
     

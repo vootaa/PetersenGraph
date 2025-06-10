@@ -87,11 +87,11 @@ class PetersenGraph {
                         thickness));
     }
     
-    // Type 1: Middle to Outer Pattern A (5 connections)
+    // Type 1: Middle to Outer Pattern A (5 connections) - Fixed indexing
     JSONArray type1Colors = colorConfig.getJSONArray("type1");
     for (int i = 0; i < 5; i++) {
-      Node from = nodes.get(i);       // Middle circle
-      Node to = nodes.get(i + 10);    // Outer circle (+10)
+      Node from = nodes.get(i);       // Middle circle (0-4)
+      Node to = nodes.get(10 + i);    // Outer circle (10-14)
       edges.add(new Edge(from, to, 1, 
                         type1Colors.getFloat(0), 
                         type1Colors.getFloat(1), 
@@ -99,11 +99,11 @@ class PetersenGraph {
                         thickness));
     }
     
-    // Type 2: Middle to Outer Pattern B (5 connections)
+    // Type 2: Middle to Outer Pattern B (5 connections) - Fixed indexing
     JSONArray type2Colors = colorConfig.getJSONArray("type2");
     for (int i = 0; i < 5; i++) {
-      Node from = nodes.get(i);       // Middle circle
-      Node to = nodes.get(i + 15);    // Outer circle (+15)
+      Node from = nodes.get(i);       // Middle circle (0-4)
+      Node to = nodes.get(15 + i);    // Outer circle (15-19)
       edges.add(new Edge(from, to, 2, 
                         type2Colors.getFloat(0), 
                         type2Colors.getFloat(1), 
@@ -111,8 +111,7 @@ class PetersenGraph {
                         thickness));
     }
     
-    // Type 3: Inner Circle Connections (5 connections)
-    // Creates pentagram pattern: each node connects to node+2
+    // Type 3: Inner Circle Connections (5 connections) - Pentagram pattern
     JSONArray type3Colors = colorConfig.getJSONArray("type3");
     for (int i = 0; i < 5; i++) {
       Node from = nodes.get(i + 5);           // Inner circle
@@ -124,8 +123,7 @@ class PetersenGraph {
                         thickness));
     }
     
-    // Type 4: Outer Circle Connections (10 connections)
-    // Creates sequential loop
+    // Type 4: Outer Circle Connections (10 connections) - Sequential loop
     JSONArray type4Colors = colorConfig.getJSONArray("type4");
     for (int i = 0; i < 10; i++) {
       Node from = nodes.get(i + 10);              // Outer circle
@@ -141,9 +139,9 @@ class PetersenGraph {
   void display() {
     pushMatrix();
     
-    // Center and scale to fit screen (static positioning)
+    // Center and scale to 90% of screen (increased from 0.4 to 0.45)
     translate(width/2, height/2);
-    scale(min(width, height) * 0.4);
+    scale(min(width, height) * 0.45);
     
     // Draw edges first (behind nodes)
     for (Edge edge : edges) {

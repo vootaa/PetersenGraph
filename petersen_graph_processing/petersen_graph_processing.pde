@@ -1,22 +1,20 @@
 // petersen_graph_processing.pde
 
 PetersenGraph petersenGraph;
-DataExporter dataExporter;
 GraphRenderer renderer;
 DebugModule debugModule;
 JSONObject config;
 
 void setup() {
-  size(800, 800);
+  size(1024, 1024, P2D);
   
   // Load configuration from data folder
-  config = loadJSONObject("config.json");
+  config = loadJSONObject("data/config.json");
   
   petersenGraph = new PetersenGraph(config);
   renderer = new GraphRenderer(petersenGraph);
-  dataExporter = new DataExporter();
-  debugModule = new DebugModule();
-
+  debugModule = new DebugModule(config); // Pass config to debug module
+  
   // Initialize debug functionality
   debugModule.initialize(petersenGraph);
 }
@@ -27,7 +25,7 @@ void draw() {
   background(bgColor.getInt(0), bgColor.getInt(1), bgColor.getInt(2));
   
   renderer.render();
-
+  
   // Render debug information
   debugModule.renderDebugInfo(petersenGraph);
 }
