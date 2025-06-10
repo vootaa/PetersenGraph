@@ -1,3 +1,6 @@
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  * Petersen Graph Debug Module
  */
@@ -94,6 +97,9 @@ class DebugModule {
         printConnectionStatistics(graph);
         printNodeDegrees(graph);
         printPolarCoordinateAnalysis(graph);
+
+        printPolarCoordinateSummaryByIndex(graph);
+        printPolarCoordinateSummaryByAngle(graph);
         
         println("\n=====================================");
         println("DATA OUTPUT COMPLETE");
@@ -102,7 +108,155 @@ class DebugModule {
         
         debugDataPrinted = true;
     }
-    
+
+    private void printPolarCoordinateSummaryByIndex(PetersenGraph graph) {
+        println("\n--- POLAR COORDINATE SUMMARY (BY INDEX) ---");
+        println("All nodes and intersections in index order:");
+        println("Format: Type[ID] | Polar(r, θ°) | Layer/Info");
+        
+        // Print all nodes (in index order)
+        for (int i = 0; i < graph.nodes.size(); i++) {
+            Node node = graph.nodes.get(i);
+            PolarCoordinate polar = convertToPolar(node.x, node.y);
+            String layer = polarConverter.getLayerFromChainId(node.chainId);
+            
+            println(String.format("Node[%2d] | Polar(r=%.3f, θ=%6.1f°) | %s Layer (ChainID:%d)", 
+                            i, polar.radius, polar.getAngleDegrees(), layer, node.chainId));
+        }
+        
+        // Print all intersections (in index order)
+        ArrayList<Intersection> intersections = graph.getIntersections();
+        if (intersections.size() > 0) {
+            println("\nIntersections:");
+            for (Intersection intersection : intersections) {
+            PolarCoordinate polar = polarConverter.cartesianToPolar(intersection.x, intersection.y);
+            println(String.format("Int.[%2d] | Polar(r=%.3f, θ=%6.1f°) | E%d↔E%d", 
+                    intersection.intersectionId, polar.radius, polar.getAngleDegrees(),
+                    intersection.edge1Id, intersection.edge2Id));
+            }
+        }
+    }
+
+    private void printPolarCoordinateSummaryByAngle(PetersenGraph graph) {
+        println("\n--- POLAR COORDINATE SUMMARY (BY ANGLE) ---");
+        println("All nodes and intersections sorted by angle:");
+        println("Format: Type[ID] | Polar(r, θ°) | Layer/Info");
+        
+        // Create list containing all points (nodes + intersections)
+        ArrayList<PolarPoint> allPoints = new ArrayList<PolarPoint>();
+        
+        // Add all nodes
+        for (int i = 0; i < graph.nodes.size(); i++) {
+            Node node = graph.nodes.get(i);
+            PolarCoordinate polar = convertToPolar(node.x, node.y);
+            String layer = polarConverter.getLayerFromChainId(node.chainId);
+            String info = String.format("%s Layer (ChainID:%d)", layer, node.chainId);
+            allPoints.add(new PolarPoint("Node", i, polar, info));
+        }
+        
+        // Add all intersections
+        ArrayList<Intersection> intersections = graph.getIntersections();
+        for (Intersection intersection : intersections) {
+            PolarCoordinate polar = polarConverter.cartesianToPolar(intersection.x, intersection.y);
+            String info = String.format("E%d↔E%d", intersection.edge1Id, intersection.edge2Id);
+            allPoints.add(new PolarPoint("Int.", intersection.intersectionId, polar, info));
+        }
+        
+        // Sort by angle
+        allPoints.sort((a, b) -> Float.compare(a.polar.getAngleDegrees(), b.polar.getAngleDegrees()));
+        
+        // Print sorted results
+        for (PolarPoint point : allPoints) {
+            println(String.format("%s[%2d] | Polar(r=%.3f, θ=%6.1f°) | %s", 
+                            point.type, point.id, point.polar.radius, 
+                            point.polar.getAngleDegrees(), point.info));
+        }
+        
+        // Angular distribution statistics
+        println("\n--- ANGULAR DISTRIBUTION STATISTICS ---");
+        
+        // Group statistics by layer
+        Map<String, ArrayList<Float>> layerAngles = new HashMap<String, ArrayList<Float>>();
+        layerAngles.put("Middle", new ArrayList<Float>());
+        layerAngles.put("Inner", new ArrayList<Float>());
+        layerAngles.put("Outer", new ArrayList<Float>());
+        layerAngles.put("Intersections", new ArrayList<Float>());
+        
+        for (PolarPoint point : allPoints) {
+            if (point.type.equals("Node")) {
+                Node node = graph.nodes.get(point.id);
+                String layer = polarConverter.getLayerFromChainId(node.chainId);
+                layerAngles.get(layer).add(point.polar.getAngleDegrees());
+            } else {
+                layerAngles.get("Intersections").add(point.polar.getAngleDegrees());
+            }
+        }
+        
+        // Print angular distribution for each layer
+        for (String layer : new String[]{"Middle", "Inner", "Outer", "Intersections"}) {
+            ArrayList<Float> angles = layerAngles.get(layer);
+            if (angles.size() > 0) {
+                angles.sort(null);
+                println(String.format("%s: %d points", layer, angles.size()));
+                
+                // Calculate angular intervals
+                if (angles.size() > 1) {
+                    println("  Angular intervals:");
+                    for (int i = 0; i < angles.size(); i++) {
+                        float currentAngle = angles.get(i);
+                        float nextAngle = (i + 1 < angles.size()) ? angles.get(i + 1) : angles.get(0) + 360;
+                        float interval = nextAngle - currentAngle;
+                        if (interval > 180) interval = 360 - interval; // Handle crossing 0°
+                        
+                        println(String.format("    %.1f° → %.1f° (interval: %.1f°)", 
+                                        currentAngle, nextAngle % 360, interval));
+                    }
+                }
+                
+                // Calculate statistics
+                float minAngle = angles.get(0);
+                float maxAngle = angles.get(angles.size() - 1);
+                float avgInterval = 360.0 / angles.size();
+                
+                println(String.format("  Range: %.1f° to %.1f° | Expected interval: %.1f°", 
+                                minAngle, maxAngle, avgInterval));
+            }
+        }
+        
+        // Radial distribution statistics
+        println("\n--- RADIAL DISTRIBUTION STATISTICS ---");
+        
+        // Group by radius
+        Map<String, ArrayList<Float>> layerRadii = new HashMap<String, ArrayList<Float>>();
+        layerRadii.put("Middle", new ArrayList<Float>());
+        layerRadii.put("Inner", new ArrayList<Float>());
+        layerRadii.put("Outer", new ArrayList<Float>());
+        layerRadii.put("Intersections", new ArrayList<Float>());
+        
+        for (PolarPoint point : allPoints) {
+            if (point.type.equals("Node")) {
+                Node node = graph.nodes.get(point.id);
+                String layer = polarConverter.getLayerFromChainId(node.chainId);
+                layerRadii.get(layer).add(point.polar.radius);
+            } else {
+                layerRadii.get("Intersections").add(point.polar.radius);
+            }
+        }
+        
+        // Print radius statistics
+        for (String layer : new String[]{"Middle", "Inner", "Outer", "Intersections"}) {
+            ArrayList<Float> radii = layerRadii.get(layer);
+            if (radii.size() > 0) {
+                float minRadius = radii.stream().min(Float::compare).get();
+                float maxRadius = radii.stream().max(Float::compare).get();
+                float avgRadius = (float) radii.stream().mapToDouble(Float::doubleValue).average().orElse(0.0);
+                
+                println(String.format("%s: min=%.4f, max=%.4f, avg=%.4f (variation: %.6f)", 
+                                layer, minRadius, maxRadius, avgRadius, maxRadius - minRadius));
+            }
+        }
+    }
+
     private void printPolarCoordinateAnalysis(PetersenGraph graph) {
         println("\n--- POLAR COORDINATE ANALYSIS ---");
         println("Node positions in both Cartesian and Polar coordinates:");
