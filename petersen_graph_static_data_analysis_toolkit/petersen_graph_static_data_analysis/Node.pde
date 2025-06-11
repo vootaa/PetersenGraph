@@ -3,7 +3,6 @@ class Node {
     PVector position;
     PVector polarCoordinate; // x = radius, y = angle in radians
     String type;
-    
     // Constructor from coordinates
     Node(int id, float x, float y, String type) {
         this.id = id;
@@ -11,7 +10,7 @@ class Node {
         this.type = type;
         calculatePolarCoordinate();
     }
-    
+
     // Constructor from PVector
     Node(int id, PVector pos, String type) {
         this.id = id;
@@ -21,13 +20,30 @@ class Node {
     }
     
     // Constructor from JSONObject
-    Node(JSONObject nodeObj) {
-        this.id = nodeObj.getInt("id");
-        this.position = new PVector(
-            nodeObj.getFloat("x"), 
-            nodeObj.getFloat("y")
-        );
-        this.type = nodeObj.hasKey("type") ? nodeObj.getString("type") : "default";
+    try {
+        this.id = nodeObj.getInt("node_id");  
+        
+        // 根据JSON格式，坐标可能在 "cartesian" 对象中
+        if (nodeObj.hasKey("cartesian")) {
+            JSONObject cartesian = nodeObj.getJSONObject("cartesian");
+            this.position = new PVector(
+                cartesian.getFloat("x"), 
+                cartesian.getFloat("y")
+            );
+        } else {
+            this.position = new PVector(
+                nodeObj.getFloat("x"), 
+                nodeObj.getFloat("y")
+            );
+        }
+        
+        this.type = nodeObj.hasKey("layer") ? nodeObj.getString("layer") : "default";
+        calculatePolarCoordinate();
+    } catch (Exception e) {
+        println("警告: 创建节点时发生错误 - " + e.getMessage());
+        this.id = -1;
+        this.position = new PVector(0, 0);
+        this.type = "error";
         calculatePolarCoordinate();
     }
     

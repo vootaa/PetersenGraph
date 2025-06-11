@@ -9,7 +9,7 @@ void setup() {
     dataReader = new PetersenDataReader();
     
     // Load Petersen graph data
-    if (dataReader.loadFromFile("data/petersen_static_data_latest.json")) {
+    if (dataReader.loadFromFile("data/petersen_static_data_2025611_9258.json")) {
         // Create analysis engine
         analysisEngine = new AnalysisEngine(dataReader);
         
@@ -28,7 +28,7 @@ void setup() {
         println("- - 缩小");
         
     } else {
-        println("数据加载失败，请检查文件路径: data/petersen_static_data_latest.json");
+        println("数据加载失败，请检查文件路径: data/petersen_static_data_2025611_9258.json");
     }
 }
 
