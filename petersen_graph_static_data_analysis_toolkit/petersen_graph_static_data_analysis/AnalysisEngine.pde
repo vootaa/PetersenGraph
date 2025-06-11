@@ -4,10 +4,6 @@ class AnalysisEngine {
     PetersenDataReader dataReader;
     ArrayList<Node> nodes;
     ArrayList<Edge> edges;
-    
-    // Analysis modules
-    PolarAnalysis polarAnalysis;
-    PolygonAnalysis polygonAnalysis;
 
     AnalysisEngine(PetersenDataReader reader) {
         this.dataReader = reader;
@@ -16,10 +12,6 @@ class AnalysisEngine {
         
         // Convert Petersen data to our analysis format
         convertDataToAnalysisFormat();
-        
-        // Initialize analysis modules
-        this.polarAnalysis = new PolarAnalysis(nodes, edges);
-        this.polygonAnalysis = new PolygonAnalysis(nodes, edges);
     }
 
     // Convert Petersen data to Node/Edge objects for analysis
@@ -66,24 +58,21 @@ class AnalysisEngine {
         
         for (JSONObject segmentObj : segments) {
             try {
-                int segmentId = segmentObj.getInt("segment_id");
-                int parentEdgeId = segmentObj.getInt("parent_edge_id");
-                
-                // Get polar coordinates for start and end points
                 JSONObject startPolar = segmentObj.getJSONObject("start_polar");
                 JSONObject endPolar = segmentObj.getJSONObject("end_polar");
                 
-                // Find matching nodes by polar coordinates
                 Node startNode = findNodeByPolar(startPolar);
                 Node endNode = findNodeByPolar(endPolar);
                 
                 if (startNode != null && endNode != null) {
-                    // Create edge connecting existing nodes
+                    int segmentId = segmentObj.getInt("segment_id");
+                    int parentEdgeId = segmentObj.getInt("parent_edge_id");
+                    
                     Edge edge = new Edge(segmentId, startNode, endNode, parentEdgeId);
                     edges.add(edge);
                     successfulSegments++;
                 } else {
-                    println("Warning: Segment " + segmentId + " cannot find matching endpoint nodes");
+                    println("Failed to match segment " + segmentObj.getInt("segment_id"));
                     println("  Start polar: " + startPolar.toString());
                     println("  End polar: " + endPolar.toString());
                     failedSegments++;
@@ -103,7 +92,7 @@ class AnalysisEngine {
         // Print matching statistics
         printNodeMatchingStatistics();
     }
-    
+
     /**
      * Find node by polar coordinates with tolerance matching
      */
@@ -113,25 +102,24 @@ class AnalysisEngine {
             float targetAngle = Float.parseFloat(targetPolar.getString("angle_radians"));
             
             // Tolerance for matching (adjust as needed)
-            float radiusTolerance = 0.001f;  // 0.1% tolerance
-            float angleTolerance = 0.01f;    // ~0.57 degrees tolerance
+            float radiusTolerance = 0.01;
+            float angleTolerance = 0.05; // radians
             
             for (Node node : nodes) {
-                float nodeRadius = node.getRadius();
-                float nodeAngle = node.getAngle();
-                
-                // Normalize angles to [0, 2π]
+                PVector nodePolar = node.getPolarCoordinate();
+                float nodeRadius = nodePolar.x;
+                float nodeAngle = normalizeAngle(nodePolar.y);
                 float normalizedTargetAngle = normalizeAngle(targetAngle);
-                float normalizedNodeAngle = normalizeAngle(nodeAngle);
                 
-                // Check if polar coordinates match within tolerance
-                boolean radiusMatch = abs(nodeRadius - targetRadius) <= radiusTolerance;
-                boolean angleMatch = abs(normalizedNodeAngle - normalizedTargetAngle) <= angleTolerance ||
-                                   abs(normalizedNodeAngle - normalizedTargetAngle - TWO_PI) <= angleTolerance ||
-                                   abs(normalizedNodeAngle - normalizedTargetAngle + TWO_PI) <= angleTolerance;
-                
-                if (radiusMatch && angleMatch) {
-                    return node;
+                // Check radius match
+                if (abs(nodeRadius - targetRadius) <= radiusTolerance) {
+                    // Check angle match (handle circular boundary)
+                    float angleDiff = abs(nodeAngle - normalizedTargetAngle);
+                    if (angleDiff > PI) angleDiff = TWO_PI - angleDiff;
+                    
+                    if (angleDiff <= angleTolerance) {
+                        return node;
+                    }
                 }
             }
             
@@ -142,7 +130,7 @@ class AnalysisEngine {
             return null;
         }
     }
-    
+
     /**
      * Normalize angle to [0, 2π] range
      */
@@ -151,7 +139,7 @@ class AnalysisEngine {
         while (angle >= TWO_PI) angle -= TWO_PI;
         return angle;
     }
-    
+
     /**
      * Print detailed statistics about node matching
      */
@@ -226,46 +214,10 @@ class AnalysisEngine {
         return null;
     }
 
-    // Perform complete polar coordinate analysis
-    void performPolarAnalysis() {
-        if (polarAnalysis != null) {
-            polarAnalysis.performAnalysis();
-        } else {
-            println("❌ Polar analysis engine not initialized");
-        }
-    }
-    
-    // Perform complete polygon analysis
-    void performPolygonAnalysis() {
-        if (polygonAnalysis != null) {
-            polygonAnalysis.performAnalysis();
-        } else {
-            println("❌ Polygon analysis engine not initialized");
-        }
-    }
-    
-    // Perform complete analysis (both polar and polygon)
-    void performCompleteAnalysis() {
-        println("\n==========================================");
-        println("     PETERSEN GRAPH COMPLETE STRUCTURE ANALYSIS");
-        println("==========================================");
-        
-        performPolarAnalysis();
-        performPolygonAnalysis();
-        
-        println("\n==========================================");
-        println("              ANALYSIS COMPLETED");
-        println("==========================================");
-    }
-    
-    // Get analysis modules for UI rendering
-    PolarAnalysis getPolarAnalysis() { return polarAnalysis; }
-    PolygonAnalysis getPolygonAnalysis() { return polygonAnalysis; }
-    
     // Get nodes and edges for UI rendering
     ArrayList<Node> getNodes() { return new ArrayList<Node>(nodes); }
     ArrayList<Edge> getEdges() { return new ArrayList<Edge>(edges); }
-    
+
     /**
      * Debug method to show unmatched segments
      */

@@ -27,117 +27,46 @@ void setup() {
             dataReader.printStatistics();
 
             println("\nData loaded and validated successfully. Key commands:");
-            println("P - Polar coordinate analysis");
-            println("G - Polygon component analysis");
-            println("A - Complete analysis");
-            println("V - Toggle view");
-            println("S - Screenshot");
+            println("+ / - - Zoom in/out");
+            println("0 - Reset zoom");
+            println("S - Save screenshot");
+            println("D - Debug unmatched segments");
+            
         } else {
-            // Data validation failed
-            dataValidator.printValidationReport();
-            println("\n⚠️  Program halted. Please fix data issues and retry.");
+            println("❌ Data validation failed: " + dataValidator.getError());
         }
     } else {
-        println("Data loading failed, please check file path: ../data/petersen_graph_static_data_2025611_9258.json");
+        println("❌ Failed to load data file");
     }
 }
 
 void draw() {
-    background(50);
+    background(30);
     
-    if (analysisEngine != null && uiRenderer != null) {
+    if (analysisEngine != null && uiRenderer != null && dataValidator.isValid()) {
+        // Render the analysis
         uiRenderer.renderAnalysis(analysisEngine);
     } else {
         // Show error message
-        fill(255, 0, 0);
+        fill(255);
         textAlign(CENTER);
         textSize(16);
-        text("Data validation failed or program not properly initialized", width/2, height/2);
+        text("Failed to load or validate Petersen graph data", width/2, height/2);
         
         if (dataValidator != null && !dataValidator.isValid()) {
-            textSize(12);
             text("Error: " + dataValidator.getError(), width/2, height/2 + 30);
             text("Please check JSON data file", width/2, height/2 + 50);
         }
-        
     }
 }
 
 void keyPressed() {
     if (analysisEngine == null || !dataValidator.isValid()) {
-        println("❌ Data not ready, unable to perform analysis");
+        println("❌ Data not ready, unable to perform operations");
         return;
     }
     
     switch (key) {
-        case 'p':
-        case 'P':
-            // Polar coordinate analysis
-            analysisEngine.performPolarAnalysis();
-            break;
-            
-        case 'g':
-        case 'G':
-            // Polygon component analysis
-            analysisEngine.performPolygonAnalysis();
-            break;
-            
-        case 'a':
-        case 'A':
-            // Complete analysis
-            analysisEngine.performCompleteAnalysis();
-            break;
-            
-        case 'v':
-        case 'V':
-            // Toggle symmetry view
-            if (uiRenderer != null) {
-                uiRenderer.toggleSymmetryView();
-            }
-            break;
-            
-        case '1':
-            // Select symmetry group 0
-            if (uiRenderer != null) {
-                uiRenderer.setSymmetryGroup(0);
-            }
-            break;
-            
-        case '2':
-            // Select symmetry group 1
-            if (uiRenderer != null) {
-                uiRenderer.setSymmetryGroup(1);
-            }
-            break;
-            
-        case '3':
-            // Select symmetry group 2
-            if (uiRenderer != null) {
-                uiRenderer.setSymmetryGroup(2);
-            }
-            break;
-            
-        case '4':
-            // Select symmetry group 3
-            if (uiRenderer != null) {
-                uiRenderer.setSymmetryGroup(3);
-            }
-            break;
-            
-        case '5':
-            // Select symmetry group 4
-            if (uiRenderer != null) {
-                uiRenderer.setSymmetryGroup(4);
-            }
-            break;
-
-        case '6':
-            // Toggle all groups view
-            if (uiRenderer != null) {
-                uiRenderer.toggleAllGroupsView();
-            }
-            break;    
-            
         case 's':
         case 'S':
             // Save screenshot
@@ -180,12 +109,6 @@ void keyPressed() {
            
         default:
             println("Available keys:");
-            println("P - Polar coordinate analysis");
-            println("G - Polygon component analysis");
-            println("A - Complete analysis");
-            println("V - Toggle view");
-            println("1-5 - Select symmetry group (0-4)");
-            println("6 - Select all symmetry groups");
             println("S - Screenshot");
             println("+ - Zoom in");
             println("- - Zoom out");

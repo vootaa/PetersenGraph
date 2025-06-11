@@ -1,17 +1,5 @@
 class UIRenderer {
     float scale = 600;
-    boolean showSymmetryAnalysis = false;
-    boolean showAllGroups = false;  // Flag to show all groups
-    int currentSymmetryGroup = 1;  // Default to show second group (group1)
-    
-    // Define colors for 5 groups
-    color[] groupColors = {
-        color(255, 100, 100, 255),  // Group 0 - Red
-        color(100, 255, 100, 255),  // Group 1 - Green
-        color(100, 100, 255, 255),  // Group 2 - Blue
-        color(255, 255, 100, 255),  // Group 3 - Yellow
-        color(255, 100, 255, 255)   // Group 4 - Magenta
-    };
     
     UIRenderer() {
     }
@@ -21,15 +9,7 @@ class UIRenderer {
         pushMatrix();
         translate(width/2, height/2);
         
-        if (showSymmetryAnalysis) {
-            if (showAllGroups) {
-                renderAllSymmetryGroups(engine);
-            } else {
-                renderSymmetryAnalysis(engine);
-            }
-        } else {
-            renderStandardView(engine);
-        }
+        renderStandardView(engine);
         
         popMatrix();
         
@@ -37,368 +17,7 @@ class UIRenderer {
         drawUI();
     }
     
-    // Render all symmetry groups (UPDATED for new grouping logic)
-    void renderAllSymmetryGroups(AnalysisEngine engine) {
-        // Check if PolarAnalysis is available and has been run
-        PolarAnalysis polarAnalysis = engine.getPolarAnalysis();
-        if (polarAnalysis == null) {
-            showAnalysisNotReadyMessage("PolarAnalysis not initialized");
-            return;
-        }
-        
-        HashMap<Integer, ArrayList<Node>> symmetryGroups = polarAnalysis.getSymmetryGroups();
-        if (symmetryGroups == null || symmetryGroups.isEmpty()) {
-            showAnalysisNotReadyMessage("Symmetry groups not available. Press P to run polar analysis first.");
-            return;
-        }
-        
-        // Draw basic guide lines
-        drawBasicGuides();
-        
-        // Draw all edges as light gray background
-        stroke(50, 50, 50, 60);
-        strokeWeight(1);
-        for (Edge edge : engine.getEdges()) {
-            if (edge.isValid()) {
-                PVector start = edge.getStartNode().getPosition();
-                PVector end = edge.getEndNode().getPosition();
-                line(start.x * scale, start.y * scale, end.x * scale, end.y * scale);
-            }
-        }
-        
-        // Calculate offset to avoid overlapping
-        float offsetDistance = 15; // Outward offset distance
-        
-        // Draw each symmetry group
-        for (int group = 0; group < 5; group++) {
-            ArrayList<Node> groupNodes = symmetryGroups.get(group);
-            if (groupNodes != null && !groupNodes.isEmpty()) {
-                
-                // Calculate group offset direction (based on group center angle)
-                float groupAngle = radians(group * 72 + 36); // Center angle for each group
-                PVector offset = new PVector(cos(groupAngle) * offsetDistance, sin(groupAngle) * offsetDistance);
-                
-                // Draw ONLY internal edges for this group (UPDATED)
-                ArrayList<Edge> internalEdges = polarAnalysis.getGroupInternalEdges(groupNodes);
-                stroke(groupColors[group]);
-                strokeWeight(2); // Make internal edges more visible
-                for (Edge edge : internalEdges) {
-                    if (edge.isValid()) {
-                        PVector start = edge.getStartNode().getPosition();
-                        PVector end = edge.getEndNode().getPosition();
-                        line((start.x * scale) + offset.x, (start.y * scale) + offset.y, 
-                             (end.x * scale) + offset.x, (end.y * scale) + offset.y);
-                    }
-                }
-                
-                // Draw nodes of this group
-                for (Node node : groupNodes) {
-                    PVector pos = node.getPosition();
-                    
-                    // Use group color, but adjust transparency based on node type
-                    fill(groupColors[group]);
-                    if (node.getType().equals("intersection")) {
-                        // Intersection points slightly darker
-                        fill(red(groupColors[group]) * 0.8, green(groupColors[group]) * 0.8, 
-                             blue(groupColors[group]) * 0.8, 200);
-                    }
-                    
-                    float nodeSize = node.getType().equals("intersection") ? 8 : 12;
-                    noStroke();
-                    ellipse((pos.x * scale) + offset.x, (pos.y * scale) + offset.y, nodeSize, nodeSize);
-                    
-                    // Draw node labels
-                    fill(255);
-                    stroke(0);
-                    strokeWeight(1);
-                    textAlign(CENTER);
-                    textSize(8);
-                    String nodeLabel = node.getType().equals("intersection") ? "I" + node.getId() : "N" + node.getId();
-                    text(nodeLabel, (pos.x * scale) + offset.x, (pos.y * scale) + offset.y - 12);
-                    noStroke();
-                }
-            }
-        }
-        
-        // Draw information panel (UPDATED)
-        drawAllGroupsInfoNew(symmetryGroups, polarAnalysis);
-    }
-    
-    // Draw information panel for all groups (NEW - updated for new grouping)
-    void drawAllGroupsInfoNew(HashMap<Integer, ArrayList<Node>> symmetryGroups, PolarAnalysis polarAnalysis) {
-        pushMatrix();
-        translate(-width/2 + 20, -height/2 + 20);
-        
-        fill(0, 0, 0, 200);
-        rect(0, 0, 400, 280);
-        
-        fill(255);
-        textAlign(LEFT);
-        textSize(12);
-        text("New 5-Fold Symmetry Groups Analysis (5 angle groups per sector)", 10, 20);
-        
-        // Show statistics for each group
-        int yPos = 40;
-        for (int group = 0; group < 5; group++) {
-            ArrayList<Node> groupNodes = symmetryGroups.get(group);
-            if (groupNodes != null) {
-                
-                // Count node types
-                int regularNodes = 0, intersectionNodes = 0;
-                for (Node node : groupNodes) {
-                    if (node.getType().equals("intersection")) {
-                        intersectionNodes++;
-                    } else {
-                        regularNodes++;
-                    }
-                }
-                
-                // Get internal edges count
-                ArrayList<Edge> internalEdges = polarAnalysis.getGroupInternalEdges(groupNodes);
-                
-                // Display using group color
-                fill(groupColors[group]);
-                rect(10, yPos - 10, 15, 12);
-                
-                fill(255);
-                text("Group " + group + ": " + groupNodes.size() + " nodes (R:" + regularNodes + 
-                     ", I:" + intersectionNodes + "), " + internalEdges.size() + " internal edges", 30, yPos);
-                yPos += 20;
-            }
-        }
-        
-        fill(255);
-        text("New Grouping Strategy:", 10, yPos + 20);
-        text("• Each group contains 5 consecutive angle groups (~72°)", 10, yPos + 40);
-        text("• Includes boundary angles (e.g., 72° included in group)", 10, yPos + 60);
-        text("• Only internal edges shown (both endpoints in group)", 10, yPos + 80);
-        text("• Groups offset outward to avoid visual overlap", 10, yPos + 100);
-        
-        text("Controls:", 10, yPos + 130);
-        text("V - Toggle view  |  6 - All groups view", 10, yPos + 150);
-        text("1-5 - Select single group  |  +/- - Zoom", 10, yPos + 170);
-        text("P - Run new polar analysis", 10, yPos + 190);
-        
-        popMatrix();
-    }
-    
-    // Symmetry analysis view - shows specific symmetry group (UPDATED)
-    void renderSymmetryAnalysis(AnalysisEngine engine) {
-        // Check if PolarAnalysis is available and has been run
-        PolarAnalysis polarAnalysis = engine.getPolarAnalysis();
-        if (polarAnalysis == null) {
-            showAnalysisNotReadyMessage("PolarAnalysis not initialized");
-            return;
-        }
-        
-        HashMap<Integer, ArrayList<Node>> symmetryGroups = polarAnalysis.getSymmetryGroups();
-        if (symmetryGroups == null || symmetryGroups.isEmpty()) {
-            showAnalysisNotReadyMessage("Symmetry groups not available. Press P to run polar analysis first.");
-            return;
-        }
-        
-        ArrayList<Node> currentGroupNodes = symmetryGroups.get(currentSymmetryGroup);
-        if (currentGroupNodes == null || currentGroupNodes.isEmpty()) {
-            showAnalysisNotReadyMessage("Symmetry group " + currentSymmetryGroup + " is empty or not found.");
-            return;
-        }
-        
-        // Get ONLY internal edges for this group (UPDATED)
-        ArrayList<Edge> internalEdges = polarAnalysis.getGroupInternalEdges(currentGroupNodes);
-        
-        // Draw symmetry guide lines
-        drawSmartSymmetryGuides(currentGroupNodes);
-        
-        // Draw all edges in very light gray as background
-        stroke(30, 30, 30, 80);
-        strokeWeight(1);
-        for (Edge edge : engine.getEdges()) {
-            if (edge.isValid()) {
-                PVector start = edge.getStartNode().getPosition();
-                PVector end = edge.getEndNode().getPosition();
-                line(start.x * scale, start.y * scale, end.x * scale, end.y * scale);
-            }
-        }
-        
-        // Draw ONLY internal edges highlighted (UPDATED)
-        stroke(255, 150, 0, 255);
-        strokeWeight(3); // Make them more prominent
-        for (Edge edge : internalEdges) {
-            if (edge.isValid()) {
-                PVector start = edge.getStartNode().getPosition();
-                PVector end = edge.getEndNode().getPosition();
-                line(start.x * scale, start.y * scale, end.x * scale, end.y * scale);
-            }
-        }
-        
-        // Draw all nodes in light gray as background
-        noStroke();
-        for (Node node : engine.getNodes()) {
-            if (!currentGroupNodes.contains(node)) {
-                PVector pos = node.getPosition();
-                fill(80, 80, 80, 100);
-                ellipse(pos.x * scale, pos.y * scale, 6, 6);
-            }
-        }
-        
-        // Draw current group nodes highlighted
-        for (Node node : currentGroupNodes) {
-            PVector pos = node.getPosition();
-            
-            // Color by node type and radius
-            if (node.getType().equals("intersection")) {
-                float radius = node.getRadius();
-                if (radius < 0.1) {
-                    fill(255, 100, 255, 255); // Inner intersection - magenta
-                } else if (radius < 0.35) {
-                    fill(100, 255, 255, 255); // Middle intersection - cyan
-                } else {
-                    fill(255, 255, 100, 255); // Outer intersection - yellow
-                }
-            } else {
-                // Regular nodes
-                String layer = node.getType();
-                if (layer.equals("Inner") || node.getRadius() < 0.2) {
-                    fill(255, 100, 100, 255); // Inner nodes - red
-                } else if (layer.equals("Middle") || node.getRadius() < 0.35) {
-                    fill(100, 255, 100, 255); // Middle nodes - green
-                } else {
-                    fill(100, 100, 255, 255); // Outer nodes - blue
-                }
-            }
-            
-            float nodeSize = node.getType().equals("intersection") ? 10 : 15;
-            ellipse(pos.x * scale, pos.y * scale, nodeSize, nodeSize);
-            
-            // Draw node ID with type indicator
-            fill(255);
-            stroke(0);
-            strokeWeight(1);
-            textAlign(CENTER);
-            textSize(10);
-            String nodeLabel = node.getType().equals("intersection") ? "I" + node.getId() : "N" + node.getId();
-            text(nodeLabel, pos.x * scale, pos.y * scale - 18);
-            noStroke();
-        }
-        
-        // Draw enhanced analysis info (UPDATED)
-        drawNewSymmetryInfo(currentGroupNodes, internalEdges, polarAnalysis);
-    }
-    
-    // Draw enhanced symmetry analysis info (NEW - updated for new grouping)
-    void drawNewSymmetryInfo(ArrayList<Node> nodes, ArrayList<Edge> internalEdges, PolarAnalysis polarAnalysis) {
-        pushMatrix();
-        translate(-width/2 + 20, -height/2 + 20);
-        
-        fill(0, 0, 0, 200);
-        rect(0, 0, 420, 240);
-        
-        fill(255);
-        textAlign(LEFT);
-        textSize(12);
-        text("New Symmetry Group Analysis - Group " + currentSymmetryGroup, 10, 20);
-        
-        // Count node types in current group
-        int regularNodes = 0, intersectionNodes = 0;
-        for (Node node : nodes) {
-            if (node.getType().equals("intersection")) {
-                intersectionNodes++;
-            } else {
-                regularNodes++;
-            }
-        }
-        
-        text("Total Nodes: " + nodes.size() + " (Regular:" + regularNodes + ", Intersect:" + intersectionNodes + ")", 10, 40);
-        text("Internal Edges: " + internalEdges.size() + " (both endpoints in group)", 10, 60);
-        
-        // Calculate boundary connections for reference
-        int boundaryConnections = 0;
-        for (Edge edge : polarAnalysis.edges) {
-            if (edge.isValid()) {
-                Node startNode = edge.getStartNode();
-                Node endNode = edge.getEndNode();
-                
-                boolean startInGroup = nodes.contains(startNode);
-                boolean endInGroup = nodes.contains(endNode);
-                
-                if ((startInGroup && !endInGroup) || (!startInGroup && endInGroup)) {
-                    boundaryConnections++;
-                }
-            }
-        }
-        
-        text("Boundary Connections: " + boundaryConnections + " (to other groups, not shown)", 10, 80);
-        
-        // Show angle groups included in this symmetry group
-        HashMap<Float, ArrayList<Node>> angleGroups = polarAnalysis.getAngleGroups();
-        ArrayList<Float> groupAngles = new ArrayList<Float>();
-        
-        for (Float angle : angleGroups.keySet()) {
-            ArrayList<Node> angleNodes = angleGroups.get(angle);
-            for (Node node : angleNodes) {
-                if (nodes.contains(node)) {
-                    if (!groupAngles.contains(angle)) {
-                        groupAngles.add(angle);
-                    }
-                    break;
-                }
-            }
-        }
-        
-        Collections.sort(groupAngles);
-        if (groupAngles.size() > 0) {
-            text("Angle Range: " + nf(groupAngles.get(0), 1, 0) + "° - " + 
-                 nf(groupAngles.get(groupAngles.size()-1), 1, 0) + "°", 10, 100);
-            
-            text("Included Angles (" + groupAngles.size() + "): ", 10, 120);
-            String angleStr = "";
-            for (int i = 0; i < groupAngles.size(); i++) {
-                angleStr += nf(groupAngles.get(i), 1, 0) + "°";
-                if (i < groupAngles.size() - 1) angleStr += ", ";
-                if (angleStr.length() > 50 && i < groupAngles.size() - 1) {
-                    text(angleStr, 10, 140 + (i/10) * 15);
-                    angleStr = "";
-                }
-            }
-            if (angleStr.length() > 0) {
-                text(angleStr, 10, 140);
-            }
-        }
-        
-        text("New Strategy Notes:", 10, 180);
-        text("• 5 angle groups per symmetry sector (~72° coverage)", 10, 200);
-        text("• Includes boundary angles for complete coverage", 10, 220);
-        
-        popMatrix();
-    }
-    
-    // Get all edges related to a symmetry group (UPDATED to use only internal edges)
-    ArrayList<Edge> getSymmetryGroupRelatedEdges(AnalysisEngine engine, ArrayList<Node> groupNodes) {
-        // Use PolarAnalysis internal edges method
-        PolarAnalysis polarAnalysis = engine.getPolarAnalysis();
-        if (polarAnalysis != null) {
-            return polarAnalysis.getGroupInternalEdges(groupNodes);
-        }
-        
-        // Fallback: only internal edges
-        ArrayList<Edge> internalEdges = new ArrayList<Edge>();
-        
-        for (Edge edge : engine.getEdges()) {
-            if (edge.isValid()) {
-                boolean startInGroup = groupNodes.contains(edge.getStartNode());
-                boolean endInGroup = groupNodes.contains(edge.getEndNode());
-                
-                // Only include edges where both endpoints are in the group
-                if (startInGroup && endInGroup) {
-                    internalEdges.add(edge);
-                }
-            }
-        }
-        
-        return internalEdges;
-    }
-    
-    // Standard graph view (unchanged)
+    // Standard graph view
     void renderStandardView(AnalysisEngine engine) {
         // Draw radius guide circles for reference
         drawRadiusGuides();
@@ -430,7 +49,7 @@ class UIRenderer {
                 fill(255, 255, 100, 200);
             }
             
-            // Increase node size
+            // Node size
             float nodeSize = 12;
             if (node.getType().equals("intersection")) {
                 nodeSize = 8;  // Intersection points slightly smaller
@@ -449,7 +68,7 @@ class UIRenderer {
         }
     }
     
-    // Draw radius guide circles (unchanged)
+    // Draw radius guide circles
     void drawRadiusGuides() {
         stroke(80, 80, 80, 120);
         strokeWeight(1);
@@ -464,88 +83,20 @@ class UIRenderer {
         noFill();
     }
     
-    // Draw basic guide lines (unchanged)
-    void drawBasicGuides() {
-        // Draw radius guide circles
-        stroke(60, 60, 60, 100);
-        strokeWeight(1);
-        noFill();
-        
-        float[] actualRadii = {0.06, 0.15, 0.30, 0.39, 0.41, 0.48};
-        for (float r : actualRadii) {
-            ellipse(0, 0, r * scale * 2, r * scale * 2);
-        }
-        
-        // Draw 5 symmetry lines
-        stroke(80, 80, 80, 120);
-        strokeWeight(1);
-        for (int i = 0; i < 5; i++) {
-            float angle = radians(i * 72);
-            float x = cos(angle) * scale * 0.5;
-            float y = sin(angle) * scale * 0.5;
-            line(0, 0, x, y);
-        }
-    }
-    
-    // Draw smart symmetry guide lines highlighting current group (unchanged)
-    void drawSmartSymmetryGuides(ArrayList<Node> currentGroupNodes) {
-        // Draw all 5 symmetry sector lines
-        stroke(100, 100, 100, 120);
-        strokeWeight(1);
-        
-        for (int i = 0; i < 5; i++) {
-            float angle = radians(i * 72);
-            float x = cos(angle) * scale * 0.6;
-            float y = sin(angle) * scale * 0.6;
-            line(0, 0, x, y);
-        }
-        
-        // Draw radius guides
-        drawRadiusGuides();
-    }
-    
-    // Show message when analysis is not ready (unchanged)
-    void showAnalysisNotReadyMessage(String message) {
-        fill(255, 100, 100, 200);
-        textAlign(CENTER);
-        textSize(16);
-        text(message, 0, -20);
-        
-        fill(255, 255, 100, 200);
-        textSize(14);
-        text("Press P to run New Polar Analysis first", 0, 10);
-        
-        // Still draw the basic structure
-        drawRadiusGuides();
-        
-        // Draw basic symmetry lines
-        stroke(100, 100, 100, 120);
-        strokeWeight(1);
-        for (int i = 0; i < 5; i++) {
-            float angle = radians(i * 72);
-            float x = cos(angle) * scale * 0.6;
-            float y = sin(angle) * scale * 0.6;
-            line(0, 0, x, y);
-        }
-    }
-    
-    // Draw UI information (unchanged)
+    // Draw UI information
     void drawUI() {
         // Status info
         fill(0, 0, 0, 180);
-        rect(10, height - 180, 260, 170);
+        rect(10, height - 120, 200, 110);
         
         fill(255);
         textAlign(LEFT);
         textSize(12);
-        text("Controls:", 20, height - 160);
-        text("P - Polar analysis", 20, height - 140);
-        text("G - Polygon component analysis", 20, height - 120);
-        text("V - Toggle view", 20, height - 100);
-        text("1-5 - Select symmetry group", 20, height - 80);
-        text("6 - Show all groups", 20, height - 60);
-        text("+ / - Zoom in/out", 20, height - 40);
-        text("0 - Reset zoom", 20, height - 20);
+        text("Controls:", 20, height - 100);
+        text("+ / - Zoom in/out", 20, height - 80);
+        text("0 - Reset zoom", 20, height - 60);
+        text("S - Screenshot", 20, height - 40);
+        text("D - Debug segments", 20, height - 20);
         
         // Show current scale
         fill(255, 255, 0);
@@ -553,51 +104,12 @@ class UIRenderer {
         
         // Show current view mode
         fill(100, 255, 100);
-        if (showSymmetryAnalysis) {
-            if (showAllGroups) {
-                text("View: All Groups", width - 160, height - 40);
-            } else {
-                text("View: Group " + currentSymmetryGroup, width - 160, height - 40);
-            }
-        } else {
-            text("View: Standard", width - 100, height - 40);
-        }
-    }
-    
-    // Toggle symmetry analysis view
-    void toggleSymmetryView() {
-        showSymmetryAnalysis = !showSymmetryAnalysis;
-        if (!showSymmetryAnalysis) {
-            showAllGroups = false; // Turn off all groups display when exiting symmetry view
-        }
-        println("View toggled: " + (showSymmetryAnalysis ? "Symmetry Group " + currentSymmetryGroup : "Standard View"));
-        
-        // If switching to symmetry view, provide guidance
-        if (showSymmetryAnalysis) {
-            println("Note: If symmetry group is not found, run Polar Analysis first (press P)");
-        }
-    }
-    
-    // Set current symmetry group (0-4)
-    void setSymmetryGroup(int group) {
-        if (group >= 0 && group <= 4) {
-            currentSymmetryGroup = group;
-            showAllGroups = false; // Turn off all groups display when selecting a single group
-            println("Switched to symmetry group " + group);
-        }
-    }
-    
-    // Toggle all groups view
-    void toggleAllGroupsView() {
-        showSymmetryAnalysis = true;
-        showAllGroups = !showAllGroups;
-        println("All groups view: " + (showAllGroups ? "ON" : "OFF"));
+        text("View: Standard", width - 100, height - 40);
     }
     
     // Adjust scale
     void adjustScale(float factor) {
         scale *= factor;
-        scale = constrain(scale, 400, 800);  // Expand zoom range
-        //println("Scale adjusted to: " + nf(scale/100.0, 1, 1) + "x");
+        scale = constrain(scale, 400, 800);
     }
 }
