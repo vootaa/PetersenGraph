@@ -24,9 +24,12 @@ class UIRenderer {
     
     // Standard graph view
     void renderStandardView(AnalysisEngine engine) {
+        // Draw radius guide circles for reference
+        drawRadiusGuides();
+
         // Draw edges
-        stroke(100, 150);
-        strokeWeight(2);  // Increase line thickness
+        stroke(220, 220, 220, 150);
+        strokeWeight(1);
         for (Edge edge : engine.getEdges()) {
             if (edge.isValid()) {
                 PVector start = edge.getStartNode().getPosition();
@@ -68,21 +71,21 @@ class UIRenderer {
             text(node.getId(), pos.x * scale, pos.y * scale - 16);
             noStroke();
         }
-        
-        // Draw radius guide circles for reference
-        drawRadiusGuides();
     }
     
     // Draw radius guide circles
     void drawRadiusGuides() {
-        stroke(60, 60, 60, 100);
+        stroke(80, 80, 80, 120);
         strokeWeight(1);
         noFill();
         
-        // Draw concentric circles for different radius levels
-        for (float r = 0.1; r <= 0.5; r += 0.1) {
+        // Draw concentric circles for radius reference
+        float[] actualRadii = {0.06, 0.15, 0.30, 0.39, 0.41, 0.48};
+        for (float r : actualRadii) {
             ellipse(0, 0, r * scale * 2, r * scale * 2);
         }
+
+        noFill();
     }
     
     // Symmetry analysis view - shows only 1/5 of the structure
@@ -203,13 +206,8 @@ class UIRenderer {
         }
         
         // Draw concentric circles for radius reference
-        noFill();
-        stroke(80, 80, 80, 100);
-        strokeWeight(1);
-        for (float r = 0.1; r <= 0.5; r += 0.1) {
-            ellipse(0, 0, r * scale * 2, r * scale * 2);
-        }
-        
+        drawRadiusGuides();
+
         // Highlight the 72-degree sector
         fill(255, 255, 0, 30);
         noStroke();
