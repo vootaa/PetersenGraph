@@ -441,7 +441,7 @@ class UIRenderer {
         translate(-width/2 + 20, -height/2 + 20);
         
         fill(0, 0, 0, 200);
-        rect(0, 0, 380, 220);
+        rect(0, 0, 380, 200);
         
         fill(255);
         textAlign(LEFT);
@@ -459,21 +459,28 @@ class UIRenderer {
         }
         
         text("Total Nodes: " + nodes.size() + " (Regular:" + regularNodes + ", Intersect:" + intersectionNodes + ")", 10, 40);
-        text("Related Edges: " + edges.size(), 10, 60);
+        text("Internal Edges: " + edges.size() + " (both endpoints in group)", 10, 60);
         
-        // Count edge types
-        int internalEdges = 0, boundaryEdges = 0;
-        for (Edge edge : edges) {
-            boolean startInGroup = nodes.contains(edge.getStartNode());
-            boolean endInGroup = nodes.contains(edge.getEndNode());
-            if (startInGroup && endInGroup) {
-                internalEdges++;
-            } else {
-                boundaryEdges++;
+        // 计算边界连接数量
+        int boundaryConnections = 0;
+        PolarAnalysis pa = polarAnalysis;
+        if (pa != null) {
+            for (Edge edge : pa.edges) {
+                if (edge.isValid()) {
+                    Node startNode = edge.getStartNode();
+                    Node endNode = edge.getEndNode();
+                    
+                    boolean startInGroup = nodes.contains(startNode);
+                    boolean endInGroup = nodes.contains(endNode);
+                    
+                    if ((startInGroup && !endInGroup) || (!startInGroup && endInGroup)) {
+                        boundaryConnections++;
+                    }
+                }
             }
         }
         
-        text("Edge Types: " + internalEdges + " internal, " + boundaryEdges + " boundary", 10, 80);
+        text("Boundary Connections: " + boundaryConnections + " (to other groups)", 10, 80);
         
         // Show angle range for current group
         HashMap<Float, ArrayList<Node>> angleGroups = polarAnalysis.getAngleGroups();
@@ -498,11 +505,8 @@ class UIRenderer {
         }
         
         text("Notes:", 10, 130);
-        text("• Includes boundary nodes connected to core group", 10, 150);
-        text("• Boundary edges connect to other groups", 10, 170);
-        
-        text("Controls:", 10, 190);
-        text("V - Toggle view  |  1-5 - Select group  |  6 - All groups", 10, 210);
+        text("• Internal edges: both endpoints in current group", 10, 150);
+        text("• Boundary connections: one endpoint crosses to other groups", 10, 170);
         
         popMatrix();
     }
