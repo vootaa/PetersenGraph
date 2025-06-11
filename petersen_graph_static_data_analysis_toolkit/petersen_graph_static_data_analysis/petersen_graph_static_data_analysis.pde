@@ -105,6 +105,38 @@ void keyPressed() {
             println("Screenshot saved: petersen_static_data_analysis_" + timestamp + ".png");
             break;
             
+        case '+':
+        case '=':
+            // Zoom in
+            if (uiRenderer != null) {
+                uiRenderer.adjustScale(1.2);
+            }
+            break;
+            
+        case '-':
+        case '_':
+            // Zoom out
+            if (uiRenderer != null) {
+                uiRenderer.adjustScale(0.8);
+            }
+            break;
+            
+        case '0':
+            // Reset zoom to default
+            if (uiRenderer != null) {
+                uiRenderer.scale = 300; // Reset to default scale
+                println("Scale reset to: " + nf(uiRenderer.scale/100.0, 1, 1) + "x");
+            }
+            break;
+            
+        case 'd':
+        case 'D':
+            // Debug - show unmatched segments
+            if (analysisEngine != null) {
+                analysisEngine.debugUnmatchedSegments();
+            }
+            break;
+           
         default:
             println("Available keys:");
             println("P - Polar coordinate analysis");
@@ -112,5 +144,9 @@ void keyPressed() {
             println("A - Complete analysis");
             println("V - Toggle view");
             println("S - Screenshot");
+            println("+ - Zoom in");
+            println("- - Zoom out");
+            println("0 - Reset zoom");
+            println("D - Debug unmatched segments");
     }
 }
