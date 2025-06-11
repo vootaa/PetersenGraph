@@ -3,6 +3,7 @@ DataValidator dataValidator;
 DataStructureInspector inspector;
 AnalysisEngine analysisEngine;
 UIRenderer uiRenderer;
+StaticDataReader staticDataReader;
 
 void setup() {
     size(1200, 800);
@@ -24,9 +25,16 @@ void setup() {
             analysisEngine = new AnalysisEngine(dataReader);
             uiRenderer = new UIRenderer();
             
+            // Initialize static polygon data
+            staticDataReader = new StaticDataReader();
+            staticDataReader.linkWithAnalysisEngine(analysisEngine);
+            uiRenderer.setStaticDataReader(staticDataReader);
+            
             dataReader.printStatistics();
 
             println("\nData loaded and validated successfully. Key commands:");
+            println("P - Toggle polygon view");
+            println("R - Toggle rotated copies (in polygon view)");
             println("+ / - - Zoom in/out");
             println("0 - Reset zoom");
             println("S - Save screenshot");
@@ -67,13 +75,29 @@ void keyPressed() {
     }
     
     switch (key) {
+        case 'p':
+        case 'P':
+            // Toggle polygon view
+            if (uiRenderer != null) {
+                uiRenderer.togglePolygonView();
+            }
+            break;
+            
+        case 'r':
+        case 'R':
+            // Toggle rotated copies
+            if (uiRenderer != null) {
+                uiRenderer.toggleRotatedCopies();
+            }
+            break;
+            
         case 's':
         case 'S':
             // Save screenshot
             String timestamp = year() + nf(month(), 2) + nf(day(), 2) + "_" + 
                               nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
-            saveFrame("../exports/petersen_graph_static_data_analysis_" + timestamp + ".png");
-            println("Screenshot saved: petersen_static_data_analysis_" + timestamp + ".png");
+            saveFrame("../exports/petersen_graph_polygon_view_" + timestamp + ".png");
+            println("Screenshot saved: petersen_polygon_view_" + timestamp + ".png");
             break;
             
         case '+':
@@ -109,6 +133,8 @@ void keyPressed() {
            
         default:
             println("Available keys:");
+            println("P - Toggle polygon view");
+            println("R - Toggle rotated copies");
             println("S - Screenshot");
             println("+ - Zoom in");
             println("- - Zoom out");
