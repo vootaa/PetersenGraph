@@ -130,6 +130,13 @@ void keyPressed() {
                 uiRenderer.setSymmetryGroup(4);
             }
             break;
+
+        case '6':
+            // Toggle all groups view
+            if (uiRenderer != null) {
+                uiRenderer.toggleAllGroupsView();
+            }
+            break;    
             
         case 's':
         case 'S':
@@ -178,6 +185,7 @@ void keyPressed() {
             println("A - Complete analysis");
             println("V - Toggle view");
             println("1-5 - Select symmetry group (0-4)");
+            println("6 - Select all symmetry groups");
             println("S - Screenshot");
             println("+ - Zoom in");
             println("- - Zoom out");
