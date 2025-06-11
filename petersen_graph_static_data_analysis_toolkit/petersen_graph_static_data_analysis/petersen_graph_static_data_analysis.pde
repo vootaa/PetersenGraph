@@ -1,5 +1,6 @@
 PetersenDataReader dataReader;
 DataValidator dataValidator;
+DataStructureInspector inspector;
 AnalysisEngine analysisEngine;
 UIRenderer uiRenderer;
 
@@ -11,7 +12,11 @@ void setup() {
     
     // Load Petersen graph data
     if (dataReader.loadFromFile("../data/petersen_graph_static_data_2025611_9258.json")) {
-        // Validate data before proceeding
+        // First, inspect the data structure
+        inspector = new DataStructureInspector(dataReader);
+        inspector.inspectDataStructures();
+
+        // Then validate data
         dataValidator = new DataValidator(dataReader);
 
         if (dataValidator.validateData()) {

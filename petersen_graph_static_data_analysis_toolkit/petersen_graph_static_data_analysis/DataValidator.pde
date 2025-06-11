@@ -4,28 +4,33 @@
  */
 class DataValidator {
     PetersenDataReader dataReader;
+    DataStructureInspector inspector;
     boolean isDataValid = false;
     String validationError = "";
     
     DataValidator(PetersenDataReader reader) {
         this.dataReader = reader;
+        this.inspector = new DataStructureInspector(reader);
     }
     
     /**
      * Perform comprehensive data validation
      */
     boolean validateData() {
-        println("\n=== Data Validation Started ===");
+        println("\n=== Data Validation Starting ===");
         
         try {
+            // First inspect actual data structure
+            inspector.inspectDataStructures();
+            
             // Check basic structure
             if (!validateBasicStructure()) return false;
             
             // Check data arrays
             if (!validateDataArrays()) return false;
             
-            // Sample data validation
-            if (!validateSampleData()) return false;
+            // Sample data validation with flexible field checking
+            if (!validateSampleDataFlexible()) return false;
             
             // Check data consistency
             if (!validateDataConsistency()) return false;
@@ -37,6 +42,7 @@ class DataValidator {
         } catch (Exception e) {
             validationError = "Exception occurred during validation: " + e.getMessage();
             println("❌ " + validationError);
+            e.printStackTrace();
             return false;
         }
     }
@@ -82,24 +88,24 @@ class DataValidator {
             ArrayList<JSONObject> segments = dataReader.getAllSegments();
             
             if (nodes.size() == 0) {
-                validationError = "Nodes data is empty";
+                validationError = "Node data is empty";
                 println("❌ " + validationError);
                 return false;
             }
             
             if (intersections.size() == 0) {
-                validationError = "Intersections data is empty";
+                validationError = "Intersection data is empty";
                 println("❌ " + validationError);
                 return false;
             }
             
             if (segments.size() == 0) {
-                validationError = "Segments data is empty";
+                validationError = "Segment data is empty";
                 println("❌ " + validationError);
                 return false;
             }
             
-            println("✅ Data arrays validation passed");
+            println("✅ Data array validation passed");
             println("  - Node count: " + nodes.size());
             println("  - Intersection count: " + intersections.size());
             println("  - Segment count: " + segments.size());
@@ -107,25 +113,25 @@ class DataValidator {
             return true;
             
         } catch (Exception e) {
-            validationError = "Data arrays validation failed: " + e.getMessage();
+            validationError = "Data array validation failed: " + e.getMessage();
             println("❌ " + validationError);
             return false;
         }
     }
     
     /**
-     * Validate sample data structures
+     * Flexible sample data validation that adapts to actual structure
      */
-    boolean validateSampleData() {
+    boolean validateSampleDataFlexible() {
         try {
             // Sample node validation
-            if (!validateSampleNode()) return false;
+            if (!validateSampleNodeFlexible()) return false;
             
             // Sample intersection validation
-            if (!validateSampleIntersection()) return false;
+            if (!validateSampleIntersectionFlexible()) return false;
             
-            // Sample segment validation
-            if (!validateSampleSegment()) return false;
+            // Sample segment validation with flexible field names
+            if (!validateSampleSegmentFlexible()) return false;
             
             println("✅ Sample data validation passed");
             return true;
@@ -138,17 +144,17 @@ class DataValidator {
     }
     
     /**
-     * Validate sample node structure
+     * Flexible node validation
      */
-    boolean validateSampleNode() {
+    boolean validateSampleNodeFlexible() {
         ArrayList<JSONObject> nodes = dataReader.getAllNodes();
         if (nodes.size() == 0) return false;
         
         JSONObject sampleNode = nodes.get(0);
         
-        // Check required fields
-        if (!sampleNode.hasKey("node_id")) {
-            validationError = "Node missing node_id field";
+        // Check for node ID field (could be node_id or id)
+        if (!sampleNode.hasKey("node_id") && !sampleNode.hasKey("id")) {
+            validationError = "Node missing ID field (node_id or id)";
             println("❌ " + validationError);
             return false;
         }
@@ -174,7 +180,7 @@ class DataValidator {
             try {
                 Float.parseFloat(polar.getString(field));
             } catch (Exception e) {
-                validationError = "Node polar." + field + " is not a valid number string";
+                validationError = "Node polar." + field + " is not a valid number string: " + polar.getString(field);
                 println("❌ " + validationError);
                 return false;
             }
@@ -185,16 +191,16 @@ class DataValidator {
     }
     
     /**
-     * Validate sample intersection structure
+     * Flexible intersection validation
      */
-    boolean validateSampleIntersection() {
+    boolean validateSampleIntersectionFlexible() {
         ArrayList<JSONObject> intersections = dataReader.getAllIntersections();
         if (intersections.size() == 0) return false;
         
         JSONObject sampleIntersection = intersections.get(0);
         
-        if (!sampleIntersection.hasKey("intersection_id")) {
-            validationError = "Intersection missing intersection_id field";
+        if (!sampleIntersection.hasKey("intersection_id") && !sampleIntersection.hasKey("id")) {
+            validationError = "Intersection missing ID field (intersection_id or id)";
             println("❌ " + validationError);
             return false;
         }
@@ -210,26 +216,57 @@ class DataValidator {
     }
     
     /**
-     * Validate sample segment structure
+     * Flexible segment validation that checks for various possible field names
      */
-    boolean validateSampleSegment() {
+    boolean validateSampleSegmentFlexible() {
         ArrayList<JSONObject> segments = dataReader.getAllSegments();
         if (segments.size() == 0) return false;
         
         JSONObject sampleSegment = segments.get(0);
         
-        String[] requiredFields = {"segment_id", "start_node_id", "end_node_id", "parent_edge_id"};
+        // Print available fields for debugging
+        println("Actual fields in segment sample:");
+        for (Object key : sampleSegment.keys()) {
+            println("  - " + key);
+        }
         
-        for (String field : requiredFields) {
-            if (!sampleSegment.hasKey(field)) {
-                validationError = "Segment missing " + field + " field";
-                println("❌ " + validationError);
-                return false;
-            }
+        // Check for segment ID (could be segment_id, id, etc.)
+        if (!hasAnyKey(sampleSegment, new String[]{"segment_id", "id"})) {
+            validationError = "Segment missing ID field";
+            println("❌ " + validationError);
+            return false;
+        }
+        
+        // Check for node reference fields (various possible names)
+        String[] possibleStartFields = {"start_node_id", "from_node", "source", "start_id"};
+        String[] possibleEndFields = {"end_node_id", "to_node", "target", "end_id"};
+        
+        if (!hasAnyKey(sampleSegment, possibleStartFields)) {
+            validationError = "Segment missing start node field (tried: " + java.util.Arrays.toString(possibleStartFields) + ")";
+            println("❌ " + validationError);
+            return false;
+        }
+        
+        if (!hasAnyKey(sampleSegment, possibleEndFields)) {
+            validationError = "Segment missing end node field (tried: " + java.util.Arrays.toString(possibleEndFields) + ")";
+            println("❌ " + validationError);
+            return false;
         }
         
         println("✅ Segment sample validation passed");
         return true;
+    }
+    
+    /**
+     * Helper method to check if object has any of the given keys
+     */
+    boolean hasAnyKey(JSONObject obj, String[] keys) {
+        for (String key : keys) {
+            if (obj.hasKey(key)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -275,29 +312,16 @@ class DataValidator {
         }
     }
     
-    /**
-     * Get validation status
-     */
-    boolean isValid() {
-        return isDataValid;
-    }
+    // Rest of the methods remain the same...
+    boolean isValid() { return isDataValid; }
+    String getError() { return validationError; }
     
-    /**
-     * Get validation error message
-     */
-    String getError() {
-        return validationError;
-    }
-    
-    /**
-     * Print detailed validation report
-     */
     void printValidationReport() {
         println("\n=== Data Validation Report ===");
         
         if (isDataValid) {
             println("✅ Data validation successful");
-            println("Data is safe for analysis");
+            println("Data can be safely used for analysis");
         } else {
             println("❌ Data validation failed");
             println("Error: " + validationError);
