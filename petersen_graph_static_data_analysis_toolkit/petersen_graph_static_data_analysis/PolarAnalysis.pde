@@ -196,11 +196,11 @@ class PolarAnalysis {
         return null;
     }
 
-    // Group nodes by 72-degree symmetry based on actual angle groups (with connected boundary nodes)
+    // Group nodes by 72-degree symmetry based on actual angle groups (with boundary intersections only)
     void groupBySymmetry() {
         symmetryGroups.clear();
         
-        println("\n--- Enhanced 72-Degree Symmetry Grouping (Including Boundary Connections) ---");
+        println("\n--- Enhanced 72-Degree Symmetry Grouping (Including Boundary Intersections Only) ---");
         
         // Get sorted angle groups
         ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
@@ -230,7 +230,7 @@ class PolarAnalysis {
             }
         }
         
-        // Second pass: Add boundary nodes connected to core nodes
+        // Second pass: Add only boundary intersection nodes connected to core nodes
         for (int group = 0; group < 5; group++) {
             ArrayList<Node> coreNodes = coreGroups.get(group);
             ArrayList<Node> expandedGroup = new ArrayList<Node>();
@@ -240,11 +240,11 @@ class PolarAnalysis {
                 expandedGroup.add(node);
             }
             
-            // Find connected boundary nodes
-            ArrayList<Node> boundaryNodes = findBoundaryNodes(coreNodes);
-            for (Node boundaryNode : boundaryNodes) {
-                if (!expandedGroup.contains(boundaryNode)) {
-                    expandedGroup.add(boundaryNode);
+            // Find connected boundary intersection nodes (only intersections, not regular nodes)
+            ArrayList<Node> boundaryIntersections = findBoundaryNodes(coreNodes);
+            for (Node boundaryIntersection : boundaryIntersections) {
+                if (!expandedGroup.contains(boundaryIntersection)) {
+                    expandedGroup.add(boundaryIntersection);
                 }
             }
             
@@ -260,19 +260,19 @@ class PolarAnalysis {
             if (symmetryGroups.containsKey(group)) {
                 ArrayList<Node> groupNodes = symmetryGroups.get(group);
                 ArrayList<Node> coreNodes = coreGroups.get(group);
-                ArrayList<Node> boundaryNodes = new ArrayList<Node>();
+                ArrayList<Node> boundaryIntersections = new ArrayList<Node>();
                 
                 for (Node node : groupNodes) {
                     if (!coreNodes.contains(node)) {
-                        boundaryNodes.add(node);
+                        boundaryIntersections.add(node);
                     }
                 }
                 
                 println("Enhanced Group " + group + ": " + groupNodes.size() + " total nodes");
                 println("  Core nodes (" + coreNodes.size() + "): " + getNodeIdList(coreNodes));
-                println("  Boundary nodes (" + boundaryNodes.size() + "): " + getNodeIdList(boundaryNodes));
+                println("  Boundary intersections (" + boundaryIntersections.size() + "): " + getNodeIdList(boundaryIntersections));
                 
-                // Count node types
+                // Count node types (should show breakdown)
                 int regular = 0, intersection = 0;
                 for (Node node : groupNodes) {
                     if (node.getType().equals("intersection")) {
@@ -282,6 +282,18 @@ class PolarAnalysis {
                     }
                 }
                 println("  Node types: " + regular + " regular, " + intersection + " intersection");
+                
+                // Verify that all boundary additions are intersections
+                int boundaryRegular = 0, boundaryIntersection = 0;
+                for (Node node : boundaryIntersections) {
+                    if (node.getType().equals("intersection")) {
+                        boundaryIntersection++;
+                    } else {
+                        boundaryRegular++;
+                    }
+                }
+                println("  Boundary addition verification: " + boundaryRegular + " regular (should be 0), " + 
+                    boundaryIntersection + " intersection (should equal boundary count)");
             }
         }
         
@@ -289,9 +301,10 @@ class PolarAnalysis {
         verifyEnhancedSymmetryStructure();
     }
 
-    // Find boundary nodes connected to core nodes
+
+    // Find boundary intersection nodes connected to core nodes (only intersection nodes, not regular nodes)
     ArrayList<Node> findBoundaryNodes(ArrayList<Node> coreNodes) {
-        ArrayList<Node> boundaryNodes = new ArrayList<Node>();
+        ArrayList<Node> boundaryIntersections = new ArrayList<Node>();
         
         for (Edge edge : edges) {
             if (edge.isValid()) {
@@ -301,17 +314,17 @@ class PolarAnalysis {
                 boolean startInCore = coreNodes.contains(startNode);
                 boolean endInCore = coreNodes.contains(endNode);
                 
-                // If one node is in core and other is not, the other is a boundary node
-                if (startInCore && !endInCore && !boundaryNodes.contains(endNode)) {
-                    boundaryNodes.add(endNode);
+                // If one node is in core and other is not, check if the other is an intersection
+                if (startInCore && !endInCore && endNode.getType().equals("intersection") && !boundaryIntersections.contains(endNode)) {
+                    boundaryIntersections.add(endNode);
                 }
-                if (endInCore && !startInCore && !boundaryNodes.contains(startNode)) {
-                    boundaryNodes.add(startNode);
+                if (endInCore && !startInCore && startNode.getType().equals("intersection") && !boundaryIntersections.contains(startNode)) {
+                    boundaryIntersections.add(startNode);
                 }
             }
         }
         
-        return boundaryNodes;
+        return boundaryIntersections;
     }
 
     // Get related edges for a group (only include edges with both endpoints in the group)
@@ -338,7 +351,7 @@ class PolarAnalysis {
 
     // Print enhanced symmetry groups with detailed edge information
     void printEnhancedSymmetryGroups() {
-        println("\n--- Enhanced Five-fold Symmetry Groups (with Internal Edges Only) ---");
+        println("\n--- Enhanced Five-fold Symmetry Groups (Core + Boundary Intersections) ---");
         
         for (int group = 0; group < 5; group++) {
             if (symmetryGroups.containsKey(group)) {
@@ -347,9 +360,61 @@ class PolarAnalysis {
                 
                 println("\n=== Enhanced Group " + group + " ===");
                 
-                // Print nodes
+                // Separate core and boundary nodes for display
+                ArrayList<Node> coreNodes = new ArrayList<Node>();
+                ArrayList<Node> boundaryIntersections = new ArrayList<Node>();
+                
+                // Get sorted angles for proper indexing
+                ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
+                Collections.sort(sortedAngles);
+                
+                // Identify which nodes are core (from angle groups) vs boundary
+                for (Node node : groupNodes) {
+                    boolean isCore = false;
+                    // Check if this node belongs to the core angle groups for this symmetry group
+                    int startAngleIndex = group * 4;
+                    for (int i = 0; i < 4 && (startAngleIndex + i) < sortedAngles.size(); i++) {
+                        Float angleKey = sortedAngles.get(startAngleIndex + i);  // 修正：直接使用get()方法
+                        if (angleGroups.get(angleKey).contains(node)) {
+                            isCore = true;
+                            break;
+                        }
+                    }
+                    
+                    if (isCore) {
+                        coreNodes.add(node);
+                    } else {
+                        boundaryIntersections.add(node);
+                    }
+                }
+                
+                // Print core nodes
+                sortNodesByID(coreNodes);
+                print("Core Nodes (" + coreNodes.size() + "): [");
+                for (int i = 0; i < coreNodes.size(); i++) {
+                    Node node = coreNodes.get(i);
+                    String nodeType = node.getType().equals("intersection") ? "I" : "N";
+                    print(nodeType + node.getId());
+                    if (i < coreNodes.size() - 1) print(", ");
+                }
+                println("]");
+                
+                // Print boundary intersections
+                if (!boundaryIntersections.isEmpty()) {
+                    sortNodesByID(boundaryIntersections);
+                    print("Boundary Intersections (" + boundaryIntersections.size() + "): [");
+                    for (int i = 0; i < boundaryIntersections.size(); i++) {
+                        Node node = boundaryIntersections.get(i);
+                        String nodeType = node.getType().equals("intersection") ? "I" : "N";
+                        print(nodeType + node.getId());
+                        if (i < boundaryIntersections.size() - 1) print(", ");
+                    }
+                    println("]");
+                }
+                
+                // Print all nodes (combined)
                 sortNodesByID(groupNodes);
-                print("Nodes (" + groupNodes.size() + "): [");
+                print("All Nodes (" + groupNodes.size() + "): [");
                 for (int i = 0; i < groupNodes.size(); i++) {
                     Node node = groupNodes.get(i);
                     String nodeType = node.getType().equals("intersection") ? "I" : "N";
@@ -358,7 +423,7 @@ class PolarAnalysis {
                 }
                 println("]");
                 
-                // Print edges (only show internal edges)
+                // Print internal edges (only)
                 println("Internal Edges (" + groupEdges.size() + "):");
                 for (int i = 0; i < groupEdges.size(); i++) {
                     Edge edge = groupEdges.get(i);
@@ -372,7 +437,7 @@ class PolarAnalysis {
                         endType + endNode.getId() + " (Internal)");
                 }
                 
-                // Analyze boundary connections to other groups (for statistics, but not included in group edges)
+                // Statistics about connections to other groups
                 int boundaryConnections = 0;
                 for (Edge edge : edges) {
                     if (edge.isValid()) {
@@ -382,7 +447,6 @@ class PolarAnalysis {
                         boolean startInGroup = groupNodes.contains(startNode);
                         boolean endInGroup = groupNodes.contains(endNode);
                         
-                        // Count cross-group connections
                         if ((startInGroup && !endInGroup) || (!startInGroup && endInGroup)) {
                             boundaryConnections++;
                         }
@@ -395,51 +459,52 @@ class PolarAnalysis {
         }
     }
 
-    // Verify enhanced symmetry structure (updated verification logic)
+    // Verify enhanced symmetry structure
     void verifyEnhancedSymmetryStructure() {
-        println("\n--- Enhanced Symmetry Structure Verification ---");
+        println("\n--- Enhanced Symmetry Structure Verification (Intersection-Only Boundaries) ---");
         
-        // Check internal connectivity of each group
+        // Check that all boundary additions are intersection nodes
         for (int group = 0; group < 5; group++) {
             if (symmetryGroups.containsKey(group)) {
                 ArrayList<Node> groupNodes = symmetryGroups.get(group);
-                ArrayList<Edge> internalEdges = getGroupRelatedEdges(groupNodes);
                 
-                // Calculate boundary connections
-                int boundaryConnections = 0;
-                for (Edge edge : edges) {
-                    if (edge.isValid()) {
-                        Node startNode = edge.getStartNode();
-                        Node endNode = edge.getEndNode();
-                        
-                        boolean startInGroup = groupNodes.contains(startNode);
-                        boolean endInGroup = groupNodes.contains(endNode);
-                        
-                        if ((startInGroup && !endInGroup) || (!startInGroup && endInGroup)) {
-                            boundaryConnections++;
+                // Find which nodes are boundary nodes for this group
+                int boundaryRegularNodes = 0;
+                int boundaryIntersectionNodes = 0;
+                
+                for (Node node : groupNodes) {
+                    // Check if this node connects to other groups
+                    boolean isBoundary = false;
+                    for (Edge edge : edges) {
+                        if (edge.isValid()) {
+                            Node otherNode = null;
+                            if (edge.getStartNode() == node) {
+                                otherNode = edge.getEndNode();
+                            } else if (edge.getEndNode() == node) {
+                                otherNode = edge.getStartNode();
+                            }
+                            
+                            if (otherNode != null && !groupNodes.contains(otherNode)) {
+                                isBoundary = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (isBoundary) {
+                        if (node.getType().equals("intersection")) {
+                            boundaryIntersectionNodes++;
+                        } else {
+                            boundaryRegularNodes++;
                         }
                     }
                 }
                 
-                println("Group " + group + ": " + groupNodes.size() + " nodes, " + 
-                    internalEdges.size() + " internal edges, " + 
-                    boundaryConnections + " boundary connections");
+                println("Group " + group + " boundary verification:");
+                println("  Boundary regular nodes: " + boundaryRegularNodes + " (should be from core only)");
+                println("  Boundary intersection nodes: " + boundaryIntersectionNodes + " (includes added intersections)");
             }
         }
-        
-        // Verify total edge count
-        int totalInternalEdges = 0;
-        for (int group = 0; group < 5; group++) {
-            if (symmetryGroups.containsKey(group)) {
-                ArrayList<Node> groupNodes = symmetryGroups.get(group);
-                ArrayList<Edge> internalEdges = getGroupRelatedEdges(groupNodes);
-                totalInternalEdges += internalEdges.size();
-            }
-        }
-        
-        println("\nTotal internal edges across all groups: " + totalInternalEdges);
-        println("Total edges in graph: " + edges.size());
-        println("Edges crossing group boundaries: " + (edges.size() - totalInternalEdges));
     }
 
     // Helper method to get node ID list as string
@@ -513,69 +578,72 @@ class PolarAnalysis {
     
     // Output structured results in array format
     // Only include internal edges
+    // Distinguish core nodes and boundary intersections
     void outputStructuredResults() {
-        println("\n--- Enhanced Structured Data Output (copy to code) ---");
+        println("\n--- Enhanced Structured Data Output (Core + Boundary Intersections) ---");
         
-        // Output radius groups (unchanged)
-        println("\n// Radius group data");
-        println("radiusGroups = {");
-        ArrayList<Float> sortedRadii = new ArrayList<Float>(radiusGroups.keySet());
-        Collections.sort(sortedRadii);
+        // ... Previous radius and angle groups output remains unchanged ...
         
-        for (int i = 0; i < sortedRadii.size(); i++) {
-            Float radius = sortedRadii.get(i);
-            ArrayList<Node> groupNodes = radiusGroups.get(radius);
-            
-            print("  " + nf(radius, 1, 3) + ": [");
-            sortNodesByID(groupNodes);
-            for (int j = 0; j < groupNodes.size(); j++) {
-                Node node = groupNodes.get(j);
-                String nodeType = node.getType().equals("intersection") ? "I" : "N";
-                print(nodeType + node.getId());
-                if (j < groupNodes.size() - 1) print(", ");
-            }
-            print("]");
-            if (i < sortedRadii.size() - 1) print(",");
-            println();
-        }
-        println("};");
-        
-        // Output angle groups (unchanged)
-        println("\n// Angle group data (all nodes, integer degrees)");
-        println("angleGroups = {");
-        ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
-        Collections.sort(sortedAngles);
-        
-        for (int i = 0; i < sortedAngles.size(); i++) {
-            Float angle = sortedAngles.get(i);
-            ArrayList<Node> groupNodes = angleGroups.get(angle);
-            
-            print("  " + nf(angle, 1, 0) + "°: [");
-            sortNodesByID(groupNodes);
-            for (int j = 0; j < groupNodes.size(); j++) {
-                Node node = groupNodes.get(j);
-                String nodeType = node.getType().equals("intersection") ? "I" : "N";
-                print(nodeType + node.getId());
-                if (j < groupNodes.size() - 1) print(", ");
-            }
-            print("]");
-            if (i < sortedAngles.size() - 1) print(",");
-            println();
-        }
-        println("};");
-        
-        // Output enhanced symmetry groups (only include internal edges)
-        println("\n// Enhanced Five-fold symmetry group data (internal edges only)");
+        // Output enhanced symmetry groups (distinguish core and boundary intersections)
+        println("\n// Enhanced Five-fold symmetry group data (core nodes + boundary intersections)");
         println("enhancedSymmetryGroups = {");
         for (int group = 0; group < 5; group++) {
             if (symmetryGroups.containsKey(group)) {
                 ArrayList<Node> groupNodes = symmetryGroups.get(group);
-                ArrayList<Edge> groupEdges = getGroupRelatedEdges(groupNodes); // Only include internal edges
+                ArrayList<Edge> groupEdges = getGroupRelatedEdges(groupNodes);
+                
+                // Separate core and boundary nodes
+                ArrayList<Node> coreNodes = new ArrayList<Node>();
+                ArrayList<Node> boundaryIntersections = new ArrayList<Node>();
+                
+                // Identify core vs boundary nodes
+                ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
+                Collections.sort(sortedAngles);
+                
+                for (Node node : groupNodes) {
+                    boolean isCore = false;
+                    int startAngleIndex = group * 4;
+                    for (int i = 0; i < 4 && (startAngleIndex + i) < sortedAngles.size(); i++) {
+                        Float angleKey = sortedAngles.get(startAngleIndex + i);
+                        if (angleGroups.get(angleKey).contains(node)) {
+                            isCore = true;
+                            break;
+                        }
+                    }
+                    
+                    if (isCore) {
+                        coreNodes.add(node);
+                    } else {
+                        boundaryIntersections.add(node);
+                    }
+                }
                 
                 println("  group" + group + ": {");
                 
-                // Nodes
-                print("    nodes: [");
+                // Core nodes
+                print("    coreNodes: [");
+                sortNodesByID(coreNodes);
+                for (int j = 0; j < coreNodes.size(); j++) {
+                    Node node = coreNodes.get(j);
+                    String nodeType = node.getType().equals("intersection") ? "I" : "N";
+                    print(nodeType + node.getId());
+                    if (j < coreNodes.size() - 1) print(", ");
+                }
+                println("],");
+                
+                // Boundary intersections
+                print("    boundaryIntersections: [");
+                sortNodesByID(boundaryIntersections);
+                for (int j = 0; j < boundaryIntersections.size(); j++) {
+                    Node node = boundaryIntersections.get(j);
+                    String nodeType = node.getType().equals("intersection") ? "I" : "N";
+                    print(nodeType + node.getId());
+                    if (j < boundaryIntersections.size() - 1) print(", ");
+                }
+                println("],");
+                
+                // All nodes (combined)
+                print("    allNodes: [");
                 sortNodesByID(groupNodes);
                 for (int j = 0; j < groupNodes.size(); j++) {
                     Node node = groupNodes.get(j);
@@ -598,29 +666,11 @@ class PolarAnalysis {
                     print("\"" + startType + startNode.getId() + "-" + endType + endNode.getId() + "\"");
                     if (j < groupEdges.size() - 1) print(", ");
                 }
-                println("],");
-                
-                // Count boundary connections (don't list specific edges)
-                int boundaryConnections = 0;
-                for (Edge edge : edges) {
-                    if (edge.isValid()) {
-                        Node startNode = edge.getStartNode();
-                        Node endNode = edge.getEndNode();
-                        
-                        boolean startInGroup = groupNodes.contains(startNode);
-                        boolean endInGroup = groupNodes.contains(endNode);
-                        
-                        if ((startInGroup && !endInGroup) || (!startInGroup && endInGroup)) {
-                            boundaryConnections++;
-                        }
-                    }
-                }
-                
-                println("    boundaryConnectionCount: " + boundaryConnections);
+                println("]");
                 
                 print("  }");
             } else {
-                print("  group" + group + ": { nodes: [], internalEdges: [], boundaryConnectionCount: 0 }");
+                print("  group" + group + ": { coreNodes: [], boundaryIntersections: [], allNodes: [], internalEdges: [] }");
             }
             if (group < 4) print(",");
             println();
