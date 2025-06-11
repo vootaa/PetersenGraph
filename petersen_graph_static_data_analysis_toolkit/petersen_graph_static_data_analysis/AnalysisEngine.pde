@@ -55,22 +55,22 @@ class AnalysisEngine {
         }
     }
         
-        // Convert segments as edges
-        ArrayList<JSONObject> segments = dataReader.getAllSegments();
-        for (JSONObject segmentObj : segments) {
-            int segmentId = segmentObj.getInt("segment_id");
-            int startNodeId = segmentObj.getInt("start_node_id");
-            int endNodeId = segmentObj.getInt("end_node_id");
-            int parentEdgeId = segmentObj.getInt("parent_edge_id");
-            
-            Node startNode = findNodeById(startNodeId);
-            Node endNode = findNodeById(endNodeId);
-            
-            if (startNode != null && endNode != null) {
-                Edge edge = new Edge(segmentId, startNode, endNode, parentEdgeId);
-                edges.add(edge);
-            }
+    // Convert segments as edges
+    ArrayList<JSONObject> segments = dataReader.getAllSegments();
+    for (JSONObject segmentObj : segments) {
+        int segmentId = segmentObj.getInt("segment_id");
+        int startNodeId = segmentObj.getInt("start_node_id");
+        int endNodeId = segmentObj.getInt("end_node_id");
+        int parentEdgeId = segmentObj.getInt("parent_edge_id");
+        
+        Node startNode = findNodeById(startNodeId);
+        Node endNode = findNodeById(endNodeId);
+        
+        if (startNode != null && endNode != null) {
+            Edge edge = new Edge(segmentId, startNode, endNode, parentEdgeId);
+            edges.add(edge);
         }
+    }
         
         println("Data conversion completed: " + nodes.size() + " nodes, " + edges.size() + " edges");
     }

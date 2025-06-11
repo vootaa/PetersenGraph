@@ -1,4 +1,5 @@
 PetersenDataReader dataReader;
+DataValidator dataValidator;
 AnalysisEngine analysisEngine;
 UIRenderer uiRenderer;
 
@@ -10,23 +11,27 @@ void setup() {
     
     // Load Petersen graph data
     if (dataReader.loadFromFile("../data/petersen_graph_static_data_2025611_9258.json")) {
-        // Create analysis engine
-        analysisEngine = new AnalysisEngine(dataReader);
-        
-        // Create UI renderer
-        uiRenderer = new UIRenderer();
-        
-        // Print data summary
-        dataReader.printStatistics();
-        
-        println("\nData loaded successfully. Key commands:");
-        println("P - Polar coordinate analysis");
-        println("E - Edge analysis");
-        println("V - Toggle view (standard/symmetric)");
-        println("S - Save screenshot");
-        println("+ - Zoom in");
-        println("- - Zoom out");
-        
+        // Validate data before proceeding
+        dataValidator = new DataValidator(dataReader);
+
+        if (dataValidator.validateData()) {
+            // Data is valid, proceed with analysis
+            analysisEngine = new AnalysisEngine(dataReader);
+            uiRenderer = new UIRenderer();
+            
+            dataReader.printStatistics();
+
+            println("\nData loaded and validated successfully. Key commands:");
+            println("P - Polar coordinate analysis");
+            println("G - Polygon component analysis");
+            println("A - Complete analysis");
+            println("V - Toggle view");
+            println("S - Screenshot");
+        } else {
+            // Data validation failed
+            dataValidator.printValidationReport();
+            println("\n⚠️  Program halted. Please fix data issues and retry.");
+        }
     } else {
         println("Data loading failed, please check file path: ../data/petersen_graph_static_data_2025611_9258.json");
     }
@@ -42,13 +47,22 @@ void draw() {
         fill(255, 0, 0);
         textAlign(CENTER);
         textSize(16);
-        text("Data loading failed", width/2, height/2);
-        text("Please ensure ../data/petersen_graph_static_data_2025611_9258.json file exists", width/2, height/2 + 20);
+        text("Data validation failed or program not properly initialized", width/2, height/2);
+        
+        if (dataValidator != null && !dataValidator.isValid()) {
+            textSize(12);
+            text("Error: " + dataValidator.getError(), width/2, height/2 + 30);
+            text("Please check JSON data file", width/2, height/2 + 50);
+        }
+        
     }
 }
 
 void keyPressed() {
-    if (analysisEngine == null) return;
+    if (analysisEngine == null || !dataValidator.isValid()) {
+        println("❌ Data not ready, unable to perform analysis");
+        return;
+    }
     
     switch (key) {
         case 'p':
