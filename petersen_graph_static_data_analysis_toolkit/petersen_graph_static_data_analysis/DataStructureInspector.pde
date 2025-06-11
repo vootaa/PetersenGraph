@@ -76,10 +76,11 @@ class DataStructureInspector {
             }
             
             // Print first few segments for analysis
+            /*
             println("\nFirst 3 segments complete data:");
             for (int i = 0; i < min(3, segments.size()); i++) {
                 println("Segment " + i + ": " + segments.get(i).toString());
-            }
+            }*/
         } else {
             println("❌ No segment data");
         }
