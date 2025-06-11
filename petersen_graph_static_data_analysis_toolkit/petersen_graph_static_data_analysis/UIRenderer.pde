@@ -91,18 +91,22 @@ class UIRenderer {
     
     // Symmetry analysis view - shows specific symmetry group
     void renderSymmetryAnalysis(AnalysisEngine engine) {
-        // Get nodes from the current symmetry group using PolarAnalysis
+        // Check if PolarAnalysis is available and has been run
         PolarAnalysis polarAnalysis = engine.getPolarAnalysis();
         if (polarAnalysis == null) {
-            println("PolarAnalysis not available, run polar analysis first (press P)");
+            showAnalysisNotReadyMessage("PolarAnalysis not initialized");
             return;
         }
         
         HashMap<Integer, ArrayList<Node>> symmetryGroups = polarAnalysis.getSymmetryGroups();
-        ArrayList<Node> currentGroupNodes = symmetryGroups.get(currentSymmetryGroup);
+        if (symmetryGroups == null || symmetryGroups.isEmpty()) {
+            showAnalysisNotReadyMessage("Symmetry groups not available. Press P to run polar analysis first.");
+            return;
+        }
         
-        if (currentGroupNodes == null) {
-            println("Symmetry group " + currentSymmetryGroup + " not found");
+        ArrayList<Node> currentGroupNodes = symmetryGroups.get(currentSymmetryGroup);
+        if (currentGroupNodes == null || currentGroupNodes.isEmpty()) {
+            showAnalysisNotReadyMessage("Symmetry group " + currentSymmetryGroup + " is empty or not found.");
             return;
         }
         
@@ -186,6 +190,31 @@ class UIRenderer {
         
         // Draw enhanced analysis info
         drawEnhancedSymmetryInfo(currentGroupNodes, groupEdges, polarAnalysis);
+    }
+    
+    // Show message when analysis is not ready
+    void showAnalysisNotReadyMessage(String message) {
+        fill(255, 100, 100, 200);
+        textAlign(CENTER);
+        textSize(16);
+        text(message, 0, -20);
+        
+        fill(255, 255, 100, 200);
+        textSize(14);
+        text("Press P to run Polar Analysis first", 0, 10);
+        
+        // Still draw the basic structure
+        drawRadiusGuides();
+        
+        // Draw basic symmetry lines
+        stroke(100, 100, 100, 120);
+        strokeWeight(1);
+        for (int i = 0; i < 5; i++) {
+            float angle = radians(i * 72);
+            float x = cos(angle) * scale * 0.6;
+            float y = sin(angle) * scale * 0.6;
+            line(0, 0, x, y);
+        }
     }
     
     // Get all edges related to a symmetry group (internal and external connections)
@@ -338,6 +367,11 @@ class UIRenderer {
     void toggleSymmetryView() {
         showSymmetryAnalysis = !showSymmetryAnalysis;
         println("View toggled: " + (showSymmetryAnalysis ? "Symmetry Group " + currentSymmetryGroup : "Standard View"));
+        
+        // If switching to symmetry view, provide guidance
+        if (showSymmetryAnalysis) {
+            println("Note: If symmetry group is not found, run Polar Analysis first (press P)");
+        }
     }
     
     // Set current symmetry group (0-4)
