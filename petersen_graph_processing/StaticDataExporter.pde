@@ -51,7 +51,7 @@ class StaticDataExporter {
         json.setJSONObject("layer_groups", exportLayerGroups(staticData.layerGroups));
         
         // Save file
-        saveJSONObject(json, "data/" + filename);
+        saveJSONObject(json, "static_data_exports/" + filename);
         println("Static data exported to: " + filename);
         println("Total elements: " + 
                 staticData.nodesByIndex.size() + " nodes, " +
@@ -149,9 +149,13 @@ class StaticDataExporter {
     
     private JSONObject exportPolarCoordinate(PolarCoordinate polar) {
         JSONObject polarJson = new JSONObject();
-        polarJson.setFloat("radius", polar.radius);
-        polarJson.setFloat("angle_radians", polar.angle);
-        polarJson.setFloat("angle_degrees", polar.getAngleDegrees());
+        polarJson.setFloat("radius", formatFloat(polar.radius));
+        polarJson.setFloat("angle_radians", formatFloat(polar.angle));
+        polarJson.setFloat("angle_degrees", formatFloat(polar.getAngleDegrees()));
         return polarJson;
+    }
+
+    private float formatFloat(float value) {
+        return Float.parseFloat(String.format("%.2f", value));
     }
 }
