@@ -271,7 +271,7 @@ class UIRenderer {
     // Adjust scale
     void adjustScale(float factor) {
         scale *= factor;
-        scale = constrain(scale, 50, 800);  // Expand zoom range
-        println("Scale adjusted to: " + nf(scale/100.0, 1, 1) + "x");
+        scale = constrain(scale, 400, 800);  // Expand zoom range
+        //println("Scale adjusted to: " + nf(scale/100.0, 1, 1) + "x");
     }
 }

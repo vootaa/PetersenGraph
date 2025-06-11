@@ -124,8 +124,7 @@ void keyPressed() {
         case '0':
             // Reset zoom to default
             if (uiRenderer != null) {
-                uiRenderer.scale = 300; // Reset to default scale
-                println("Scale reset to: " + nf(uiRenderer.scale/100.0, 1, 1) + "x");
+                uiRenderer.scale = 600; // Reset to default scale
             }
             break;
             
