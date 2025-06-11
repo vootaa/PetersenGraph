@@ -67,7 +67,7 @@ class StaticDataExporter {
             nodeJson.setInt("chain_id", node.chainId);
             nodeJson.setJSONObject("polar", exportPolarCoordinate(node.polar));
             nodeJson.setString("layer", node.layer);
-            nodeJson.setFloat("display_radius", formatFloat(node.displayRadius));
+            nodeJson.setString("display_radius", formatFloatString(node.displayRadius));
             array.setJSONObject(array.size(), nodeJson);
         }
         return array;
@@ -81,7 +81,7 @@ class StaticDataExporter {
             intJson.setJSONObject("polar", exportPolarCoordinate(intersection.polar));
             intJson.setInt("edge1_id", intersection.edge1Id);
             intJson.setInt("edge2_id", intersection.edge2Id);
-            intJson.setFloat("display_radius", formatFloat(intersection.displayRadius));
+            intJson.setString("display_radius", formatFloatString(intersection.displayRadius));
             array.setJSONObject(array.size(), intJson);
         }
         return array;
@@ -95,7 +95,7 @@ class StaticDataExporter {
             edgeJson.setInt("edge_type", edge.edgeType);
             edgeJson.setJSONObject("start_polar", exportPolarCoordinate(edge.startPolar));
             edgeJson.setJSONObject("end_polar", exportPolarCoordinate(edge.endPolar));
-            edgeJson.setFloat("stroke_width", formatFloat(edge.strokeWidth));
+            edgeJson.setString("stroke_width", formatFloatString(edge.strokeWidth));
             edgeJson.setString("description", edge.description);
             
             JSONArray intersectionIds = new JSONArray();
@@ -117,7 +117,7 @@ class StaticDataExporter {
             segJson.setInt("parent_edge_id", segment.parentEdgeId);
             segJson.setJSONObject("start_polar", exportPolarCoordinate(segment.startPolar));
             segJson.setJSONObject("end_polar", exportPolarCoordinate(segment.endPolar));
-            segJson.setFloat("stroke_width", formatFloat(segment.strokeWidth));
+            segJson.setString("stroke_width", formatFloatString(segment.strokeWidth));
             segJson.setBoolean("is_intersected", segment.isIntersected);
             
             JSONArray endpointIds = new JSONArray();
@@ -149,13 +149,13 @@ class StaticDataExporter {
     
     private JSONObject exportPolarCoordinate(PolarCoordinate polar) {
         JSONObject polarJson = new JSONObject();
-        polarJson.setFloat("radius", formatFloat(polar.radius));
-        polarJson.setFloat("angle_radians", formatFloat(polar.angle));
-        polarJson.setFloat("angle_degrees", formatFloat(polar.getAngleDegrees()));
+        polarJson.setString("radius", formatFloatString(polar.radius));
+        polarJson.setString("angle_radians", formatFloatString(polar.angle));
+        polarJson.setString("angle_degrees", formatFloatString(polar.getAngleDegrees()));
         return polarJson;
     }
 
-    private float formatFloat(float value) {
-        return Float.parseFloat(String.format("%.2f", value));
+    private String formatFloatString(float value) {
+        return String.format("%.2f", value);
     }
 }
