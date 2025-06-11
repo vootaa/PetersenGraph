@@ -19,34 +19,47 @@ class Node {
         calculatePolarCoordinate();
     }
     
-    // Constructor from JSONObject
+     // Constructor from JSONObject
     Node(JSONObject nodeObj) {
-      try {
-          this.id = nodeObj.getInt("node_id");  
-          
-          // According to JSON format, coordinates might be in "cartesian" object
-          if (nodeObj.hasKey("cartesian")) {
-              JSONObject cartesian = nodeObj.getJSONObject("cartesian");
-              this.position = new PVector(
-                  cartesian.getFloat("x"), 
-                  cartesian.getFloat("y")
-              );
-          } else {
-              this.position = new PVector(
-                  nodeObj.getFloat("x"), 
-                  nodeObj.getFloat("y")
-              );
-          }
-        
-          this.type = nodeObj.hasKey("layer") ? nodeObj.getString("layer") : "default";
-          calculatePolarCoordinate();
-      } catch (Exception e) {
-          println("Warning: Error occurred while creating node - " + e.getMessage());
-          this.id = -1;
-          this.position = new PVector(0, 0);
-          this.type = "error";
-          calculatePolarCoordinate();
-      }
+        try {
+            this.id = nodeObj.getInt("node_id");
+            
+            // Based on JSON format, coordinates are in "polar" object as strings
+            if (nodeObj.hasKey("polar")) {
+                JSONObject polar = nodeObj.getJSONObject("polar");
+                
+                // Parse float from string
+                float radius = Float.parseFloat(polar.getString("radius"));
+                float angleRad = Float.parseFloat(polar.getString("angle_radians"));
+                
+                // Convert from polar to Cartesian coordinates
+                float x = radius * cos(angleRad);
+                float y = radius * sin(angleRad);
+                
+                this.position = new PVector(x, y);
+                this.polarCoordinate = new PVector(radius, angleRad);
+                
+            } else if (nodeObj.hasKey("x") && nodeObj.hasKey("y")) {
+                // Fallback: create directly from x,y coordinates (if they exist)
+                this.position = new PVector(
+                    nodeObj.getFloat("x"), 
+                    nodeObj.getFloat("y")
+                );
+                calculatePolarCoordinate();
+            } else {
+                throw new RuntimeException("No valid coordinate data found");
+            }
+            
+            this.type = nodeObj.hasKey("layer") ? nodeObj.getString("layer") : "default";
+            
+        } catch (Exception e) {
+            println("Warning: Error creating node - " + e.getMessage());
+            println("Node data: " + nodeObj.toString());
+            this.id = -1;
+            this.position = new PVector(0, 0);
+            this.type = "error";
+            calculatePolarCoordinate();
+        }
     }
     
     // Calculate polar coordinates from Cartesian

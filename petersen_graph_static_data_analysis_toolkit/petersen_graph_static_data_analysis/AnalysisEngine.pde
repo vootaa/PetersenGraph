@@ -35,18 +35,25 @@ class AnalysisEngine {
         }
         
         // Convert intersections as special nodes
-        ArrayList<JSONObject> intersections = dataReader.getAllIntersections();
-        for (JSONObject intersectionObj : intersections) {
+    ArrayList<JSONObject> intersections = dataReader.getAllIntersections();
+    for (JSONObject intersectionObj : intersections) {
+        try {
             // Create a modified JSONObject for intersection
             JSONObject modifiedObj = new JSONObject();
-            modifiedObj.setInt("id", intersectionObj.getInt("intersection_id") + 1000);
-            modifiedObj.setFloat("x", intersectionObj.getJSONObject("cartesian").getFloat("x"));
-            modifiedObj.setFloat("y", intersectionObj.getJSONObject("cartesian").getFloat("y"));
-            modifiedObj.setString("type", "intersection");
+            modifiedObj.setInt("node_id", intersectionObj.getInt("intersection_id") + 1000);
+            
+            // Copy polar coordinates directly from intersection object
+            JSONObject polar = intersectionObj.getJSONObject("polar");
+            modifiedObj.setJSONObject("polar", polar); // Directly copy polar object
+            modifiedObj.setString("layer", "intersection");
             
             Node node = new Node(modifiedObj);
             nodes.add(node);
+            
+        } catch (Exception e) {
+            println("Warning: Error processing intersection - " + e.getMessage());
         }
+    }
         
         // Convert segments as edges
         ArrayList<JSONObject> segments = dataReader.getAllSegments();
