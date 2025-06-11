@@ -170,11 +170,11 @@ class UIRenderer {
         
         fill(255);
         textAlign(LEFT);
-        text("对称组分析 (1/5结构)", 10, 20);
-        text("节点数: " + nodes.size(), 10, 40);
-        text("边数: " + edges.size(), 10, 60);
-        text("按V键切换视图", 10, 80);
-        text("按P键分析极坐标", 10, 100);
+        text("Symmetry Group Analysis (1/5 Structure)", 10, 20);
+        text("Nodes: " + nodes.size(), 10, 40);
+        text("Edges: " + edges.size(), 10, 60);
+        text("Press V to toggle view", 10, 80);
+        text("Press P for polar analysis", 10, 100);
         
         popMatrix();
     }
@@ -187,16 +187,16 @@ class UIRenderer {
         
         fill(255);
         textAlign(LEFT);
-        text("控制说明:", 20, height - 60);
-        text("P - 极坐标分析", 20, height - 45);
-        text("E - 边分析", 20, height - 30);
-        text("V - 切换视图", 20, height - 15);
+        text("Controls:", 20, height - 60);
+        text("P - Polar Analysis", 20, height - 45);
+        text("E - Edge Analysis", 20, height - 30);
+        text("V - Toggle View", 20, height - 15);
     }
     
     // Toggle symmetry analysis view
     void toggleSymmetryView() {
         showSymmetryAnalysis = !showSymmetryAnalysis;
-        println("视图切换: " + (showSymmetryAnalysis ? "对称分析" : "标准视图"));
+        println("View toggled: " + (showSymmetryAnalysis ? "Symmetry Analysis" : "Standard View"));
     }
     
     // Adjust scale

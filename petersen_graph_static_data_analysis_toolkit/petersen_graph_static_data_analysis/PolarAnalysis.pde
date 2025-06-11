@@ -15,7 +15,7 @@ class PolarAnalysis {
     
     // Main analysis function
     void performAnalysis() {
-        println("\n=== 极坐标静态数据分析 ===");
+        println("\n=== Polar Coordinate Static Data Analysis ===");
         
         // Group by radius
         groupByRadius();
@@ -75,10 +75,10 @@ class PolarAnalysis {
     
     // Output structured results in array format
     void outputStructuredResults() {
-        println("\n--- 结构化数据输出 (可复制到代码中) ---");
+        println("\n--- Structured Data Output (copy to code) ---");
         
         // Output radius groups
-        println("\n// 半径分组数据");
+        println("\n// Radius group data");
         println("radiusGroups = {");
         ArrayList<Float> sortedRadii = new ArrayList<Float>(radiusGroups.keySet());
         Collections.sort(sortedRadii);
@@ -100,7 +100,7 @@ class PolarAnalysis {
         println("};");
         
         // Output symmetry groups
-        println("\n// 五重对称分组数据 (72度间隔)");
+        println("\n// Five-fold symmetry group data (72-degree intervals)");
         println("symmetryGroups = {");
         for (int group = 0; group < 5; group++) {
             if (symmetryGroups.containsKey(group)) {
@@ -123,7 +123,7 @@ class PolarAnalysis {
     
     // Analyze node distribution
     void analyzeNodeDistribution() {
-        println("\n--- 节点分布分析 ---");
+        println("\n--- Node Distribution Analysis ---");
         
         // Count nodes by type and radius
         int regularNodes = 0;
@@ -137,12 +137,12 @@ class PolarAnalysis {
             }
         }
         
-        println("常规节点: " + regularNodes + " 个");
-        println("交点节点: " + intersectionNodes + " 个");
-        println("总节点: " + nodes.size() + " 个");
+        println("Regular nodes: " + regularNodes);
+        println("Intersection nodes: " + intersectionNodes);
+        println("Total nodes: " + nodes.size());
         
         // Analyze radius distribution
-        println("\n半径分布:");
+        println("\nRadius distribution:");
         ArrayList<Float> sortedRadii = new ArrayList<Float>(radiusGroups.keySet());
         Collections.sort(sortedRadii);
         
@@ -158,8 +158,8 @@ class PolarAnalysis {
                 }
             }
             
-            println("半径 " + nf(radius, 1, 3) + ": " + groupNodes.size() + " 个节点 " +
-                   "(常规:" + regular + ", 交点:" + intersection + ")");
+            println("Radius " + nf(radius, 1, 3) + ": " + groupNodes.size() + " nodes " +
+                   "(regular:" + regular + ", intersection:" + intersection + ")");
         }
         
         // Verify Petersen graph structure
@@ -168,18 +168,18 @@ class PolarAnalysis {
     
     // Verify expected Petersen graph structure
     void verifyPetersenStructure(int regular, int intersection) {
-        println("\n--- Petersen图结构验证 ---");
+        println("\n--- Petersen Graph Structure Verification ---");
         
         boolean correctNodes = (regular == 20 && intersection == 20);
         boolean correctRadii = (radiusGroups.size() >= 2 && radiusGroups.size() <= 5);
         boolean correctSymmetry = (symmetryGroups.size() == 5);
         
-        println("节点数量检查: " + (correctNodes ? "✓" : "✗") + 
-               " (期望: 20常规+20交点, 实际: " + regular + "+" + intersection + ")");
-        println("半径分组检查: " + (correctRadii ? "✓" : "✗") + 
-               " (期望: 2-5组, 实际: " + radiusGroups.size() + "组)");
-        println("对称性检查: " + (correctSymmetry ? "✓" : "✗") + 
-               " (期望: 5组, 实际: " + symmetryGroups.size() + "组)");
+        println("Node count check: " + (correctNodes ? "✓" : "✗") + 
+               " (expected: 20 regular + 20 intersection, actual: " + regular + "+" + intersection + ")");
+        println("Radius grouping check: " + (correctRadii ? "✓" : "✗") + 
+               " (expected: 2-5 groups, actual: " + radiusGroups.size() + " groups)");
+        println("Symmetry check: " + (correctSymmetry ? "✓" : "✗") + 
+               " (expected: 5 groups, actual: " + symmetryGroups.size() + " groups)");
     }
     
     // Helper method to sort nodes by ID

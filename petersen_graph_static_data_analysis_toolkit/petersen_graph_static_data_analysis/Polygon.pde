@@ -38,9 +38,9 @@ class PolygonComponent {
     // Get component type description
     String getTypeDescription() {
         if (isClosed()) {
-            return vertices.size() + "-边形";
+            return vertices.size() + "-gon";
         } else {
-            return "开放路径(" + vertices.size() + "点" + edges.size() + "边)";
+            return "open path(" + vertices.size() + "vertices " + edges.size() + "edges)";
         }
     }
 }
@@ -60,7 +60,7 @@ class PolygonAnalysis {
     
     // Main polygon analysis
     void performAnalysis() {
-        println("\n=== 多边形组件分析 ===");
+        println("\n=== Polygon Component Analysis ===");
         
         // Group edges by parent edge (original edge before segmentation)
         HashMap<Integer, ArrayList<Edge>> parentGroups = groupEdgesByParent();
@@ -146,10 +146,10 @@ class PolygonAnalysis {
     
     // Output polygon analysis results
     void outputPolygonResults() {
-        println("\n--- 多边形组件结构化输出 ---");
+        println("\n--- Polygon Component Structured Output ---");
         
         // Output individual components
-        println("\n// 多边形组件数据");
+        println("\n// Polygon component data");
         println("polygonComponents = {");
         
         for (int i = 0; i < components.size(); i++) {
@@ -175,7 +175,7 @@ class PolygonAnalysis {
         println("};");
         
         // Output symmetry groups
-        println("\n// 对称组件分布");
+        println("\n// Symmetry component distribution");
         println("symmetryComponentGroups = {");
         
         for (int group = 0; group < 5; group++) {
@@ -198,27 +198,27 @@ class PolygonAnalysis {
     
     // Verify segment count
     void verifySegmentCount() {
-        println("\n--- 段数量验证 ---");
+        println("\n--- Segment Count Verification ---");
         
         int totalSegments = 0;
         for (PolygonComponent comp : components) {
             totalSegments += comp.getEdgeCount();
         }
         
-        println("总段数: " + totalSegments);
-        println("期望段数: 70");
-        println("验证结果: " + (totalSegments == 70 ? "✓" : "✗"));
+        println("Total segments: " + totalSegments);
+        println("Expected segments: 70");
+        println("Verification result: " + (totalSegments == 70 ? "✓" : "✗"));
         
         if (totalSegments % 5 == 0) {
-            println("可平均分为5组: ✓ (每组 " + (totalSegments / 5) + " 段)");
+            println("Can be evenly divided into 5 groups: ✓ (" + (totalSegments / 5) + " segments per group)");
         } else {
-            println("无法平均分为5组: ✗");
+            println("Cannot be evenly divided into 5 groups: ✗");
         }
         
         // Component distribution analysis
-        println("\n组件分布:");
+        println("\nComponent distribution:");
         for (PolygonComponent comp : components) {
-            println("组件" + comp.getId() + ": " + comp.getEdgeCount() + "段, " + 
+            println("Component" + comp.getId() + ": " + comp.getEdgeCount() + " segments, " + 
                    comp.getTypeDescription());
         }
     }

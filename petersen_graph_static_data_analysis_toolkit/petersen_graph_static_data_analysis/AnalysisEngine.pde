@@ -65,7 +65,7 @@ class AnalysisEngine {
             }
         }
         
-        println("数据转换完成: " + nodes.size() + " 个节点, " + edges.size() + " 条边");
+        println("Data conversion completed: " + nodes.size() + " nodes, " + edges.size() + " edges");
     }
     
     // Find node by ID (including offset intersections)
@@ -91,14 +91,14 @@ class AnalysisEngine {
     // Perform complete analysis (both polar and polygon)
     void performCompleteAnalysis() {
         println("\n==========================================");
-        println("     PETERSEN GRAPH 完整结构分析");
+        println("   PETERSEN GRAPH COMPLETE STRUCTURE ANALYSIS");
         println("==========================================");
         
         performPolarAnalysis();
         performPolygonAnalysis();
         
         println("\n==========================================");
-        println("              分析完成");
+        println("            ANALYSIS COMPLETED");
         println("==========================================");
     }
     
