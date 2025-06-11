@@ -67,7 +67,7 @@ class StaticDataExporter {
             nodeJson.setInt("chain_id", node.chainId);
             nodeJson.setJSONObject("polar", exportPolarCoordinate(node.polar));
             nodeJson.setString("layer", node.layer);
-            nodeJson.setFloat("display_radius", node.displayRadius);
+            nodeJson.setFloat("display_radius", formatFloat(node.displayRadius));
             array.setJSONObject(array.size(), nodeJson);
         }
         return array;
@@ -81,7 +81,7 @@ class StaticDataExporter {
             intJson.setJSONObject("polar", exportPolarCoordinate(intersection.polar));
             intJson.setInt("edge1_id", intersection.edge1Id);
             intJson.setInt("edge2_id", intersection.edge2Id);
-            intJson.setFloat("display_radius", intersection.displayRadius);
+            intJson.setFloat("display_radius", formatFloat(intersection.displayRadius));
             array.setJSONObject(array.size(), intJson);
         }
         return array;
@@ -95,7 +95,7 @@ class StaticDataExporter {
             edgeJson.setInt("edge_type", edge.edgeType);
             edgeJson.setJSONObject("start_polar", exportPolarCoordinate(edge.startPolar));
             edgeJson.setJSONObject("end_polar", exportPolarCoordinate(edge.endPolar));
-            edgeJson.setFloat("stroke_width", edge.strokeWidth);
+            edgeJson.setFloat("stroke_width", formatFloat(edge.strokeWidth));
             edgeJson.setString("description", edge.description);
             
             JSONArray intersectionIds = new JSONArray();
@@ -117,7 +117,7 @@ class StaticDataExporter {
             segJson.setInt("parent_edge_id", segment.parentEdgeId);
             segJson.setJSONObject("start_polar", exportPolarCoordinate(segment.startPolar));
             segJson.setJSONObject("end_polar", exportPolarCoordinate(segment.endPolar));
-            segJson.setFloat("stroke_width", segment.strokeWidth);
+            segJson.setFloat("stroke_width", formatFloat(segment.strokeWidth));
             segJson.setBoolean("is_intersected", segment.isIntersected);
             
             JSONArray endpointIds = new JSONArray();
