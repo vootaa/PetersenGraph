@@ -10,11 +10,16 @@ class DebugModule {
     DataExporter dataExporter;
     JSONObject config;
     PolarCoordinateConverter polarConverter;
+
+    private StaticDataGenerator staticGenerator;
+    private StaticDataExporter staticExporter;
     
     DebugModule(JSONObject config) {
         this.config = config;
         dataExporter = new DataExporter(config);
         polarConverter = new PolarCoordinateConverter();
+        staticGenerator = new StaticDataGenerator();
+        staticExporter = new StaticDataExporter();
     }
 
     // Initialize debug functionality
@@ -47,6 +52,27 @@ class DebugModule {
         if (key == 'i' || key == 'I') {
             graph.toggleIntersections();
         }
+        if (key == 's' || key == 'S') {
+            exportStaticData(graph);
+        }
+    }
+
+    private void exportStaticData(PetersenGraph graph) {
+        println("Generating static polar coordinate data...");
+        StaticPetersenData staticData = staticGenerator.generateStaticData(graph, config);
+    
+        String timestamp = year() + "" + month() + "" + day() + "_" + hour() + "" + minute() + "" + second();
+        String filename = "petersen_static_data_" + timestamp + ".json";
+    
+        staticExporter.exportToJSON(staticData, filename);
+    
+        println("Static data export completed!");
+        println("File: " + filename);
+        println("Summary:");
+        println("  - Nodes: " + staticData.nodesByIndex.size());
+        println("  - Intersections: " + staticData.intersectionsByIndex.size());
+        println("  - Original Edges: " + staticData.originalEdgesByIndex.size());
+        println("  - Segments (after intersection splitting): " + staticData.segmentsByIndex.size());
     }
     
     private PolarCoordinate convertToPolar(float x, float y) {
@@ -421,15 +447,16 @@ class DebugModule {
             text("E: Export data files", startX, startY + lineHeight * 3);
             text("O: Toggle output directory", startX, startY + lineHeight * 4);
             text("I: Toggle intersections", startX, startY + lineHeight * 5);
+            text("S: Export static data", startX, startY + lineHeight * 6);
             
             textSize(12);
-            text("White C#: Chain IDs", startX, startY + lineHeight * 6.5);
-            text("Yellow E#: Edge IDs (E0-E29)", startX, startY + lineHeight * 7.5);
-            text("Cyan I#: Intersection IDs", startX, startY + lineHeight * 8.5);
-            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 9.5);
+            text("White C#: Chain IDs", startX, startY + lineHeight * 7.5);
+            text("Yellow E#: Edge IDs (E0-E29)", startX, startY + lineHeight * 8.5);
+            text("Cyan I#: Intersection IDs", startX, startY + lineHeight * 9.5);
+            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 10.5);
             
             textSize(11);
-            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 11);
+            text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 12);
         } else {
             text("Debug Mode: OFF", startX, startY);
             text("D: Enable debug display", startX, startY + lineHeight * 1);
@@ -437,7 +464,8 @@ class DebugModule {
             text("E: Export data files", startX, startY + lineHeight * 3);
             text("O: Toggle output directory", startX, startY + lineHeight * 4);
             text("I: Toggle intersections", startX, startY + lineHeight * 5);
-            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 6);
+            text("S: Export static data", startX, startY + lineHeight * 6);
+            text("Intersections: " + (graph.showIntersections ? "ON" : "OFF"), startX, startY + lineHeight * 7);
             
             textSize(11);
             text("Export: " + dataExporter.getOutputDirectory(), startX, startY + lineHeight * 8);
