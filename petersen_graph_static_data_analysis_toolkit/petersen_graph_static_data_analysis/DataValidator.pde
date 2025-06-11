@@ -20,17 +20,14 @@ class DataValidator {
         println("\n=== Data Validation Starting ===");
         
         try {
-            // First inspect actual data structure
-            inspector.inspectDataStructures();
-            
             // Check basic structure
             if (!validateBasicStructure()) return false;
             
             // Check data arrays
             if (!validateDataArrays()) return false;
             
-            // Sample data validation with flexible field checking
-            if (!validateSampleDataFlexible()) return false;
+            // Sample data validation adapted to actual structure
+            if (!validateSampleDataAdapted()) return false;
             
             // Check data consistency
             if (!validateDataConsistency()) return false;
@@ -40,7 +37,7 @@ class DataValidator {
             return true;
             
         } catch (Exception e) {
-            validationError = "Exception occurred during validation: " + e.getMessage();
+            validationError = "Exception during validation: " + e.getMessage();
             println("❌ " + validationError);
             e.printStackTrace();
             return false;
@@ -105,7 +102,7 @@ class DataValidator {
                 return false;
             }
             
-            println("✅ Data array validation passed");
+            println("✅ Data arrays validation passed");
             println("  - Node count: " + nodes.size());
             println("  - Intersection count: " + intersections.size());
             println("  - Segment count: " + segments.size());
@@ -113,25 +110,25 @@ class DataValidator {
             return true;
             
         } catch (Exception e) {
-            validationError = "Data array validation failed: " + e.getMessage();
+            validationError = "Data arrays validation failed: " + e.getMessage();
             println("❌ " + validationError);
             return false;
         }
     }
     
     /**
-     * Flexible sample data validation that adapts to actual structure
+     * Sample data validation adapted to actual data structure
      */
-    boolean validateSampleDataFlexible() {
+    boolean validateSampleDataAdapted() {
         try {
             // Sample node validation
-            if (!validateSampleNodeFlexible()) return false;
+            if (!validateSampleNode()) return false;
             
             // Sample intersection validation
-            if (!validateSampleIntersectionFlexible()) return false;
+            if (!validateSampleIntersection()) return false;
             
-            // Sample segment validation with flexible field names
-            if (!validateSampleSegmentFlexible()) return false;
+            // Sample segment validation for polar-based structure
+            if (!validateSampleSegmentPolar()) return false;
             
             println("✅ Sample data validation passed");
             return true;
@@ -144,17 +141,17 @@ class DataValidator {
     }
     
     /**
-     * Flexible node validation
+     * Validate sample node structure
      */
-    boolean validateSampleNodeFlexible() {
+    boolean validateSampleNode() {
         ArrayList<JSONObject> nodes = dataReader.getAllNodes();
         if (nodes.size() == 0) return false;
         
         JSONObject sampleNode = nodes.get(0);
         
-        // Check for node ID field (could be node_id or id)
-        if (!sampleNode.hasKey("node_id") && !sampleNode.hasKey("id")) {
-            validationError = "Node missing ID field (node_id or id)";
+        // Check for node ID field
+        if (!sampleNode.hasKey("node_id")) {
+            validationError = "Node missing node_id field";
             println("❌ " + validationError);
             return false;
         }
@@ -166,24 +163,8 @@ class DataValidator {
         }
         
         // Validate polar structure
-        JSONObject polar = sampleNode.getJSONObject("polar");
-        String[] polarFields = {"radius", "angle_radians", "angle_degrees"};
-        
-        for (String field : polarFields) {
-            if (!polar.hasKey(field)) {
-                validationError = "Node polar missing " + field + " field";
-                println("❌ " + validationError);
-                return false;
-            }
-            
-            // Test string to float conversion
-            try {
-                Float.parseFloat(polar.getString(field));
-            } catch (Exception e) {
-                validationError = "Node polar." + field + " is not a valid number string: " + polar.getString(field);
-                println("❌ " + validationError);
-                return false;
-            }
+        if (!validatePolarStructure(sampleNode.getJSONObject("polar"), "Node")) {
+            return false;
         }
         
         println("✅ Node sample validation passed");
@@ -191,16 +172,16 @@ class DataValidator {
     }
     
     /**
-     * Flexible intersection validation
+     * Validate sample intersection structure
      */
-    boolean validateSampleIntersectionFlexible() {
+    boolean validateSampleIntersection() {
         ArrayList<JSONObject> intersections = dataReader.getAllIntersections();
         if (intersections.size() == 0) return false;
         
         JSONObject sampleIntersection = intersections.get(0);
         
-        if (!sampleIntersection.hasKey("intersection_id") && !sampleIntersection.hasKey("id")) {
-            validationError = "Intersection missing ID field (intersection_id or id)";
+        if (!sampleIntersection.hasKey("intersection_id")) {
+            validationError = "Intersection missing intersection_id field";
             println("❌ " + validationError);
             return false;
         }
@@ -211,62 +192,88 @@ class DataValidator {
             return false;
         }
         
+        // Validate polar structure
+        if (!validatePolarStructure(sampleIntersection.getJSONObject("polar"), "Intersection")) {
+            return false;
+        }
+        
         println("✅ Intersection sample validation passed");
         return true;
     }
     
     /**
-     * Flexible segment validation that checks for various possible field names
+     * Validate sample segment structure with polar coordinates
      */
-    boolean validateSampleSegmentFlexible() {
+    boolean validateSampleSegmentPolar() {
         ArrayList<JSONObject> segments = dataReader.getAllSegments();
         if (segments.size() == 0) return false;
         
         JSONObject sampleSegment = segments.get(0);
         
-        // Print available fields for debugging
-        println("Actual fields in segment sample:");
-        for (Object key : sampleSegment.keys()) {
-            println("  - " + key);
-        }
-        
-        // Check for segment ID (could be segment_id, id, etc.)
-        if (!hasAnyKey(sampleSegment, new String[]{"segment_id", "id"})) {
-            validationError = "Segment missing ID field";
+        // Check for segment ID
+        if (!sampleSegment.hasKey("segment_id")) {
+            validationError = "Segment missing segment_id field";
             println("❌ " + validationError);
             return false;
         }
         
-        // Check for node reference fields (various possible names)
-        String[] possibleStartFields = {"start_node_id", "from_node", "source", "start_id"};
-        String[] possibleEndFields = {"end_node_id", "to_node", "target", "end_id"};
-        
-        if (!hasAnyKey(sampleSegment, possibleStartFields)) {
-            validationError = "Segment missing start node field (tried: " + java.util.Arrays.toString(possibleStartFields) + ")";
+        // Check for polar coordinate fields
+        if (!sampleSegment.hasKey("start_polar")) {
+            validationError = "Segment missing start_polar field";
             println("❌ " + validationError);
             return false;
         }
         
-        if (!hasAnyKey(sampleSegment, possibleEndFields)) {
-            validationError = "Segment missing end node field (tried: " + java.util.Arrays.toString(possibleEndFields) + ")";
+        if (!sampleSegment.hasKey("end_polar")) {
+            validationError = "Segment missing end_polar field";
             println("❌ " + validationError);
             return false;
         }
         
-        println("✅ Segment sample validation passed");
+        // Validate polar structures
+        if (!validatePolarStructure(sampleSegment.getJSONObject("start_polar"), "Segment start point")) {
+            return false;
+        }
+        
+        if (!validatePolarStructure(sampleSegment.getJSONObject("end_polar"), "Segment end point")) {
+            return false;
+        }
+        
+        // Check for parent edge ID
+        if (!sampleSegment.hasKey("parent_edge_id")) {
+            validationError = "Segment missing parent_edge_id field";
+            println("❌ " + validationError);
+            return false;
+        }
+        
+        println("✅ Segment sample validation passed (polar coordinate structure)");
         return true;
     }
     
     /**
-     * Helper method to check if object has any of the given keys
+     * Validate polar coordinate structure
      */
-    boolean hasAnyKey(JSONObject obj, String[] keys) {
-        for (String key : keys) {
-            if (obj.hasKey(key)) {
-                return true;
+    boolean validatePolarStructure(JSONObject polar, String context) {
+        String[] polarFields = {"radius", "angle_radians", "angle_degrees"};
+        
+        for (String field : polarFields) {
+            if (!polar.hasKey(field)) {
+                validationError = context + " polar missing " + field + " field";
+                println("❌ " + validationError);
+                return false;
+            }
+            
+            // Test string to float conversion
+            try {
+                Float.parseFloat(polar.getString(field));
+            } catch (Exception e) {
+                validationError = context + " polar." + field + " is not a valid number string: " + polar.getString(field);
+                println("❌ " + validationError);
+                return false;
             }
         }
-        return false;
+        
+        return true;
     }
     
     /**
@@ -321,7 +328,8 @@ class DataValidator {
         
         if (isDataValid) {
             println("✅ Data validation successful");
-            println("Data can be safely used for analysis");
+            println("Data is safe for analysis");
+            println("Note: Segment data uses polar coordinate format, not node ID references");
         } else {
             println("❌ Data validation failed");
             println("Error: " + validationError);
