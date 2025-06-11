@@ -96,6 +96,41 @@ void keyPressed() {
             }
             break;
             
+        case '1':
+            // Select symmetry group 0
+            if (uiRenderer != null) {
+                uiRenderer.setSymmetryGroup(0);
+            }
+            break;
+            
+        case '2':
+            // Select symmetry group 1
+            if (uiRenderer != null) {
+                uiRenderer.setSymmetryGroup(1);
+            }
+            break;
+            
+        case '3':
+            // Select symmetry group 2
+            if (uiRenderer != null) {
+                uiRenderer.setSymmetryGroup(2);
+            }
+            break;
+            
+        case '4':
+            // Select symmetry group 3
+            if (uiRenderer != null) {
+                uiRenderer.setSymmetryGroup(3);
+            }
+            break;
+            
+        case '5':
+            // Select symmetry group 4
+            if (uiRenderer != null) {
+                uiRenderer.setSymmetryGroup(4);
+            }
+            break;
+            
         case 's':
         case 'S':
             // Save screenshot
@@ -142,6 +177,7 @@ void keyPressed() {
             println("G - Polygon component analysis");
             println("A - Complete analysis");
             println("V - Toggle view");
+            println("1-5 - Select symmetry group (0-4)");
             println("S - Screenshot");
             println("+ - Zoom in");
             println("- - Zoom out");
