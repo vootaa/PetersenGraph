@@ -190,18 +190,20 @@ class UIRenderer {
     void drawUI() {
         // Status info
         fill(0, 0, 0, 180);
-        rect(10, height - 160, 250, 150);
+        rect(10, height - 200, 300, 190);
         
         fill(255);
         textAlign(LEFT);
         textSize(12);
-        text("Controls:", 20, height - 140);
-        text("P - Toggle polygon view", 20, height - 120);
-        text("R - Toggle rotated copies", 20, height - 100);
-        text("+ / - Zoom in/out", 20, height - 80);
-        text("0 - Reset zoom", 20, height - 60);
-        text("S - Screenshot", 20, height - 40);
-        text("D - Debug segments", 20, height - 20);
+        text("Controls:", 20, height - 180);
+        text("P - Toggle polygon view", 20, height - 160);
+        text("R - Toggle rotated copies", 20, height - 140);
+        text("O - Output polygon polar data", 20, height - 120);
+        text("+ / - Zoom in/out", 20, height - 100);
+        text("0 - Reset zoom", 20, height - 80);
+        text("S - Screenshot", 20, height - 60);
+        text("D - Debug segments", 20, height - 40);
+        text("ESC - Exit", 20, height - 20);
         
         // Show current scale
         fill(255, 255, 0);

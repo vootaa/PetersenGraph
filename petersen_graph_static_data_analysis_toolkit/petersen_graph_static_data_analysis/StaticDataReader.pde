@@ -170,4 +170,129 @@ class StaticDataReader {
         Node rotatedNode = new Node(originalNode.getId(), new PVector(newX, newY), originalNode.getType());
         return rotatedNode;
     }
+
+    void printPolygonPolarData() {
+        println("\n=== Polygon Polar Coordinate Data ===");
+        
+        for (Polygon poly : polygons) {
+            ArrayList<Node> vertices = poly.getVertices();
+            
+            print("P" + poly.getId() + ": {");
+            
+            for (int i = 0; i < vertices.size(); i++) {
+                Node vertex = vertices.get(i);
+                PVector pos = vertex.getPosition();
+                
+                // Calculate polar coordinates
+                float radius = sqrt(pos.x * pos.x + pos.y * pos.y);
+                float angleDegrees = degrees(atan2(pos.y, pos.x));
+                
+                // Ensure angle is positive
+                if (angleDegrees < 0) {
+                    angleDegrees += 360;
+                }
+                
+                print("(" + nf(radius, 1, 3) + "," + nf(angleDegrees, 1, 1) + ")");
+                
+                if (i < vertices.size() - 1) {
+                    print(",");
+                }
+            }
+            
+            println("}");
+        }
+        
+        println("=== End Polygon Polar Data ===\n");
+    }
+
+    // Output detailed polar coordinate data including node ID information
+    void printDetailedPolygonPolarData() {
+        println("\n=== Detailed Polygon Polar Coordinate Data ===");
+        
+        for (Polygon poly : polygons) {
+            ArrayList<Node> vertices = poly.getVertices();
+            
+            println("Polygon " + poly.getId() + ":");
+            print("  Vertices: {");
+            
+            for (int i = 0; i < vertices.size(); i++) {
+                Node vertex = vertices.get(i);
+                PVector pos = vertex.getPosition();
+                
+                // Calculate polar coordinates
+                float radius = sqrt(pos.x * pos.x + pos.y * pos.y);
+                float angleDegrees = degrees(atan2(pos.y, pos.x));
+                
+                // Ensure angle is positive
+                if (angleDegrees < 0) {
+                    angleDegrees += 360;
+                }
+                
+                // Get node identifier
+                String nodeLabel;
+                if (vertex.getType().equals("intersection")) {
+                    nodeLabel = "I" + vertex.getId();
+                } else {
+                    nodeLabel = "N" + vertex.getId();
+                }
+                
+                print("(" + nf(radius, 1, 3) + "," + nf(angleDegrees, 1, 1) + ")");
+                
+                if (i < vertices.size() - 1) {
+                    print(",");
+                }
+            }
+            
+            println("}");
+            
+            // Output detailed information for each vertex
+            println("  Vertex Details:");
+            for (int i = 0; i < vertices.size(); i++) {
+                Node vertex = vertices.get(i);
+                PVector pos = vertex.getPosition();
+                
+                float radius = sqrt(pos.x * pos.x + pos.y * pos.y);
+                float angleDegrees = degrees(atan2(pos.y, pos.x));
+                if (angleDegrees < 0) angleDegrees += 360;
+                
+                String nodeLabel = vertex.getType().equals("intersection") ? "I" + vertex.getId() : "N" + vertex.getId();
+                
+                println("    " + nodeLabel + ": r=" + nf(radius, 1, 3) + ", θ=" + nf(angleDegrees, 1, 1) + "°");
+            }
+            
+            println();
+        }
+        
+        println("=== End Detailed Polar Data ===\n");
+    }
+
+    // Output concise format for copy-paste
+    void printCopyablePolygonData() {
+        println("\n=== Copyable Polygon Data ===");
+        
+        for (Polygon poly : polygons) {
+            ArrayList<Node> vertices = poly.getVertices();
+            
+            print("P" + poly.getId() + " = {");
+            
+            for (int i = 0; i < vertices.size(); i++) {
+                Node vertex = vertices.get(i);
+                PVector pos = vertex.getPosition();
+                
+                float radius = sqrt(pos.x * pos.x + pos.y * pos.y);
+                float angleDegrees = degrees(atan2(pos.y, pos.x));
+                if (angleDegrees < 0) angleDegrees += 360;
+                
+                print("(" + nf(radius, 1, 3) + "," + nf(angleDegrees, 1, 1) + ")");
+                
+                if (i < vertices.size() - 1) {
+                    print(", ");
+                }
+            }
+            
+            println("};");
+        }
+        
+        println("=== End Copyable Data ===\n");
+    }
 }

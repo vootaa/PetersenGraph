@@ -35,6 +35,7 @@ void setup() {
             println("\nData loaded and validated successfully. Key commands:");
             println("P - Toggle polygon view");
             println("R - Toggle rotated copies (in polygon view)");
+            println("O - Output polygon polar coordinate data");
             println("+ / - - Zoom in/out");
             println("0 - Reset zoom");
             println("S - Save screenshot");
@@ -91,6 +92,18 @@ void keyPressed() {
             }
             break;
             
+        case 'o':
+        case 'O':
+            // Output polygon polar coordinate data
+            if (staticDataReader != null) {
+                staticDataReader.printPolygonPolarData();
+                staticDataReader.printDetailedPolygonPolarData();
+                staticDataReader.printCopyablePolygonData();
+            } else {
+                println("❌ Static polygon data not available");
+            }
+            break;
+            
         case 's':
         case 'S':
             // Save screenshot
@@ -135,6 +148,7 @@ void keyPressed() {
             println("Available keys:");
             println("P - Toggle polygon view");
             println("R - Toggle rotated copies");
+            println("O - Output polygon polar data");
             println("S - Screenshot");
             println("+ - Zoom in");
             println("- - Zoom out");
