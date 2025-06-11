@@ -61,11 +61,13 @@ class PolarAnalysis {
         
         for (Node node : nodes) {
             // Include all nodes: regular nodes and intersections
-            float angle = node.getNormalizedAngleDegrees();
-            Float groupKey = findAngleGroup(angle, tolerance);
+            float rawAngle = node.getNormalizedAngleDegrees();
+            float roundedAngle = round(rawAngle);
+            
+            Float groupKey = findAngleGroup(roundedAngle, tolerance);
             
             if (groupKey == null) {
-                groupKey = angle;
+                groupKey = roundedAngle;
                 angleGroups.put(groupKey, new ArrayList<Node>());
             }
             angleGroups.get(groupKey).add(node);
@@ -75,7 +77,7 @@ class PolarAnalysis {
         ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
         Collections.sort(sortedAngles);
         
-        println("Found " + angleGroups.size() + " angle groups (including all node types):");
+        println("Found " + angleGroups.size() + " angle groups (rounded to integers):");
         for (Float angle : sortedAngles) {
             ArrayList<Node> groupNodes = angleGroups.get(angle);
             
@@ -194,20 +196,133 @@ class PolarAnalysis {
         return null;
     }
     
-    // Group nodes by 72-degree symmetry
+    // Group nodes by 72-degree symmetry based on actual angle groups
     void groupBySymmetry() {
         symmetryGroups.clear();
         
-        for (Node node : nodes) {
-            float angle = node.getNormalizedAngleDegrees();
-            int group = (int)(angle / 72.0);
-            if (group >= 5) group = 4; // Handle edge case at 360°
-            
-            if (!symmetryGroups.containsKey(group)) {
-                symmetryGroups.put(group, new ArrayList<Node>());
-            }
-            symmetryGroups.get(group).add(node);
+        println("\n--- 72-Degree Symmetry Grouping (Based on Angle Groups) ---");
+        
+        // Get sorted angle groups
+        ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
+        Collections.sort(sortedAngles);
+        
+        // Expected: 20 angle groups → 5 symmetry groups of 4 angle groups each
+        if (sortedAngles.size() != 20) {
+            println("Warning: Expected 20 angle groups, found " + sortedAngles.size());
         }
+        
+        // Group every 4 consecutive angle groups into one symmetry group
+        for (int i = 0; i < sortedAngles.size(); i++) {
+            int symmetryGroup = i / 4;  // 0-3 → group 0, 4-7 → group 1, etc.
+            
+            if (!symmetryGroups.containsKey(symmetryGroup)) {
+                symmetryGroups.put(symmetryGroup, new ArrayList<Node>());
+            }
+            
+            // Add all nodes from this angle group to the symmetry group
+            Float angleKey = sortedAngles.get(i);
+            ArrayList<Node> angleGroupNodes = angleGroups.get(angleKey);
+            
+            for (Node node : angleGroupNodes) {
+                symmetryGroups.get(symmetryGroup).add(node);
+            }
+        }
+        
+        // Verify and print symmetry groups
+        println("Created " + symmetryGroups.size() + " symmetry groups:");
+        for (int group = 0; group < symmetryGroups.size(); group++) {
+            if (symmetryGroups.containsKey(group)) {
+                ArrayList<Node> groupNodes = symmetryGroups.get(group);
+                
+                // Calculate angle range for this group
+                int startAngleIndex = group * 4;
+                int endAngleIndex = min(startAngleIndex + 3, sortedAngles.size() - 1);
+                
+                if (startAngleIndex < sortedAngles.size() && endAngleIndex < sortedAngles.size()) {
+                    float startAngle = sortedAngles.get(startAngleIndex);
+                    float endAngle = sortedAngles.get(endAngleIndex);
+                    
+                    println("Symmetry Group " + group + " (" + 
+                        nf(startAngle, 1, 0) + "° - " + nf(endAngle, 1, 0) + "°): " + 
+                        groupNodes.size() + " nodes");
+                    
+                    // Show which angle groups are included
+                    print("  Includes angle groups: ");
+                    for (int i = startAngleIndex; i <= endAngleIndex && i < sortedAngles.size(); i++) {
+                        print(nf(sortedAngles.get(i), 1, 0) + "°");
+                        if (i < endAngleIndex && i < sortedAngles.size() - 1) print(", ");
+                    }
+                    println();
+                    
+                    // Count node types
+                    int regular = 0, intersection = 0;
+                    for (Node node : groupNodes) {
+                        if (node.getType().equals("intersection")) {
+                            intersection++;
+                        } else {
+                            regular++;
+                        }
+                    }
+                    println("  Node types: " + regular + " regular, " + intersection + " intersection");
+                }
+            }
+        }
+        
+        // Verify 72-degree intervals
+        verifySymmetryIntervals(sortedAngles);
+    }
+
+    // Verify that symmetry groups follow 72-degree intervals
+    void verifySymmetryIntervals(ArrayList<Float> sortedAngles) {
+        println("\n--- 72-Degree Interval Verification ---");
+        
+        if (sortedAngles.size() < 20) {
+            println("Not enough angle groups for proper verification");
+            return;
+        }
+        
+        // Check intervals between symmetry group centers
+        for (int group = 0; group < 5; group++) {
+            int startIndex = group * 4;
+            int nextGroupStartIndex = ((group + 1) % 5) * 4;
+            
+            if (startIndex < sortedAngles.size()) {
+                // Calculate center of current group
+                float groupCenter = calculateGroupCenterAngle(group, sortedAngles);
+                
+                // Calculate center of next group
+                float nextGroupCenter;
+                if (group == 4) { // Last group, wrap to first
+                    nextGroupCenter = calculateGroupCenterAngle(0, sortedAngles) + 360;
+                } else {
+                    nextGroupCenter = calculateGroupCenterAngle(group + 1, sortedAngles);
+                }
+                
+                float interval = nextGroupCenter - groupCenter;
+                float deviation = abs(interval - 72.0);
+                
+                println("Group " + group + " → Group " + ((group + 1) % 5) + 
+                    ": " + nf(interval, 1, 1) + "° (deviation: " + nf(deviation, 1, 1) + "°)");
+            }
+        }
+    }
+
+    // Calculate center angle of a symmetry group
+    float calculateGroupCenterAngle(int group, ArrayList<Float> sortedAngles) {
+        int startIndex = group * 4;
+        int endIndex = min(startIndex + 3, sortedAngles.size() - 1);
+        
+        if (startIndex >= sortedAngles.size()) return 0;
+        
+        float sum = 0;
+        int count = 0;
+        
+        for (int i = startIndex; i <= endIndex && i < sortedAngles.size(); i++) {
+            sum += sortedAngles.get(i);
+            count++;
+        }
+        
+        return count > 0 ? sum / count : 0;
     }
     
     // Output structured results in array format
@@ -238,8 +353,8 @@ class PolarAnalysis {
         }
         println("};");
         
-        // Output angle groups
-        println("\n// Angle group data (all nodes)");
+        // Output angle groups (with integer angles)
+        println("\n// Angle group data (all nodes, integer degrees)");
         println("angleGroups = {");
         ArrayList<Float> sortedAngles = new ArrayList<Float>(angleGroups.keySet());
         Collections.sort(sortedAngles);
@@ -248,7 +363,7 @@ class PolarAnalysis {
             Float angle = sortedAngles.get(i);
             ArrayList<Node> groupNodes = angleGroups.get(angle);
             
-            print("  " + nf(angle, 1, 1) + "°: [");
+            print("  " + nf(angle, 1, 0) + "°: [");
             sortNodesByID(groupNodes);
             for (int j = 0; j < groupNodes.size(); j++) {
                 Node node = groupNodes.get(j);
@@ -262,8 +377,8 @@ class PolarAnalysis {
         }
         println("};");
         
-        // Output symmetry groups
-        println("\n// Five-fold symmetry group data (72-degree intervals)");
+        // Output symmetry groups (based on angle group clustering)
+        println("\n// Five-fold symmetry group data (4 angle groups per symmetry group)");
         println("symmetryGroups = {");
         for (int group = 0; group < 5; group++) {
             if (symmetryGroups.containsKey(group)) {
@@ -280,6 +395,25 @@ class PolarAnalysis {
             } else {
                 print("  group" + group + ": []");
             }
+            if (group < 4) print(",");
+            println();
+        }
+        println("};");
+        
+        // Add symmetry group mapping table
+        println("\n// Symmetry group to angle group mapping");
+        println("symmetryGroupMapping = {");
+        ArrayList<Float> sortedAngles2 = new ArrayList<Float>(angleGroups.keySet());
+        Collections.sort(sortedAngles2);
+        
+        for (int group = 0; group < 5; group++) {
+            int startIndex = group * 4;
+            print("  group" + group + ": [");
+            for (int i = 0; i < 4 && (startIndex + i) < sortedAngles2.size(); i++) {
+                print(nf(sortedAngles2.get(startIndex + i), 1, 0) + "°");
+                if (i < 3 && (startIndex + i + 1) < sortedAngles2.size()) print(", ");
+            }
+            print("]");
             if (group < 4) print(",");
             println();
         }
@@ -359,16 +493,31 @@ class PolarAnalysis {
         boolean correctNodes = (regular == 20 && intersection == 20);
         boolean correctRadii = (radiusGroups.size() >= 2 && radiusGroups.size() <= 5);
         boolean correctSymmetry = (symmetryGroups.size() == 5);
-        boolean correctAngles = (angleGroups.size() >= 1);
+        boolean correctAngles = (angleGroups.size() == 20);  // Expected exactly 20 angle groups
         
         println("Node count check: " + (correctNodes ? "✓" : "✗") + 
-               " (expected: 20 regular + 20 intersection, actual: " + regular + "+" + intersection + ")");
+            " (expected: 20 regular + 20 intersection, actual: " + regular + "+" + intersection + ")");
         println("Radius grouping check: " + (correctRadii ? "✓" : "✗") + 
-               " (expected: 2-5 groups, actual: " + radiusGroups.size() + " groups)");
+            " (expected: 2-5 groups, actual: " + radiusGroups.size() + " groups)");
         println("Angle grouping check: " + (correctAngles ? "✓" : "✗") + 
-               " (" + angleGroups.size() + " distinct angle groups found)");
+            " (expected: 20 angle groups, actual: " + angleGroups.size() + " groups)");
         println("Symmetry check: " + (correctSymmetry ? "✓" : "✗") + 
-               " (expected: 5 groups, actual: " + symmetryGroups.size() + " groups)");
+            " (expected: 5 groups, actual: " + symmetryGroups.size() + " groups)");
+        
+        // Additional check for symmetry group sizes
+        if (correctSymmetry) {
+            boolean evenDistribution = true;
+            for (int group = 0; group < 5; group++) {
+                if (symmetryGroups.containsKey(group)) {
+                    int groupSize = symmetryGroups.get(group).size();
+                    if (groupSize < 6 || groupSize > 10) {  // Each group should have ~8 nodes
+                        evenDistribution = false;
+                    }
+                }
+            }
+            println("Symmetry distribution check: " + (evenDistribution ? "✓" : "✗") + 
+                " (each group should have 6-10 nodes)");
+        }
     }
     
     // Helper method to sort nodes by ID
