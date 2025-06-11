@@ -9,7 +9,7 @@ void setup() {
     dataReader = new PetersenDataReader();
     
     // Load Petersen graph data
-    if (dataReader.loadFromFile("data/petersen_static_data_2025611_9258.json")) {
+    if (dataReader.loadFromFile("../data/petersen_graph_static_data_2025611_9258.json")) {
         // Create analysis engine
         analysisEngine = new AnalysisEngine(dataReader);
         
@@ -28,7 +28,7 @@ void setup() {
         println("- - Zoom out");
         
     } else {
-        println("Data loading failed, please check file path: ../data/petersen_static_data_2025611_9258.json");
+        println("Data loading failed, please check file path: ../data/petersen_graph_static_data_2025611_9258.json");
     }
 }
 
@@ -43,7 +43,7 @@ void draw() {
         textAlign(CENTER);
         textSize(16);
         text("Data loading failed", width/2, height/2);
-        text("Please ensure ../data/petersen_static_data_2025611_9258.json file exists", width/2, height/2 + 20);
+        text("Please ensure ../data/petersen_graph_static_data_2025611_9258.json file exists", width/2, height/2 + 20);
     }
 }
 
@@ -82,8 +82,8 @@ void keyPressed() {
             // Save screenshot
             String timestamp = year() + nf(month(), 2) + nf(day(), 2) + "_" + 
                               nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
-            saveFrame("exports/petersen_analysis_" + timestamp + ".png");
-            println("Screenshot saved: petersen_analysis_" + timestamp + ".png");
+            saveFrame("../exports/petersen_graph_static_data_analysis_" + timestamp + ".png");
+            println("Screenshot saved: petersen_static_data_analysis_" + timestamp + ".png");
             break;
             
         default:
