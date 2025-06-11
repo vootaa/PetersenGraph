@@ -1,5 +1,5 @@
 class UIRenderer {
-    float scale = 300;  // Increased from 100 to 300
+    float scale = 600;
     boolean showSymmetryAnalysis = false;
     
     UIRenderer() {
