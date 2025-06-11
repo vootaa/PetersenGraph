@@ -8,6 +8,3 @@ application.windows32
 application.windows64
 application.macosx
 out
-
-# Petersen Graph static data exports
-petersen_static_data_*

@@ -95,7 +95,6 @@ class StaticDataExporter {
             edgeJson.setInt("edge_type", edge.edgeType);
             edgeJson.setJSONObject("start_polar", exportPolarCoordinate(edge.startPolar));
             edgeJson.setJSONObject("end_polar", exportPolarCoordinate(edge.endPolar));
-            edgeJson.setString("stroke_width", formatFloatString(edge.strokeWidth));
             edgeJson.setString("description", edge.description);
             
             JSONArray intersectionIds = new JSONArray();
@@ -117,7 +116,6 @@ class StaticDataExporter {
             segJson.setInt("parent_edge_id", segment.parentEdgeId);
             segJson.setJSONObject("start_polar", exportPolarCoordinate(segment.startPolar));
             segJson.setJSONObject("end_polar", exportPolarCoordinate(segment.endPolar));
-            segJson.setString("stroke_width", formatFloatString(segment.strokeWidth));
             segJson.setBoolean("is_intersected", segment.isIntersected);
             
             JSONArray endpointIds = new JSONArray();
@@ -154,7 +152,10 @@ class StaticDataExporter {
         polarJson.setString("angle_degrees", formatFloatString(polar.getAngleDegrees()));
         return polarJson;
     }
-
+    
+    /**
+     * Format float to 2 decimal places and return as string
+     */
     private String formatFloatString(float value) {
         return String.format("%.2f", value);
     }

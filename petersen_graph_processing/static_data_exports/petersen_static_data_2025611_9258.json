@@ -1,0 +1,6829 @@
+{
+  "original_edges": {
+    "by_index": [
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 0,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 1,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 2,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 3,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 4,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "intersection_ids": [0],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 5,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "intersection_ids": [1],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 6,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "intersection_ids": [2],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 7,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "intersection_ids": [3],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 8,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "intersection_ids": [4],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 9,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "intersection_ids": [5],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 10,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "intersection_ids": [6],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 11,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "intersection_ids": [7],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 12,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "intersection_ids": [8],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 13,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "intersection_ids": [9],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 14,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "intersection_ids": [
+          10,
+          11
+        ],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 15,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "intersection_ids": [
+          10,
+          12
+        ],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 16,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "intersection_ids": [
+          12,
+          13
+        ],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 17,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "intersection_ids": [
+          13,
+          14
+        ],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 18,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "intersection_ids": [
+          11,
+          14
+        ],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 19,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "intersection_ids": [
+          5,
+          6,
+          15,
+          16
+        ],
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "edge_id": 20,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "edge_id": 21,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "intersection_ids": [
+          7,
+          8,
+          17,
+          18
+        ],
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "edge_id": 22,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "edge_id": 23,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "intersection_ids": [
+          0,
+          9,
+          15,
+          19
+        ],
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "edge_id": 24,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "edge_id": 25,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "intersection_ids": [
+          1,
+          2,
+          16,
+          17
+        ],
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "edge_id": 26,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "edge_id": 27,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "intersection_ids": [
+          3,
+          4,
+          18,
+          19
+        ],
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "edge_id": 28,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "edge_id": 29,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      }
+    ],
+    "by_polar": [
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 1,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "intersection_ids": [1],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 6,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "edge_id": 21,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "intersection_ids": [2],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 7,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 2,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "intersection_ids": [
+          10,
+          12
+        ],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 16,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "intersection_ids": [7],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 12,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "intersection_ids": [
+          7,
+          8,
+          17,
+          18
+        ],
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "edge_id": 22,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "intersection_ids": [
+          11,
+          14
+        ],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 19,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "edge_id": 27,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "intersection_ids": [8],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 13,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "intersection_ids": [
+          12,
+          13
+        ],
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "edge_id": 17,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 3,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "intersection_ids": [
+          5,
+          6,
+          15,
+          16
+        ],
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "edge_id": 20,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "intersection_ids": [3],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 8,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "intersection_ids": [6],
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "edge_id": 11,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "intersection_ids": [
+          10,
+          11
+        ],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 15,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "intersection_ids": [
+          3,
+          4,
+          18,
+          19
+        ],
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "edge_id": 28,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "edge_id": 23,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "intersection_ids": [4],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 9,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "intersection_ids": [
+          13,
+          14
+        ],
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "edge_id": 18,
+        "description": "Inner Circle (Pentagram)",
+        "edge_type": 3
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 4,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "intersection_ids": [
+          1,
+          2,
+          16,
+          17
+        ],
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "edge_id": 26,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "intersection_ids": [9],
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "edge_id": 14,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "intersection_ids": [
+          0,
+          9,
+          15,
+          19
+        ],
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "edge_id": 24,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "edge_id": 29,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "intersection_ids": [0],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 5,
+        "description": "Middle to Outer A",
+        "edge_type": 1
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 0,
+        "description": "Middle to Inner",
+        "edge_type": 0
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "intersection_ids": [5],
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "edge_id": 10,
+        "description": "Middle to Outer B",
+        "edge_type": 2
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "intersection_ids": [],
+        "start_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "edge_id": 25,
+        "description": "Outer Circle (Loop)",
+        "edge_type": 4
+      }
+    ]
+  },
+  "created_time": "2025-6-11 9:2:58",
+  "layer_groups": {
+    "middle_to_inner_segments": [
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 0,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 0,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 1,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 1,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 2,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 2,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 3,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 3,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 4,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 4,
+        "is_intersected": false
+      }
+    ],
+    "outer_circle_segments": [
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 40,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          15
+        ],
+        "segment_id": 41,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          6
+        ],
+        "segment_id": 42,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [
+          6,
+          16
+        ],
+        "segment_id": 43,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 44,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 21,
+        "start_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 45,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 46,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          17
+        ],
+        "segment_id": 47,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          8
+        ],
+        "segment_id": 48,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [
+          8,
+          18
+        ],
+        "segment_id": 49,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 50,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 23,
+        "start_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 51,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 52,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [
+          9,
+          19
+        ],
+        "segment_id": 53,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          9
+        ],
+        "segment_id": 54,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          15
+        ],
+        "segment_id": 55,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 56,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 25,
+        "start_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 57,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 58,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          16
+        ],
+        "segment_id": 59,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          2
+        ],
+        "segment_id": 60,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [
+          2,
+          17
+        ],
+        "segment_id": 61,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 62,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 27,
+        "start_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 63,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 64,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          18
+        ],
+        "segment_id": 65,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          4
+        ],
+        "segment_id": 66,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [
+          4,
+          19
+        ],
+        "segment_id": 67,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 68,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 29,
+        "start_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 69,
+        "is_intersected": false
+      }
+    ],
+    "outer_nodes": [
+      {
+        "polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "chain_id": 10,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 10
+      },
+      {
+        "polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "chain_id": 11,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 11
+      },
+      {
+        "polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "chain_id": 12,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 12
+      },
+      {
+        "polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "chain_id": 13,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 13
+      },
+      {
+        "polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "chain_id": 14,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 14
+      },
+      {
+        "polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "chain_id": 15,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 15
+      },
+      {
+        "polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "chain_id": 16,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 16
+      },
+      {
+        "polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "chain_id": 17,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 17
+      },
+      {
+        "polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "chain_id": 18,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 18
+      },
+      {
+        "polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "chain_id": 19,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 19
+      }
+    ],
+    "intersection_segments": [
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 5,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 6,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 7,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 8,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 9,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 10,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 11,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 12,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 13,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 14,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 15,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 16,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 17,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 18,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 19,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 20,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 21,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 22,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 23,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 24,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 25,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          11
+        ],
+        "segment_id": 26,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 27,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 28,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          12
+        ],
+        "segment_id": 29,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 30,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 31,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [
+          12,
+          13
+        ],
+        "segment_id": 32,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 33,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 34,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [
+          13,
+          14
+        ],
+        "segment_id": 35,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 36,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 37,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [
+          11,
+          14
+        ],
+        "segment_id": 38,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 39,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 40,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          15
+        ],
+        "segment_id": 41,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          6
+        ],
+        "segment_id": 42,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [
+          6,
+          16
+        ],
+        "segment_id": 43,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 44,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 46,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          17
+        ],
+        "segment_id": 47,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          8
+        ],
+        "segment_id": 48,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [
+          8,
+          18
+        ],
+        "segment_id": 49,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 50,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 52,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [
+          9,
+          19
+        ],
+        "segment_id": 53,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          9
+        ],
+        "segment_id": 54,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          15
+        ],
+        "segment_id": 55,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 56,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 58,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          16
+        ],
+        "segment_id": 59,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          2
+        ],
+        "segment_id": 60,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [
+          2,
+          17
+        ],
+        "segment_id": 61,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 62,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 64,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          18
+        ],
+        "segment_id": 65,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          4
+        ],
+        "segment_id": 66,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [
+          4,
+          19
+        ],
+        "segment_id": 67,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 68,
+        "is_intersected": true
+      }
+    ],
+    "inner_nodes": [
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 5,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 5
+      },
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 6,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 6
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 7,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 7
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 8,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 8
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 9,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 9
+      }
+    ],
+    "middle_nodes": [
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 0,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 0
+      },
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 1,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 1
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 2,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 2
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 3,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 3
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 4,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 4
+      }
+    ],
+    "middle_to_outer_segments": [
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 5,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 6,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 7,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 8,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 9,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 10,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 11,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 12,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 13,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 14,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 15,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 16,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 17,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 18,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 19,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 20,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 21,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 22,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 23,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 24,
+        "is_intersected": true
+      }
+    ],
+    "inner_circle_segments": [
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 25,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          11
+        ],
+        "segment_id": 26,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 27,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 28,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          12
+        ],
+        "segment_id": 29,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 30,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 31,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [
+          12,
+          13
+        ],
+        "segment_id": 32,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 33,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 34,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [
+          13,
+          14
+        ],
+        "segment_id": 35,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 36,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 37,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [
+          11,
+          14
+        ],
+        "segment_id": 38,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 39,
+        "is_intersected": true
+      }
+    ]
+  },
+  "metadata": {
+    "backgroundColor": {"rgb": [
+      13,
+      13,
+      20
+    ]},
+    "nodes": {
+      "size": 0.025,
+      "radius": {
+        "middle": 0.3,
+        "outer": 0.48,
+        "inner": 0.15
+      },
+      "colors": {
+        "middle": [
+          1,
+          0.2,
+          0.2
+        ],
+        "outer": [
+          1,
+          0.8,
+          0.2
+        ],
+        "inner": [
+          0.2,
+          0.4,
+          1
+        ]
+      }
+    },
+    "edges": {
+      "thickness": 0.005,
+      "colors": {
+        "type4": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "type3": [
+          1,
+          0.8,
+          0
+        ],
+        "type2": [
+          0.2,
+          0.4,
+          1
+        ],
+        "type1": [
+          0.2,
+          0.8,
+          0.2
+        ],
+        "type0": [
+          0.9,
+          0.2,
+          0.2
+        ]
+      }
+    },
+    "export": {
+      "outputDirectory": "data/",
+      "fileFormats": {
+        "csv": true,
+        "json": true
+      }
+    },
+    "intersections": {
+      "color": [
+        0,
+        1,
+        1
+      ],
+      "radius": 0.015
+    }
+  },
+  "nodes": {
+    "by_index": [
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 0,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 0
+      },
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 1,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 1
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 2,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 2
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 3,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 3
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 4,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 4
+      },
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 5,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 5
+      },
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 6,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 6
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 7,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 7
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 8,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 8
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 9,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 9
+      },
+      {
+        "polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "chain_id": 10,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 10
+      },
+      {
+        "polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "chain_id": 11,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 11
+      },
+      {
+        "polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "chain_id": 12,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 12
+      },
+      {
+        "polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "chain_id": 13,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 13
+      },
+      {
+        "polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "chain_id": 14,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 14
+      },
+      {
+        "polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "chain_id": 15,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 15
+      },
+      {
+        "polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "chain_id": 16,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 16
+      },
+      {
+        "polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "chain_id": 17,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 17
+      },
+      {
+        "polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "chain_id": 18,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 18
+      },
+      {
+        "polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "chain_id": 19,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 19
+      }
+    ],
+    "by_polar": [
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 6,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 6
+      },
+      {
+        "polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "chain_id": 1,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 1
+      },
+      {
+        "polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "chain_id": 11,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 11
+      },
+      {
+        "polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "chain_id": 12,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 12
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 7,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 7
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "chain_id": 2,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 2
+      },
+      {
+        "polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "chain_id": 17,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 17
+      },
+      {
+        "polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "chain_id": 18,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 18
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 8,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 8
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "chain_id": 3,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 3
+      },
+      {
+        "polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "chain_id": 13,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 13
+      },
+      {
+        "polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "chain_id": 14,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 14
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 9,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 9
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "chain_id": 4,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 4
+      },
+      {
+        "polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "chain_id": 19,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 19
+      },
+      {
+        "polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "chain_id": 10,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 10
+      },
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 5,
+        "display_radius": "0.02",
+        "layer": "Inner",
+        "node_id": 5
+      },
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "chain_id": 0,
+        "display_radius": "0.02",
+        "layer": "Middle",
+        "node_id": 0
+      },
+      {
+        "polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "chain_id": 15,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 15
+      },
+      {
+        "polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "chain_id": 16,
+        "display_radius": "0.02",
+        "layer": "Outer",
+        "node_id": 16
+      }
+    ]
+  },
+  "version": "1.0",
+  "intersections": {
+    "by_index": [
+      {
+        "polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "edge2_id": 24,
+        "intersection_id": 0,
+        "edge1_id": 5,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "edge2_id": 26,
+        "intersection_id": 1,
+        "edge1_id": 6,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "edge2_id": 26,
+        "intersection_id": 2,
+        "edge1_id": 7,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "edge2_id": 28,
+        "intersection_id": 3,
+        "edge1_id": 8,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "edge2_id": 28,
+        "intersection_id": 4,
+        "edge1_id": 9,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "edge2_id": 20,
+        "intersection_id": 5,
+        "edge1_id": 10,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "edge2_id": 20,
+        "intersection_id": 6,
+        "edge1_id": 11,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "edge2_id": 22,
+        "intersection_id": 7,
+        "edge1_id": 12,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "edge2_id": 22,
+        "intersection_id": 8,
+        "edge1_id": 13,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "edge2_id": 24,
+        "intersection_id": 9,
+        "edge1_id": 14,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "edge2_id": 16,
+        "intersection_id": 10,
+        "edge1_id": 15,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "edge2_id": 19,
+        "intersection_id": 11,
+        "edge1_id": 15,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "edge2_id": 17,
+        "intersection_id": 12,
+        "edge1_id": 16,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "edge2_id": 18,
+        "intersection_id": 13,
+        "edge1_id": 17,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "edge2_id": 19,
+        "intersection_id": 14,
+        "edge1_id": 18,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "edge2_id": 24,
+        "intersection_id": 15,
+        "edge1_id": 20,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "edge2_id": 26,
+        "intersection_id": 16,
+        "edge1_id": 20,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "edge2_id": 26,
+        "intersection_id": 17,
+        "edge1_id": 22,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "edge2_id": 28,
+        "intersection_id": 18,
+        "edge1_id": 22,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "edge2_id": 28,
+        "intersection_id": 19,
+        "edge1_id": 24,
+        "display_radius": "0.01"
+      }
+    ],
+    "by_polar": [
+      {
+        "polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "edge2_id": 26,
+        "intersection_id": 1,
+        "edge1_id": 6,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "edge2_id": 16,
+        "intersection_id": 10,
+        "edge1_id": 15,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "edge2_id": 26,
+        "intersection_id": 2,
+        "edge1_id": 7,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "edge2_id": 26,
+        "intersection_id": 17,
+        "edge1_id": 22,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "edge2_id": 22,
+        "intersection_id": 7,
+        "edge1_id": 12,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "edge2_id": 17,
+        "intersection_id": 12,
+        "edge1_id": 16,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "edge2_id": 22,
+        "intersection_id": 8,
+        "edge1_id": 13,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "edge2_id": 28,
+        "intersection_id": 18,
+        "edge1_id": 22,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "edge2_id": 28,
+        "intersection_id": 3,
+        "edge1_id": 8,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "edge2_id": 18,
+        "intersection_id": 13,
+        "edge1_id": 17,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "edge2_id": 28,
+        "intersection_id": 4,
+        "edge1_id": 9,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "edge2_id": 28,
+        "intersection_id": 19,
+        "edge1_id": 24,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "edge2_id": 24,
+        "intersection_id": 9,
+        "edge1_id": 14,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "edge2_id": 19,
+        "intersection_id": 14,
+        "edge1_id": 18,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "edge2_id": 24,
+        "intersection_id": 0,
+        "edge1_id": 5,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "edge2_id": 24,
+        "intersection_id": 15,
+        "edge1_id": 20,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "edge2_id": 20,
+        "intersection_id": 5,
+        "edge1_id": 10,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "edge2_id": 19,
+        "intersection_id": 11,
+        "edge1_id": 15,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "edge2_id": 20,
+        "intersection_id": 6,
+        "edge1_id": 11,
+        "display_radius": "0.01"
+      },
+      {
+        "polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "edge2_id": 26,
+        "intersection_id": 16,
+        "edge1_id": 20,
+        "display_radius": "0.01"
+      }
+    ]
+  },
+  "statistics": {
+    "total_intersections": 20,
+    "total_original_edges": 30,
+    "total_nodes": 20,
+    "total_segments": 70
+  },
+  "segments": {
+    "by_index": [
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 0,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 0,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 1,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 1,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 2,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 2,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 3,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 3,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 4,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 4,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 5,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 6,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 7,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 8,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 9,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 10,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 11,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 12,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 13,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 14,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 15,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 16,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 17,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 18,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 19,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 20,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 21,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 22,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 23,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 24,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 25,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          11
+        ],
+        "segment_id": 26,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 27,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 28,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          12
+        ],
+        "segment_id": 29,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 30,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 31,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [
+          12,
+          13
+        ],
+        "segment_id": 32,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 33,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 34,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [
+          13,
+          14
+        ],
+        "segment_id": 35,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 36,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 37,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [
+          11,
+          14
+        ],
+        "segment_id": 38,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 39,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 40,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          15
+        ],
+        "segment_id": 41,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          6
+        ],
+        "segment_id": 42,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [
+          6,
+          16
+        ],
+        "segment_id": 43,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 44,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 21,
+        "start_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 45,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 46,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          17
+        ],
+        "segment_id": 47,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          8
+        ],
+        "segment_id": 48,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [
+          8,
+          18
+        ],
+        "segment_id": 49,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 50,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 23,
+        "start_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 51,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 52,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [
+          9,
+          19
+        ],
+        "segment_id": 53,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          9
+        ],
+        "segment_id": 54,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          15
+        ],
+        "segment_id": 55,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 56,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 25,
+        "start_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 57,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 58,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          16
+        ],
+        "segment_id": 59,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          2
+        ],
+        "segment_id": 60,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [
+          2,
+          17
+        ],
+        "segment_id": 61,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 62,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 27,
+        "start_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 63,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 64,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          18
+        ],
+        "segment_id": 65,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          4
+        ],
+        "segment_id": 66,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [
+          4,
+          19
+        ],
+        "segment_id": 67,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 68,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 29,
+        "start_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 69,
+        "is_intersected": false
+      }
+    ],
+    "by_polar": [
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 1,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 1,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 7,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 6,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [1],
+        "segment_id": 8,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 28,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 21,
+        "start_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 45,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          2
+        ],
+        "segment_id": 60,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [10],
+        "segment_id": 27,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 10,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "62.00",
+          "radius": "0.48",
+          "angle_radians": "1.08"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 46,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "parent_edge_id": 7,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [2],
+        "segment_id": 9,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "66.03",
+          "radius": "0.39",
+          "angle_radians": "1.15"
+        },
+        "endpoint_intersection_ids": [
+          2,
+          17
+        ],
+        "segment_id": 61,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "parent_edge_id": 2,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 2,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          12
+        ],
+        "segment_id": 29,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.30",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 19,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          17
+        ],
+        "segment_id": 47,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.41",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [17],
+        "segment_id": 62,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "parent_edge_id": 12,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [7],
+        "segment_id": 20,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "72.00",
+          "radius": "0.15",
+          "angle_radians": "1.26"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 31,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "77.97",
+          "radius": "0.39",
+          "angle_radians": "1.36"
+        },
+        "endpoint_intersection_ids": [
+          7,
+          8
+        ],
+        "segment_id": 48,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 27,
+        "start_polar": {
+          "angle_degrees": "82.00",
+          "radius": "0.48",
+          "angle_radians": "1.43"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 63,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 16,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [12],
+        "segment_id": 30,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 22,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "134.00",
+          "radius": "0.48",
+          "angle_radians": "2.34"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 64,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "endpoint_intersection_ids": [
+          8,
+          18
+        ],
+        "segment_id": 49,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "138.03",
+          "radius": "0.39",
+          "angle_radians": "2.41"
+        },
+        "parent_edge_id": 13,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [8],
+        "segment_id": 21,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "parent_edge_id": 3,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 3,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "108.00",
+          "radius": "0.06",
+          "angle_radians": "1.88"
+        },
+        "endpoint_intersection_ids": [
+          12,
+          13
+        ],
+        "segment_id": 32,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          18
+        ],
+        "segment_id": 65,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.30",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 11,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 22,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.41",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [18],
+        "segment_id": 50,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "parent_edge_id": 8,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [3],
+        "segment_id": 12,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.15",
+          "angle_radians": "0.00"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 39,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "144.00",
+          "radius": "0.15",
+          "angle_radians": "2.51"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 34,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "0.00",
+          "radius": "0.30",
+          "angle_radians": "0.00"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 17,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "36.00",
+          "radius": "0.06",
+          "angle_radians": "0.63"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "endpoint_intersection_ids": [
+          10,
+          11
+        ],
+        "segment_id": 26,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "149.97",
+          "radius": "0.39",
+          "angle_radians": "2.62"
+        },
+        "endpoint_intersection_ids": [
+          3,
+          4
+        ],
+        "segment_id": 66,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 23,
+        "start_polar": {
+          "angle_degrees": "154.00",
+          "radius": "0.48",
+          "angle_radians": "2.69"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 51,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "5.97",
+          "radius": "0.39",
+          "angle_radians": "0.10"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [
+          1,
+          16
+        ],
+        "segment_id": 59,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "10.00",
+          "radius": "0.48",
+          "angle_radians": "0.17"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 44,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 17,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [13],
+        "segment_id": 33,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 14,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "206.00",
+          "radius": "0.48",
+          "angle_radians": "3.60"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 52,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "parent_edge_id": 9,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [4],
+        "segment_id": 13,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "210.03",
+          "radius": "0.39",
+          "angle_radians": "3.67"
+        },
+        "endpoint_intersection_ids": [
+          4,
+          19
+        ],
+        "segment_id": 67,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "parent_edge_id": 4,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 4,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "180.01",
+          "radius": "0.06",
+          "angle_radians": "3.14"
+        },
+        "endpoint_intersection_ids": [
+          13,
+          14
+        ],
+        "segment_id": 35,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.30",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 23,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [
+          9,
+          19
+        ],
+        "segment_id": 53,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 28,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.41",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [19],
+        "segment_id": 68,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "parent_edge_id": 14,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [9],
+        "segment_id": 24,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "216.00",
+          "radius": "0.15",
+          "angle_radians": "3.77"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 37,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "221.97",
+          "radius": "0.39",
+          "angle_radians": "3.87"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          9
+        ],
+        "segment_id": 54,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 29,
+        "start_polar": {
+          "angle_degrees": "226.00",
+          "radius": "0.48",
+          "angle_radians": "3.94"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 69,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 18,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [14],
+        "segment_id": 36,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 6,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "278.00",
+          "radius": "0.48",
+          "angle_radians": "4.85"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 40,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "endpoint_intersection_ids": [
+          0,
+          15
+        ],
+        "segment_id": 55,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "282.03",
+          "radius": "0.39",
+          "angle_radians": "4.92"
+        },
+        "parent_edge_id": 5,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [0],
+        "segment_id": 5,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 19,
+        "start_polar": {
+          "angle_degrees": "251.99",
+          "radius": "0.06",
+          "angle_radians": "4.40"
+        },
+        "endpoint_intersection_ids": [
+          11,
+          14
+        ],
+        "segment_id": 38,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "parent_edge_id": 0,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 0,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          15
+        ],
+        "segment_id": 41,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.30",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 15,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 24,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.41",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [15],
+        "segment_id": 56,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "parent_edge_id": 10,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [5],
+        "segment_id": 16,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "324.00",
+          "radius": "0.06",
+          "angle_radians": "5.65"
+        },
+        "parent_edge_id": 15,
+        "start_polar": {
+          "angle_degrees": "288.00",
+          "radius": "0.15",
+          "angle_radians": "5.03"
+        },
+        "endpoint_intersection_ids": [11],
+        "segment_id": 25,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 25,
+        "start_polar": {
+          "angle_degrees": "297.99",
+          "radius": "0.48",
+          "angle_radians": "5.20"
+        },
+        "endpoint_intersection_ids": [],
+        "segment_id": 57,
+        "is_intersected": false
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "293.97",
+          "radius": "0.39",
+          "angle_radians": "5.13"
+        },
+        "endpoint_intersection_ids": [
+          5,
+          6
+        ],
+        "segment_id": 42,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "parent_edge_id": 11,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [6],
+        "segment_id": 18,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 26,
+        "start_polar": {
+          "angle_degrees": "350.00",
+          "radius": "0.48",
+          "angle_radians": "6.11"
+        },
+        "endpoint_intersection_ids": [16],
+        "segment_id": 58,
+        "is_intersected": true
+      },
+      {
+        "end_polar": {
+          "angle_degrees": "360.00",
+          "radius": "0.41",
+          "angle_radians": "6.28"
+        },
+        "parent_edge_id": 20,
+        "start_polar": {
+          "angle_degrees": "354.03",
+          "radius": "0.39",
+          "angle_radians": "6.18"
+        },
+        "endpoint_intersection_ids": [
+          6,
+          16
+        ],
+        "segment_id": 43,
+        "is_intersected": true
+      }
+    ]
+  }
+}

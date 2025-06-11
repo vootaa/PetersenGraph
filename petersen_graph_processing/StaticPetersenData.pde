@@ -94,17 +94,14 @@ class StaticEdge {
     int edgeType;
     PolarCoordinate startPolar;
     PolarCoordinate endPolar;
-    float strokeWidth;
     String description;
     ArrayList<Integer> intersectionIds; // List of intersection IDs on this edge
     
-    StaticEdge(int edgeId, int edgeType, PolarCoordinate startPolar, PolarCoordinate endPolar,
-               float strokeWidth, String description) {
+    StaticEdge(int edgeId, int edgeType, PolarCoordinate startPolar, PolarCoordinate endPolar, String description) {
         this.edgeId = edgeId;
         this.edgeType = edgeType;
         this.startPolar = startPolar;
         this.endPolar = endPolar;
-        this.strokeWidth = strokeWidth;
         this.description = description;
         this.intersectionIds = new ArrayList<Integer>();
     }
@@ -118,17 +115,14 @@ class StaticSegment {
     int parentEdgeId;
     PolarCoordinate startPolar;
     PolarCoordinate endPolar;
-    float strokeWidth;
     boolean isIntersected; // Whether it contains intersections as endpoints
     ArrayList<Integer> endpointIntersectionIds; // Endpoint intersection IDs (if any)
     
-    StaticSegment(int segmentId, int parentEdgeId, PolarCoordinate startPolar, PolarCoordinate endPolar,
-                  float strokeWidth) {
+    StaticSegment(int segmentId, int parentEdgeId, PolarCoordinate startPolar, PolarCoordinate endPolar) {
         this.segmentId = segmentId;
         this.parentEdgeId = parentEdgeId;
         this.startPolar = startPolar;
         this.endPolar = endPolar;
-        this.strokeWidth = strokeWidth;
         this.isIntersected = false;
         this.endpointIntersectionIds = new ArrayList<Integer>();
     }

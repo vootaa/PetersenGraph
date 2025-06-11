@@ -82,8 +82,7 @@ class StaticDataGenerator {
             PolarCoordinate endPolar = converter.cartesianToPolar(edge.to.x, edge.to.y);
             String description = getEdgeTypeDescription(edge.type);
             
-            StaticEdge staticEdge = new StaticEdge(edge.edgeId, edge.type, startPolar, endPolar,
-                                                  getEdgeStrokeWidth(staticData.metadata), description);
+            StaticEdge staticEdge = new StaticEdge(edge.edgeId, edge.type, startPolar, endPolar, description);
             
             // Find all intersections on this edge
             ArrayList<Intersection> intersections = graph.getIntersections();
@@ -108,8 +107,7 @@ class StaticDataGenerator {
             if (originalEdge.intersectionIds.size() == 0) {
                 // Edge with no intersections, directly create as one segment
                 StaticSegment segment = new StaticSegment(segmentId++, originalEdge.edgeId,
-                                                         originalEdge.startPolar, originalEdge.endPolar,
-                                                         originalEdge.strokeWidth);
+                                                         originalEdge.startPolar, originalEdge.endPolar);
                 staticData.segmentsByIndex.add(segment);
                 staticData.segmentsByPolar.add(segment);
             } else {
@@ -132,8 +130,7 @@ class StaticDataGenerator {
                 // Create split segments
                 for (int i = 0; i < segmentPoints.size() - 1; i++) {
                     StaticSegment segment = new StaticSegment(segmentId++, originalEdge.edgeId,
-                                                             segmentPoints.get(i), segmentPoints.get(i + 1),
-                                                             originalEdge.strokeWidth);
+                                                             segmentPoints.get(i), segmentPoints.get(i + 1));
                     segment.isIntersected = true;
                     
                     // Check if endpoints are intersections
@@ -329,20 +326,6 @@ class StaticDataGenerator {
             println("Warning: Failed to read intersection radius from config, using default value");
         }
         return 0.01f;
-    }
-    
-    private float getEdgeStrokeWidth(JSONObject config) {
-        try {
-            if (config != null && config.hasKey("edges")) {
-                JSONObject edges = config.getJSONObject("edges");
-                if (edges.hasKey("stroke_width")) {
-                    return edges.getFloat("stroke_width");
-                }
-            }
-        } catch (Exception e) {
-            println("Warning: Failed to read edge stroke_width from config, using default value");
-        }
-        return 2.0f;
     }
     
     private String getEdgeTypeDescription(int type) {
