@@ -2,6 +2,7 @@ class UIRenderer {
     float scale = 600;
     boolean showPolygonView = false;
     boolean showRotatedCopies = false;
+    boolean showHardcodedPolygons = false; 
     
     StaticDataReader staticDataReader;
     
@@ -18,7 +19,11 @@ class UIRenderer {
         translate(width/2, height/2);
         
         if (showPolygonView) {
-            renderPolygonView(engine);
+            if (showHardcodedPolygons) {
+                renderHardcodedPolygonView(engine);
+            } else {
+                renderPolygonView(engine);
+            }
         } else {
             renderStandardView(engine);
         }
@@ -27,6 +32,61 @@ class UIRenderer {
         
         // Draw UI info
         drawUI();
+    }
+
+    void renderHardcodedPolygonView(AnalysisEngine engine) {
+        drawRadiusGuides();
+        
+        if (staticDataReader == null) return;
+
+        // Draw original hardcoded polygons
+        drawHardcodedPolygons(0);
+        
+        // Draw rotated copies
+        if (showRotatedCopies) {
+            drawHardcodedPolygons(72);
+            drawHardcodedPolygons(144);
+            drawHardcodedPolygons(216);
+            drawHardcodedPolygons(288);
+        }
+    }
+
+    void drawHardcodedPolygons(float angleDegrees) {
+        ArrayList<Polygon> polygons = (angleDegrees == 0) ? 
+            staticDataReader.getHardcodedPolygons() : 
+            staticDataReader.getRotatedHardcodedPolygons(angleDegrees);
+        
+        for (Polygon poly : polygons) {
+            fill(0, 0, 0, 255); // Black fill
+            stroke(255, 255, 255, 255); // White border
+            strokeWeight(1);
+            
+            ArrayList<Node> vertices = poly.getVertices();
+            if (vertices.size() >= 3) {
+                beginShape();
+                for (Node vertex : vertices) {
+                    PVector pos = vertex.getPosition();
+                    vertex(pos.x * scale, pos.y * scale);
+                }
+                endShape(CLOSE);
+            }
+        }
+    }
+
+    void togglePolygonView() {
+        if (!showPolygonView) {
+            // Standard view -> Node polygon view
+            showPolygonView = true;
+            showHardcodedPolygons = false;
+        } else if (!showHardcodedPolygons) {
+            // Node polygon view -> Hardcoded polygon view
+            showHardcodedPolygons = true;
+        } else {
+            // Hardcoded polygon view -> Standard view
+            showPolygonView = false;
+            showHardcodedPolygons = false;
+            showRotatedCopies = false;
+        }
     }
     
     // Polygon view
@@ -174,12 +234,6 @@ class UIRenderer {
         noFill();
     }
     
-    // Toggle polygon view
-    void togglePolygonView() {
-        showPolygonView = !showPolygonView;
-        println("Polygon view: " + (showPolygonView ? "ON" : "OFF"));
-    }
-    
     // Toggle rotated copies
     void toggleRotatedCopies() {
         showRotatedCopies = !showRotatedCopies;
@@ -212,8 +266,11 @@ class UIRenderer {
         // Show current view mode
         fill(100, 255, 100);
         if (showPolygonView) {
-            String viewMode = "Polygon View" + (showRotatedCopies ? " + Rotated" : "");
-            text("View: " + viewMode, width - 200, height - 40);
+            if (showHardcodedPolygons) {
+                text("View: Hardcoded" + (showRotatedCopies ? " + Rotated" : ""), width - 200, height - 40);
+            } else {
+                text("View: Node-based" + (showRotatedCopies ? " + Rotated" : ""), width - 200, height - 40);
+            }
         } else {
             text("View: Standard", width - 100, height - 40);
         }

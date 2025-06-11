@@ -2,11 +2,16 @@ class StaticDataReader {
     ArrayList<Polygon> polygons;
     ArrayList<Node> nodes;
     ArrayList<Node> intersections;
+
+    ArrayList<Polygon> hardcodedPolygons;
     
     StaticDataReader() {
         polygons = new ArrayList<Polygon>();
         nodes = new ArrayList<Node>();
         intersections = new ArrayList<Node>();
+
+        hardcodedPolygons = new ArrayList<Polygon>();
+        createHardcodedPolygons();
     }
     
     // Get nodes from AnalysisEngine
@@ -33,6 +38,74 @@ class StaticDataReader {
         createPolygon6(nodeMap);
         
         println("Linked " + polygons.size() + " polygons with real coordinates");
+    }
+
+    void createHardcodedPolygons() {
+        // P1= {(0.060,36),(0.060,324),(0.150,0)}
+        createHardcodedPolygon(1, new float[][]{{0.060,36},{0.060,324},{0.150,0}});
+        
+        // P2= {(0.060,36),(0.150,0),(0.300,0),(0.390,6),(0.390,66),(0.300,72),(0.150,72)}
+        createHardcodedPolygon(2, new float[][]{{0.060,36},{0.150,0},{0.300,0},{0.390,6},{0.390,66},{0.300,72},{0.150,72}});
+        
+        // P3= {(0.300,0),(0.390,354),(0.416,0),(0.390,6)}
+        createHardcodedPolygon(3, new float[][]{{0.300,0},{0.390,354},{0.416,0},{0.390,6}});
+        
+        // P4= {(0.390,6),(0.416,0),(0.480,10)}
+        createHardcodedPolygon(4, new float[][]{{0.390,6},{0.416,0},{0.480,10}});
+        
+        // P5= {(0.390,6),(0.480,10),(0.480,62),(0.390,66)}
+        createHardcodedPolygon(5, new float[][]{{0.390,6},{0.480,10},{0.480,62},{0.390,66}});
+        
+        // P6= {(0.390,66),(0.480,62),(0.416,72)}
+        createHardcodedPolygon(6, new float[][]{{0.390,66},{0.480,62},{0.416,72}});
+    }
+
+    void createHardcodedPolygon(int id, float[][] polarCoords) {
+        ArrayList<Node> vertices = new ArrayList<Node>();
+        
+        for (int i = 0; i < polarCoords.length; i++) {
+            float radius = polarCoords[i][0];
+            float angleDegrees = polarCoords[i][1];
+            
+            // Convert polar coordinates to Cartesian coordinates
+            float angleRad = radians(angleDegrees);
+            float x = radius * cos(angleRad);
+            float y = radius * sin(angleRad);
+            
+            Node vertex = new Node(2000 + id * 10 + i, new PVector(x, y), "hardcoded");
+            vertices.add(vertex);
+        }
+        
+        if (vertices.size() >= 3) {
+            Polygon poly = new Polygon(id, vertices);
+            poly.setColor(color(0, 0, 0, 255)); // Black fill
+            hardcodedPolygons.add(poly);
+        }
+    }
+
+    // Get hardcoded polygons
+    ArrayList<Polygon> getHardcodedPolygons() {
+        return new ArrayList<Polygon>(hardcodedPolygons);
+    }
+
+    // Create rotated copies of hardcoded polygons
+    ArrayList<Polygon> getRotatedHardcodedPolygons(float angleDegrees) {
+        ArrayList<Polygon> rotatedPolygons = new ArrayList<Polygon>();
+        
+        for (Polygon originalPoly : hardcodedPolygons) {
+            ArrayList<Node> rotatedVertices = new ArrayList<Node>();
+            
+            for (Node vertex : originalPoly.getVertices()) {
+                Node rotatedNode = createRotatedNode(vertex, angleDegrees);
+                rotatedVertices.add(rotatedNode);
+            }
+            
+            Polygon rotatedPoly = new Polygon(originalPoly.getId(), rotatedVertices);
+            rotatedPoly.setColor(color(0, 0, 0, 255)); // Black fill, no transparency
+            rotatedPolygons.add(rotatedPoly);
+        }
+        
+        return rotatedPolygons;
     }
     
     void createPolygon1(HashMap<String, Node> nodeMap) {
