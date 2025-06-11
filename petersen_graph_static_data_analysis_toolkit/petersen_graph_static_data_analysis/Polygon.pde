@@ -7,8 +7,8 @@ class Polygon {
     Polygon(int id, ArrayList<Node> vertices) {
         this.id = id;
         this.vertices = new ArrayList<Node>(vertices);
-        this.strokeColor = color(255, 255, 255, 200); // 统一白色边界
-        this.fillColor = color(150, 150, 150, 100);   // 默认灰色填充
+        this.strokeColor = color(255, 255, 255, 200); // Uniform white border
+        this.fillColor = color(150, 150, 150, 100);   // Default gray fill
     }
     
     void setColor(color fillColor) {
@@ -18,46 +18,14 @@ class Polygon {
     void setStrokeColor(color strokeColor) {
         this.strokeColor = strokeColor;
     }
-    
-    void draw(float scale) {
-        if (vertices.size() < 3) return;
         
-        // 绘制填充
-        fill(fillColor);
-        stroke(strokeColor);
-        strokeWeight(2);
-        
-        beginShape();
-        for (Node vertex : vertices) {
-            PVector pos = vertex.getPosition();
-            vertex(pos.x * scale, pos.y * scale);
-        }
-        endShape(CLOSE);
-    }
-    
-    void drawOutline(float scale) {
-        if (vertices.size() < 3) return;
-        
-        // 只绘制轮廓
-        noFill();
-        stroke(strokeColor);
-        strokeWeight(2);
-        
-        beginShape();
-        for (Node vertex : vertices) {
-            PVector pos = vertex.getPosition();
-            vertex(pos.x * scale, pos.y * scale);
-        }
-        endShape(CLOSE);
-    }
-    
     // Getters
     int getId() { return id; }
     ArrayList<Node> getVertices() { return new ArrayList<Node>(vertices); }
     color getFillColor() { return fillColor; }
     color getStrokeColor() { return strokeColor; }
     
-    // 获取多边形中心点
+    // Get polygon center point
     PVector getCenter() {
         float centerX = 0, centerY = 0;
         for (Node vertex : vertices) {
@@ -70,9 +38,9 @@ class Polygon {
         return new PVector(centerX, centerY);
     }
     
-    // 检查点是否在多边形内（用于交互）
+    // Check if point is inside polygon (for interaction)
     boolean containsPoint(PVector point) {
-        // 简单的射线投射算法
+        // Simple ray casting algorithm
         int intersections = 0;
         int n = vertices.size();
         

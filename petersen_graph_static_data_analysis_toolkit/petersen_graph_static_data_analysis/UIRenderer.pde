@@ -29,9 +29,9 @@ class UIRenderer {
         drawUI();
     }
     
-    // 多边形视图
+    // Polygon view
     void renderPolygonView(AnalysisEngine engine) {
-        // 绘制同心圆参考线
+        // Draw concentric circle guides
         drawRadiusGuides();
         
         if (staticDataReader == null) {
@@ -40,48 +40,31 @@ class UIRenderer {
             text("Static data not loaded", 0, 0);
             return;
         }
-        
-        // 绘制原始多边形
-        ArrayList<Polygon> originalPolygons = staticDataReader.getPolygons();
-        for (Polygon poly : originalPolygons) {
-            poly.draw(scale);
-        }
-        
-        // 如果启用旋转副本，绘制4个旋转后的副本
+
+        drawRotatedPolygons(0); 
+
         if (showRotatedCopies) {
-            // 绘制旋转72度的副本
-            drawRotatedPolygons(72, 0.8);   // 稍微透明
-            drawRotatedPolygons(144, 0.6);  // 更透明
-            drawRotatedPolygons(216, 0.6);  // 更透明  
-            drawRotatedPolygons(288, 0.8);  // 稍微透明
-        }
+            // Draw rotated copies at 72 degrees
+            drawRotatedPolygons(72); 
+            drawRotatedPolygons(144);
+            drawRotatedPolygons(216);
+            drawRotatedPolygons(288);
+        } 
         
-        // 绘制节点（在多边形之上）
+        // Draw nodes (on top of polygons)
         drawNodesOverlay(engine);
-        
-        // 绘制多边形标签
-        drawPolygonLabels(originalPolygons);
     }
     
-    void drawRotatedPolygons(float angleDegrees, float alphaMultiplier) {
+    void drawRotatedPolygons(float angleDegrees) {
         ArrayList<Polygon> rotatedPolygons = staticDataReader.getRotatedPolygons(angleDegrees);
         
         for (Polygon poly : rotatedPolygons) {
-            // 调整透明度
-            color originalColor = poly.getFillColor();
-            color fadedColor = color(
-                red(originalColor), 
-                green(originalColor), 
-                blue(originalColor), 
-                alpha(originalColor) * alphaMultiplier
-            );
-            
-            // 临时设置颜色
-            fill(fadedColor);
-            stroke(255, 255, 255, 100); // 更淡的边界
+            fill(poly.getFillColor());
+
+            stroke(255, 255, 255, 100); // Lighter border
             strokeWeight(1);
             
-            // 绘制多边形
+            // Draw polygon
             ArrayList<Node> vertices = poly.getVertices();
             if (vertices.size() >= 3) {
                 beginShape();
@@ -95,12 +78,12 @@ class UIRenderer {
     }
     
     void drawNodesOverlay(AnalysisEngine engine) {
-        // 绘制所有节点作为覆盖层
+        // Draw all nodes as overlay layer
         noStroke();
         for (Node node : engine.getNodes()) {
             PVector pos = node.getPosition();
             
-            // 小一点的节点
+            // Smaller nodes
             if (node.getType().equals("intersection")) {
                 fill(255, 255, 255, 200);
                 ellipse(pos.x * scale, pos.y * scale, 6, 6);
@@ -125,7 +108,7 @@ class UIRenderer {
         noStroke();
     }
     
-    // Standard graph view (保持不变)
+    // Standard graph view (unchanged)
     void renderStandardView(AnalysisEngine engine) {
         // Draw radius guide circles for reference
         drawRadiusGuides();

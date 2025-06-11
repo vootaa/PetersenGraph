@@ -9,11 +9,11 @@ class StaticDataReader {
         intersections = new ArrayList<Node>();
     }
     
-    // 从AnalysisEngine获取节点
+    // Get nodes from AnalysisEngine
     void linkWithAnalysisEngine(AnalysisEngine engine) {
         HashMap<String, Node> nodeMap = new HashMap<String, Node>();
         
-        // 构建节点映射表
+        // Build node mapping table
         for (Node node : engine.getNodes()) {
             String key;
             if (node.getType().equals("intersection")) {
@@ -24,7 +24,7 @@ class StaticDataReader {
             nodeMap.put(key, node);
         }
         
-        // 创建多边形，使用真实坐标
+        // Create polygons using real coordinates
         createPolygon1(nodeMap);
         createPolygon2(nodeMap);
         createPolygon3(nodeMap);
@@ -44,7 +44,7 @@ class StaticDataReader {
         
         if (vertices.size() == 3) {
             Polygon poly = new Polygon(1, vertices);
-            poly.setColor(color(255, 100, 100, 150)); // 红色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -62,7 +62,7 @@ class StaticDataReader {
         
         if (vertices.size() == 7) {
             Polygon poly = new Polygon(2, vertices);
-            poly.setColor(color(100, 255, 100, 150)); // 绿色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -77,7 +77,7 @@ class StaticDataReader {
         
         if (vertices.size() == 4) {
             Polygon poly = new Polygon(3, vertices);
-            poly.setColor(color(100, 100, 255, 150)); // 蓝色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -91,7 +91,7 @@ class StaticDataReader {
         
         if (vertices.size() == 3) {
             Polygon poly = new Polygon(4, vertices);
-            poly.setColor(color(255, 255, 100, 150)); // 黄色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -106,7 +106,7 @@ class StaticDataReader {
         
         if (vertices.size() == 4) {
             Polygon poly = new Polygon(5, vertices);
-            poly.setColor(color(255, 100, 255, 150)); // 洋红色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -120,7 +120,7 @@ class StaticDataReader {
         
         if (vertices.size() == 3) {
             Polygon poly = new Polygon(6, vertices);
-            poly.setColor(color(100, 255, 255, 150)); // 青色填充
+            poly.setColor(color(20, 20, 20, 255)); // Dark gray fill
             polygons.add(poly);
         }
     }
@@ -138,7 +138,7 @@ class StaticDataReader {
         return new ArrayList<Polygon>(polygons);
     }
     
-    // 创建旋转后的多边形集合
+    // Create rotated polygon collection
     ArrayList<Polygon> getRotatedPolygons(float angleDegrees) {
         ArrayList<Polygon> rotatedPolygons = new ArrayList<Polygon>();
         
@@ -161,12 +161,12 @@ class StaticDataReader {
     Node createRotatedNode(Node originalNode, float angleDegrees) {
         PVector pos = originalNode.getPosition();
         
-        // 旋转坐标
+        // Rotate coordinates
         float angleRad = radians(angleDegrees);
         float newX = pos.x * cos(angleRad) - pos.y * sin(angleRad);
         float newY = pos.x * sin(angleRad) + pos.y * cos(angleRad);
         
-        // 创建新节点（保持原ID和类型）
+        // Create new node (keep original ID and type)
         Node rotatedNode = new Node(originalNode.getId(), new PVector(newX, newY), originalNode.getType());
         return rotatedNode;
     }
