@@ -394,6 +394,13 @@ class UIRenderer {
     
     // Get all edges related to a symmetry group (internal and external connections)
     ArrayList<Edge> getSymmetryGroupRelatedEdges(AnalysisEngine engine, ArrayList<Node> groupNodes) {
+        // 使用PolarAnalysis中的getGroupRelatedEdges方法
+        PolarAnalysis polarAnalysis = engine.getPolarAnalysis();
+        if (polarAnalysis != null) {
+            return polarAnalysis.getGroupRelatedEdges(groupNodes);
+        }
+        
+        // 后备方案：原有逻辑
         ArrayList<Edge> relatedEdges = new ArrayList<Edge>();
         
         for (Edge edge : engine.getEdges()) {
@@ -434,12 +441,12 @@ class UIRenderer {
         translate(-width/2 + 20, -height/2 + 20);
         
         fill(0, 0, 0, 200);
-        rect(0, 0, 320, 180);
+        rect(0, 0, 380, 220);
         
         fill(255);
         textAlign(LEFT);
         textSize(12);
-        text("Symmetry Group Analysis - Group " + currentSymmetryGroup, 10, 20);
+        text("Enhanced Symmetry Group Analysis - Group " + currentSymmetryGroup, 10, 20);
         
         // Count node types in current group
         int regularNodes = 0, intersectionNodes = 0;
@@ -451,8 +458,22 @@ class UIRenderer {
             }
         }
         
-        text("Nodes: " + nodes.size() + " (Regular:" + regularNodes + ", Intersect:" + intersectionNodes + ")", 10, 40);
+        text("Total Nodes: " + nodes.size() + " (Regular:" + regularNodes + ", Intersect:" + intersectionNodes + ")", 10, 40);
         text("Related Edges: " + edges.size(), 10, 60);
+        
+        // Count edge types
+        int internalEdges = 0, boundaryEdges = 0;
+        for (Edge edge : edges) {
+            boolean startInGroup = nodes.contains(edge.getStartNode());
+            boolean endInGroup = nodes.contains(edge.getEndNode());
+            if (startInGroup && endInGroup) {
+                internalEdges++;
+            } else {
+                boundaryEdges++;
+            }
+        }
+        
+        text("Edge Types: " + internalEdges + " internal, " + boundaryEdges + " boundary", 10, 80);
         
         // Show angle range for current group
         HashMap<Float, ArrayList<Node>> angleGroups = polarAnalysis.getAngleGroups();
@@ -473,20 +494,15 @@ class UIRenderer {
         Collections.sort(groupAngles);
         if (groupAngles.size() > 0) {
             text("Angle Range: " + nf(groupAngles.get(0), 1, 0) + "° - " + 
-                 nf(groupAngles.get(groupAngles.size()-1), 1, 0) + "°", 10, 80);
-            
-            text("Angles: ", 10, 100);
-            String angleStr = "";
-            for (int i = 0; i < groupAngles.size(); i++) {
-                angleStr += nf(groupAngles.get(i), 1, 0) + "°";
-                if (i < groupAngles.size() - 1) angleStr += ", ";
-            }
-            text(angleStr, 60, 100);
+                nf(groupAngles.get(groupAngles.size()-1), 1, 0) + "°", 10, 100);
         }
         
-        text("Controls:", 10, 130);
-        text("V - Toggle view  |  1-5 - Select group", 10, 150);
-        text("P - Polar analysis  |  6 - All groups  |  +/- - Zoom", 10, 170);
+        text("Notes:", 10, 130);
+        text("• Includes boundary nodes connected to core group", 10, 150);
+        text("• Boundary edges connect to other groups", 10, 170);
+        
+        text("Controls:", 10, 190);
+        text("V - Toggle view  |  1-5 - Select group  |  6 - All groups", 10, 210);
         
         popMatrix();
     }
