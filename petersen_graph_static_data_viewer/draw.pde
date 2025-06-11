@@ -1,22 +1,22 @@
 void drawHeader() {
   // Main title
-  fill(30, 50, 80);
+  fill(220, 230, 245);
   textAlign(CENTER);
   textSize(28);
   text("Petersen Graph Static Data Viewer", width/2, 40);
   
   // Subtitle
-  fill(80, 100, 120);
+  fill(180, 190, 205);
   textSize(16);
   text("Visual Analysis of Node and Edge Data in Different Orders", width/2, 65);
   
   // Data info
-  fill(100, 120, 140);
+  fill(160, 170, 185);
   textSize(12);
   text("Data Version: " + dataReader.reader.version + " | Created: " + dataReader.reader.createdTime, width/2, 85);
   
   // Separator line
-  stroke(200, 200, 210);
+  stroke(80, 90, 110);
   strokeWeight(2);
   line(50, 100, width-50, 100);
 }
@@ -36,7 +36,7 @@ void drawMainGraphs() {
     {cellWidth * 2.5 + 50, gridStartY + cellHeight * 0.5},  // E: 1/5 Subset
     {cellWidth * 0.5 + 50, gridStartY + cellHeight * 1.5},  // C: Index Order Segments
     {cellWidth * 1.5 + 50, gridStartY + cellHeight * 1.5},  // D: Polar Order Segments
-    {cellWidth * 2.5 + 50, gridStartY + cellHeight * 1.5}   // Reserved for future
+    {cellWidth * 2.5 + 50, gridStartY + cellHeight * 1.5}   // Performance stats
   };
   
   float scale = 150; // Unified scale for all graphs
@@ -122,21 +122,21 @@ void drawStyledGraph(ArrayList<Node> nodes, ArrayList<OriginalEdge> edges,
                      float centerX, float centerY, float scale,
                      String title, String subtitle, String description) {
   
-  // Draw background panel
-  fill(255, 255, 255, 240);
-  stroke(220, 220, 230);
+  // Draw background panel with dark theme
+  fill(45, 50, 65, 240);
+  stroke(80, 90, 110);
   strokeWeight(1);
   rectMode(CENTER);
   rect(centerX, centerY, 280, 320, 8);
   
-  // Draw title (using larger font size to simulate bold)
-  fill(30, 50, 80);
+  // Draw title
+  fill(220, 230, 245);
   textAlign(CENTER);
-  textSize(15); // Slightly larger for title emphasis
+  textSize(15);
   text(title, centerX, centerY - 140);
   
   // Draw subtitle
-  fill(80, 100, 120);
+  fill(180, 190, 205);
   textSize(11);
   text(subtitle, centerX, centerY - 125);
   
@@ -145,14 +145,14 @@ void drawStyledGraph(ArrayList<Node> nodes, ArrayList<OriginalEdge> edges,
     PVector start = edge.getStartCartesian();
     PVector end = edge.getEndCartesian();
     
-    // Set color based on edge type with transparency
+    // Set color based on edge type with better visibility on dark background
     switch (edge.edgeType) {
-      case 0: stroke(229, 51, 51, 180); break;   // Red
-      case 1: stroke(51, 204, 51, 180); break;   // Green
-      case 2: stroke(51, 102, 255, 180); break;  // Blue
-      case 3: stroke(255, 204, 0, 180); break;   // Yellow
-      case 4: stroke(229, 102, 229, 180); break; // Purple
-      default: stroke(128, 128, 128, 180); break;
+      case 0: stroke(255, 80, 80, 220); break;   // Bright Red
+      case 1: stroke(80, 255, 80, 220); break;   // Bright Green
+      case 2: stroke(80, 150, 255, 220); break;  // Bright Blue
+      case 3: stroke(255, 220, 50, 220); break;  // Bright Yellow
+      case 4: stroke(255, 120, 255, 220); break; // Bright Purple
+      default: stroke(180, 180, 180, 220); break;
     }
     
     strokeWeight(2.5);
@@ -170,39 +170,39 @@ void drawStyledGraph(ArrayList<Node> nodes, ArrayList<OriginalEdge> edges,
     PVector pos = node.getCartesian();
     
     // Node shadow
-    fill(0, 0, 0, 40);
+    fill(0, 0, 0, 60);
     noStroke();
     float x = pos.x * scale + centerX + 1;
     float y = pos.y * scale + centerY + 1;
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 12, 12);
     
-    // Node color based on layer
+    // Node color based on layer with better visibility
     if (node.layer.equals("Inner")) {
-      fill(51, 102, 255); // Blue
+      fill(100, 150, 255); // Bright Blue
     } else if (node.layer.equals("Middle")) {
-      fill(255, 51, 51); // Red
+      fill(255, 100, 100); // Bright Red
     } else if (node.layer.equals("Outer")) {
-      fill(255, 204, 51); // Orange
+      fill(255, 200, 80); // Bright Orange
     } else {
-      fill(128, 128, 128); // Gray
+      fill(180, 180, 180); // Light Gray
     }
     
-    stroke(255);
-    strokeWeight(1.5);
+    stroke(255, 255, 255);
+    strokeWeight(2);
     
     x = pos.x * scale + centerX;
     y = pos.y * scale + centerY;
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 12, 12);
   }
   
   // Draw statistics
-  fill(100, 120, 140);
+  fill(160, 170, 185);
   textAlign(CENTER);
   textSize(9);
   text("Nodes: " + nodes.size() + " | Edges: " + edges.size(), centerX, centerY + 100);
   
   // Draw description
-  fill(120, 140, 160);
+  fill(140, 150, 165);
   textSize(8);
   text(description, centerX, centerY + 115);
 }
@@ -212,19 +212,19 @@ void drawStyledSegmentGraph(ArrayList<Node> nodes, ArrayList<EdgeSegment> segmen
                            String title, String subtitle, String description) {
   
   // Draw background panel
-  fill(255, 255, 255, 240);
-  stroke(220, 220, 230);
+  fill(45, 50, 65, 240);
+  stroke(80, 90, 110);
   strokeWeight(1);
   rectMode(CENTER);
   rect(centerX, centerY, 280, 320, 8);
   
   // Draw title and subtitle
-  fill(30, 50, 80);
+  fill(220, 230, 245);
   textAlign(CENTER);
-  textSize(15); // Slightly larger for title emphasis
+  textSize(15);
   text(title, centerX, centerY - 140);
   
-  fill(80, 100, 120);
+  fill(180, 190, 205);
   textSize(11);
   text(subtitle, centerX, centerY - 125);
   
@@ -234,10 +234,10 @@ void drawStyledSegmentGraph(ArrayList<Node> nodes, ArrayList<EdgeSegment> segmen
     PVector end = segment.getEndCartesian();
     
     if (segment.isIntersected) {
-      stroke(255, 100, 100, 200); // Light red for intersected
+      stroke(255, 120, 120, 240); // Bright red for intersected
       strokeWeight(3);
     } else {
-      stroke(100, 200, 100, 200); // Light green for normal
+      stroke(120, 255, 120, 240); // Bright green for normal
       strokeWeight(2);
     }
     
@@ -249,67 +249,67 @@ void drawStyledSegmentGraph(ArrayList<Node> nodes, ArrayList<EdgeSegment> segmen
     line(x1, y1, x2, y2);
   }
   
-  // Draw nodes
+  // Draw nodes (same as above)
   for (Node node : nodes) {
     PVector pos = node.getCartesian();
     
     // Node shadow
-    fill(0, 0, 0, 40);
+    fill(0, 0, 0, 60);
     noStroke();
     float x = pos.x * scale + centerX + 1;
     float y = pos.y * scale + centerY + 1;
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 12, 12);
     
     // Node color
     if (node.layer.equals("Inner")) {
-      fill(51, 102, 255);
+      fill(100, 150, 255);
     } else if (node.layer.equals("Middle")) {
-      fill(255, 51, 51);
+      fill(255, 100, 100);
     } else if (node.layer.equals("Outer")) {
-      fill(255, 204, 51);
+      fill(255, 200, 80);
     } else {
-      fill(128, 128, 128);
+      fill(180, 180, 180);
     }
     
-    stroke(255);
-    strokeWeight(1.5);
+    stroke(255, 255, 255);
+    strokeWeight(2);
     
     x = pos.x * scale + centerX;
     y = pos.y * scale + centerY;
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 12, 12);
   }
   
   // Statistics
-  fill(100, 120, 140);
+  fill(160, 170, 185);
   textAlign(CENTER);
   textSize(9);
   text("Nodes: " + nodes.size() + " | Segments: " + segments.size(), centerX, centerY + 100);
   
   // Description
-  fill(120, 140, 160);
+  fill(140, 150, 165);
   textSize(8);
   text(description, centerX, centerY + 115);
 }
 
 void drawStatsSummary(float centerX, float centerY) {
   // Performance summary panel
-  fill(255, 255, 255, 240);
-  stroke(220, 220, 230);
+  fill(45, 50, 65, 240);
+  stroke(80, 90, 110);
   strokeWeight(1);
   rectMode(CENTER);
   rect(centerX, centerY, 280, 320, 8);
   
-  fill(30, 50, 80);
+  fill(220, 230, 245);
   textAlign(CENTER);
-  textSize(15); // Slightly larger for title emphasis
+  textSize(15);
   text("Performance", centerX, centerY - 140);
   
-  fill(80, 100, 120);
+  fill(180, 190, 205);
   textSize(11);
   text("Rendering Times", centerX, centerY - 125);
   
-  // Performance data (simplified)
-  fill(60, 80, 100);
+  // Performance data
+  fill(160, 170, 185);
   textAlign(LEFT);
   textSize(9);
   
@@ -342,7 +342,7 @@ void drawStatsSummary(float centerX, float centerY) {
   text("~8ms", rightX, textY);
   
   // Memory info
-  fill(120, 140, 160);
+  fill(140, 150, 165);
   textAlign(CENTER);
   textSize(8);
   text("Memory: 24MB used, 104MB free", centerX, centerY + 100);
@@ -351,89 +351,94 @@ void drawStatsSummary(float centerX, float centerY) {
 
 void drawLegend() {
   float legendX = 50;
-  float legendY = height - 140;
+  float legendY = height - 130;
+  float legendWidth = 1300;
+  float legendHeight = 110;
   
-  // Legend background
-  fill(255, 255, 255, 200);
-  stroke(200, 200, 210);
+  // Legend background - fixed positioning
+  fill(45, 50, 65, 240);
+  stroke(80, 90, 110);
   strokeWeight(1);
-  rect(legendX, legendY, 350, 120, 6);
+  rectMode(CORNER); // Use CORNER mode for precise positioning
+  rect(legendX, legendY, legendWidth, legendHeight, 6);
   
   // Legend title
-  fill(30, 50, 80);
+  fill(220, 230, 245);
   textAlign(LEFT);
-  textSize(13); // Slightly larger for title emphasis
-  text("Legend", legendX + 10, legendY + 20);
+  textSize(13);
+  text("Legend", legendX + 15, legendY + 25);
   
   textSize(9);
   
   // Node legend
-  fill(60, 80, 100);
-  text("Nodes:", legendX + 10, legendY + 40);
+  fill(160, 170, 185);
+  text("Nodes:", legendX + 15, legendY + 45);
   
   // Inner nodes
-  fill(51, 102, 255);
+  fill(100, 150, 255);
   noStroke();
-  ellipse(legendX + 60, legendY + 35, 8, 8);
-  fill(60, 80, 100);
-  text("Inner", legendX + 70, legendY + 40);
+  ellipse(legendX + 70, legendY + 40, 10, 10);
+  fill(160, 170, 185);
+  text("Inner", legendX + 80, legendY + 45);
   
   // Middle nodes  
-  fill(255, 51, 51);
-  ellipse(legendX + 110, legendY + 35, 8, 8);
-  fill(60, 80, 100);
-  text("Middle", legendX + 120, legendY + 40);
+  fill(255, 100, 100);
+  ellipse(legendX + 130, legendY + 40, 10, 10);
+  fill(160, 170, 185);
+  text("Middle", legendX + 140, legendY + 45);
   
   // Outer nodes
-  fill(255, 204, 51);
-  ellipse(legendX + 170, legendY + 35, 8, 8);
-  fill(60, 80, 100);
-  text("Outer", legendX + 180, legendY + 40);
+  fill(255, 200, 80);
+  ellipse(legendX + 200, legendY + 40, 10, 10);
+  fill(160, 170, 185);
+  text("Outer", legendX + 210, legendY + 45);
   
   // Edge legend
-  text("Edges:", legendX + 10, legendY + 60);
+  text("Edges:", legendX + 280, legendY + 45);
   
-  stroke(229, 51, 51);
-  strokeWeight(2);
-  line(legendX + 60, legendY + 55, legendX + 80, legendY + 55);
-  fill(60, 80, 100);
+  stroke(255, 80, 80);
+  strokeWeight(3);
+  line(legendX + 330, legendY + 40, legendX + 355, legendY + 40);
+  fill(160, 170, 185);
   noStroke();
-  text("Type 0", legendX + 85, legendY + 60);
+  text("Type 0", legendX + 365, legendY + 45);
   
-  stroke(51, 204, 51);
-  strokeWeight(2);
-  line(legendX + 130, legendY + 55, legendX + 150, legendY + 55);
-  fill(60, 80, 100);
+  stroke(80, 255, 80);
+  strokeWeight(3);
+  line(legendX + 420, legendY + 40, legendX + 445, legendY + 40);
+  fill(160, 170, 185);
   noStroke();
-  text("Type 1", legendX + 155, legendY + 60);
+  text("Type 1", legendX + 455, legendY + 45);
   
-  stroke(51, 102, 255);
-  strokeWeight(2);
-  line(legendX + 200, legendY + 55, legendX + 220, legendY + 55);
-  fill(60, 80, 100);
+  stroke(80, 150, 255);
+  strokeWeight(3);
+  line(legendX + 510, legendY + 40, legendX + 535, legendY + 40);
+  fill(160, 170, 185);
   noStroke();
-  text("Type 2", legendX + 225, legendY + 60);
+  text("Type 2", legendX + 545, legendY + 45);
   
   // Segment legend
-  text("Segments:", legendX + 10, legendY + 80);
+  text("Segments:", legendX + 15, legendY + 70);
   
-  stroke(100, 200, 100);
-  strokeWeight(2);
-  line(legendX + 80, legendY + 75, legendX + 100, legendY + 75);
-  fill(60, 80, 100);
-  noStroke();
-  text("Normal", legendX + 105, legendY + 80);
-  
-  stroke(255, 100, 100);
+  stroke(120, 255, 120);
   strokeWeight(3);
-  line(legendX + 160, legendY + 75, legendX + 180, legendY + 75);
-  fill(60, 80, 100);
+  line(legendX + 90, legendY + 65, legendX + 115, legendY + 65);
+  fill(160, 170, 185);
   noStroke();
-  text("Intersected", legendX + 185, legendY + 80);
+  text("Normal", legendX + 125, legendY + 70);
+  
+  stroke(255, 120, 120);
+  strokeWeight(4);
+  line(legendX + 190, legendY + 65, legendX + 215, legendY + 65);
+  fill(160, 170, 185);
+  noStroke();
+  text("Intersected", legendX + 225, legendY + 70);
   
   // Analysis note
-  text("Analysis: Polar coordinate ordering provides significant performance improvements", 
-       legendX + 10, legendY + 100);
+  fill(140, 150, 165);
+  textSize(8);
+  text("Analysis: Polar coordinate ordering provides significant performance improvements for graph rendering operations", 
+       legendX + 15, legendY + 90);
 }
 
 void drawPerformanceInfo() {
@@ -441,20 +446,20 @@ void drawPerformanceInfo() {
 }
 
 void drawControlsHint() {
-  fill(120, 140, 160);
+  fill(140, 150, 165);
   textAlign(RIGHT);
   textSize(10);
-  text("Press SPACE to refresh | Press S to save screenshot", width - 50, height - 20);
+  text("Press SPACE to refresh | Press S to save screenshot | Press H for help", width - 50, height - 10);
 }
 
 void displayErrorMessage() {
-  background(245, 245, 250);
-  fill(255, 100, 100);
+  background(25, 30, 40);
+  fill(255, 120, 120);
   textAlign(CENTER);
   textSize(24);
   text("Error: Could not load data file", width/2, height/2);
   
-  fill(120, 140, 160);
+  fill(180, 190, 205);
   textSize(14);
   text("Please check the data file path and try again", width/2, height/2 + 30);
 }

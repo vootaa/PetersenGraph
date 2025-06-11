@@ -4,7 +4,7 @@ PerformanceMonitor monitor;
 void setup() {
   size(1400, 1000);
   colorMode(RGB, 255);
-  background(245, 245, 250); //  Light gray background
+  background(25, 30, 40); //    Dark background for contrast
   
   println("Petersen Graph Static Data Viewer");
   println("Window size: " + width + "x" + height);
@@ -32,7 +32,6 @@ void setup() {
   monitor.printSummary();
 }
 
-
 void drawInterface() {
   println("\n=== Drawing Petersen Graph Interface ===");
   
@@ -47,8 +46,8 @@ void drawInterface() {
     return;
   }
 
-  // Clear background
-  background(245, 245, 250);
+  // Clear background with dark theme
+  background(25, 30, 40);
   
   // Draw header
   drawHeader();
@@ -93,7 +92,6 @@ void performanceComparison() {
   ArrayList<Node> subset = dataReader.getSubset(nodesPolar, 0.2);
   monitor.endTiming("Subset Creation - 1/5 data");
 }
-
 
 void draw() {
   // Static interface - no continuous drawing needed
