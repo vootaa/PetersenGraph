@@ -251,23 +251,6 @@ class UIRenderer {
         
         // Draw radius guides
         drawRadiusGuides();
-        
-        // Highlight current symmetry group sector
-        fill(255, 200, 0, 40);
-        noStroke();
-        float startAngle = radians(currentSymmetryGroup * 72);
-        float endAngle = radians((currentSymmetryGroup + 1) * 72);
-        arc(0, 0, scale * 1.2, scale * 1.2, startAngle, endAngle);
-        
-        // Draw current group sector boundary lines highlighted
-        stroke(255, 200, 0, 200);
-        strokeWeight(3);
-        float x1 = cos(startAngle) * scale * 0.6;
-        float y1 = sin(startAngle) * scale * 0.6;
-        float x2 = cos(endAngle) * scale * 0.6;
-        float y2 = sin(endAngle) * scale * 0.6;
-        line(0, 0, x1, y1);
-        line(0, 0, x2, y2);
     }
     
     // Draw enhanced symmetry analysis info
