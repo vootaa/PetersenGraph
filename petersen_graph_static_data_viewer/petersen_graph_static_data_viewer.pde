@@ -7,8 +7,15 @@ void setup() {
   
   // Initialize components
   String dataFile = "../petersen_graph_processing/static_data_exports/petersen_static_data_2025611_9258.json";
+  println("Loading data from: " + dataFile);
+
   dataReader = new EnhancedDataReader(dataFile);
   monitor = new PerformanceMonitor();
+
+  if (dataReader.reader.data == null) {
+    println("ERROR: Data not loaded!");
+    return;
+  }
   
   // Print data statistics
   dataReader.printStatistics();
@@ -22,6 +29,16 @@ void setup() {
 
 void drawAllGraphs() {
   println("\n=== Drawing All Graphs ===");
+
+  ArrayList<Node> testNodes = dataReader.getNodesByIndex();
+  ArrayList<OriginalEdge> testEdges = dataReader.getOriginalEdgesByIndex();
+
+  println("Loaded " + testNodes.size() + " nodes and " + testEdges.size() + " edges");
+
+  if (testNodes.size() == 0) {
+    println("ERROR: No nodes loaded!");
+    return;
+  }
   
   // a) Draw nodes and edges in index order
   drawGraphA();
@@ -48,11 +65,15 @@ void drawGraphA() {
   ArrayList<Node> nodes = dataReader.getNodesByIndex();
   ArrayList<OriginalEdge> edges = dataReader.getOriginalEdgesByIndex();
   
-  GraphRenderer renderer = new GraphRenderer(150, 150, 200);
-  renderer.drawTitle("A) Index Order - Nodes & Edges", 300, 130);
+  println("Drawing Graph A: " + nodes.size() + " nodes, " + edges.size() + " edges");
+  
+  GraphRenderer renderer = new GraphRenderer(200, 200, 100);
+  renderer.drawTitle("A) Index Order - Nodes & Edges", 200, 180);
+  
   renderer.drawOriginalEdges(edges);
   renderer.drawNodes(nodes);
-  renderer.drawStats("Nodes: " + nodes.size() + ", Edges: " + edges.size(), 50, 300);
+  
+  renderer.drawStats("Nodes: " + nodes.size() + ", Edges: " + edges.size(), 50, 350);
   
   monitor.endTiming("Graph A - Index Order (Nodes + Edges)");
 }
@@ -63,11 +84,15 @@ void drawGraphB() {
   ArrayList<Node> nodes = dataReader.getNodesByPolar();
   ArrayList<OriginalEdge> edges = dataReader.getOriginalEdgesByPolar();
   
-  GraphRenderer renderer = new GraphRenderer(550, 150, 200);
-  renderer.drawTitle("B) Polar Order - Nodes & Edges", 700, 130);
+  println("Drawing Graph B: " + nodes.size() + " nodes, " + edges.size() + " edges");
+  
+  GraphRenderer renderer = new GraphRenderer(600, 200, 100);
+  renderer.drawTitle("B) Polar Order - Nodes & Edges", 600, 180);
+  
   renderer.drawOriginalEdges(edges);
   renderer.drawNodes(nodes);
-  renderer.drawStats("Nodes: " + nodes.size() + ", Edges: " + edges.size(), 450, 300);
+  
+  renderer.drawStats("Nodes: " + nodes.size() + ", Edges: " + edges.size(), 450, 350);
   
   monitor.endTiming("Graph B - Polar Order (Nodes + Edges)");
 }
@@ -79,13 +104,17 @@ void drawGraphC() {
   ArrayList<Intersection> intersections = dataReader.getIntersectionsByIndex();
   ArrayList<EdgeSegment> segments = dataReader.getSegmentsByIndex();
   
-  GraphRenderer renderer = new GraphRenderer(150, 500, 200);
-  renderer.drawTitle("C) Index Order - Nodes, Intersections & Segments", 300, 480);
+  println("Drawing Graph C: " + nodes.size() + " nodes, " + intersections.size() + " intersections, " + segments.size() + " segments");
+  
+  GraphRenderer renderer = new GraphRenderer(200, 600, 100);
+  renderer.drawTitle("C) Index Order - Nodes, Intersections & Segments", 200, 580);
+  
   renderer.drawEdgeSegments(segments);
   renderer.drawIntersections(intersections);
   renderer.drawNodes(nodes);
+  
   renderer.drawStats("Nodes: " + nodes.size() + ", Intersections: " + intersections.size() + 
-                    ", Segments: " + segments.size(), 50, 650);
+                    ", Segments: " + segments.size(), 50, 750);
   
   monitor.endTiming("Graph C - Index Order (Nodes + Intersections + Segments)");
 }
@@ -97,13 +126,17 @@ void drawGraphD() {
   ArrayList<Intersection> intersections = dataReader.getIntersectionsByPolar();
   ArrayList<EdgeSegment> segments = dataReader.getSegmentsByPolar();
   
-  GraphRenderer renderer = new GraphRenderer(550, 500, 200);
-  renderer.drawTitle("D) Polar Order - Nodes, Intersections & Segments", 700, 480);
+  println("Drawing Graph D: " + nodes.size() + " nodes, " + intersections.size() + " intersections, " + segments.size() + " segments");
+  
+  GraphRenderer renderer = new GraphRenderer(600, 600, 100);
+  renderer.drawTitle("D) Polar Order - Nodes, Intersections & Segments", 600, 580);
+  
   renderer.drawEdgeSegments(segments);
   renderer.drawIntersections(intersections);
   renderer.drawNodes(nodes);
+  
   renderer.drawStats("Nodes: " + nodes.size() + ", Intersections: " + intersections.size() + 
-                    ", Segments: " + segments.size(), 450, 650);
+                    ", Segments: " + segments.size(), 450, 750);
   
   monitor.endTiming("Graph D - Polar Order (Nodes + Intersections + Segments)");
 }
@@ -117,12 +150,16 @@ void drawGraphE() {
   ArrayList<Node> subsetNodes = dataReader.getSubset(allNodes, 0.2);
   ArrayList<OriginalEdge> subsetEdges = dataReader.getSubset(allEdges, 0.2);
   
-  GraphRenderer renderer = new GraphRenderer(950, 325, 200);
-  renderer.drawTitle("E) 1/5 Subset - Polar Order", 1100, 305);
+  println("Drawing Graph E: " + subsetNodes.size() + "/" + allNodes.size() + " nodes, " + subsetEdges.size() + "/" + allEdges.size() + " edges");
+  
+  GraphRenderer renderer = new GraphRenderer(1000, 400, 100);
+  renderer.drawTitle("E) 1/5 Subset - Polar Order", 1000, 380);
+  
   renderer.drawOriginalEdges(subsetEdges);
   renderer.drawNodes(subsetNodes);
+  
   renderer.drawStats("Nodes: " + subsetNodes.size() + "/" + allNodes.size() + 
-                    ", Edges: " + subsetEdges.size() + "/" + allEdges.size(), 850, 475);
+                    ", Edges: " + subsetEdges.size() + "/" + allEdges.size(), 850, 550);
   
   monitor.endTiming("Graph E - 1/5 Subset (Polar Order)");
 }
@@ -164,4 +201,11 @@ void performanceComparison() {
 
 void draw() {
   // Static drawing, no need for repeated drawing
+}
+
+void keyPressed() {
+  if (key == ' ') {
+    background(255);
+    drawAllGraphs();
+  }
 }

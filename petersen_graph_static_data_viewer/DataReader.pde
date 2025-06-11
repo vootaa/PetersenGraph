@@ -34,7 +34,6 @@ class PetersenDataReader {
             
             println("Loaded Petersen graph data version " + version);
             println("Created: " + createdTime);
-            printStatistics();
             
             return true;
         } catch (Exception e) {
